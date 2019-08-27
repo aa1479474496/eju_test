@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue_echarts</title>
+    <style>
+        .tooltip-map {
+            display: inline-block;
+            font-size: 0;
+            border: 1px solid skyblue;
+            border-radius: 6px;
+        }
+
+        .tooltip-map_label,
+        .tooltip-map_text {
+            display: inline-block;
+            vertical-align: middle;
+            padding: 4px 6px;
+            font-size: 14px;
+        }
+
+        .tooltip-map_label {
+            border-radius: 6px 0 0 6px;
+            background: skyblue;
+            color: #fff;
+        }
+
+        .tooltip-map_text {
+            border-radius: 0 6px 6px 0;
+
+            background: #fff;
+            color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>
+            {{ message }}
+        </h1>
+        <div id="hotWord" style="width:718px ;height: 298px;"></div>
+        <div id="main" style="width: 600px;height:400px;"></div>
+        <div id="mapMain" style="width: 600px;height:400px;"></div>
+    </div>
+    <script src="../lib/echarts.min.js"></script>
+    <script src="../lib/yuqing_china.js"></script>
+    <script src="../lib/vue-2.6.10.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>

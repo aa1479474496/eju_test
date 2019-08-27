@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>datav</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .test {
+            font-size: 18px;
+        }
+
+        .title {
+            width: 400px;
+            height: 85px;
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgb(255, 255, 255);
+            font-weight: lighter;
+            font-family: "Microsoft Yahei", Arial, sans-serif;
+            font-size: 36px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test">test</div>
+    <div class="title">企业实时销售大盘</div>
+    <script src="../lib/jquery-2.2.4.min.js"></script>
+    <script>
+
+        // width: 1920px;
+        //     height: 1080px;
+        //     background-image: url(//datav.oss-cn-hangzhou.aliyuncs.com/uploads/templates/7.png);
+        //     background-color: rgba(13, 42, 67, 0);
+        //     transform: scale(0.571354, 0.867593);
+        //     transform-origin: left top;
+        //     background-size: 100% 100%;
+
+        $(function () {
+            {
+                var wRatio = $(window).width() / 1920;
+                var hRatio = $(window).height() / 1080;
+                console.log(wRatio, hRatio);
+                $('body').css({
+                    width: '1920px',
+                    height: '1080px',
+                    transform: `scale(${wRatio}, ${hRatio})`,
+                    transformOrigin: "left top",
+                    backgroundColor: 'rgba(13, 42, 67, 1)',
+                    // backgroundImage: 'url(//datav.oss-cn-hangzhou.aliyuncs.com/uploads/templates/7.png)',
+                    // backgroundSize: '100% 100%',
+                });
+
+            }
+        })
+    </script>
+</body>
+
+</html>

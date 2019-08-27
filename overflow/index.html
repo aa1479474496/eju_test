@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>overflow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 200px;
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid skyblue;
+            margin: 50px auto;
+        }
+
+        .title {
+            font-size: 14px;
+            line-height: 24px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+        }
+
+        .title.seemore {
+            position: relative;
+            padding-right: 60px;
+        }
+        .title.normal {
+            -webkit-line-clamp: 9999;
+            overflow: auto;
+        }
+        .see_more_btn {
+            color: skyblue;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="title">6月19日，广东碧桂园职业学院举行2019届毕业典礼，360多名毕业生满怀希望和激情，即将离开校园走上各自的工作岗位。 作为广东碧桂园职业学院的创办人，碧桂园集团
+            董事会主席杨国强始终对职院的学生们寄予厚望，毕业典礼上他在现场跟孩子们进行了一次语重心长的对话交流。 我父亲曾经教育我说，别人批评你是将钱交到你的口袋， 你要虚心地接受批评，反思自己如何做得更好。
+            不能看所有的事情都是麻木的，要永远想着如何把工作做得更好，慢慢地一天天下来，你会积累很多的才能，才能是你自己的。
+            杨国强为广东碧桂园职业学院优秀毕业生标兵颁发证书谢谢各位老师的努力，谢谢你们耐心、细心的教导，也谢谢孩子们的努力！【点击展开后显示全部摘要，不必收起。】</div>
+
+        <div class="title">1</div>
+        <div class="title">2</div>
+        <div class="title"> 董事会主席杨国强始终对职院的学生们寄予厚望，毕业典礼上他在现场跟孩子们进行了一次语重心长的对话交流。 我父亲曾经教育我说，别人批评你是将钱交到你的口袋， 你要虚心地接受批评，反思自己如何做得更好。
+                不能看所有的事情都是麻木的，要永远想着如何把工作做得更好，慢慢地一天天下来，你会积累很多的才能，才能是你自己的。
+                杨国强为广东碧桂园职业学院优秀毕业生标兵颁发证书谢谢各位老师的努力，谢谢你们耐心、细心的教导，也谢谢孩子们的努力！【点击展开后显示全部摘要，不必收起。】</div>
+
+        <div></div>
+    </div>
+
+    <script src="../lib/jquery-2.2.4.min.js"></script>
+    <script>
+        (function ($, undefined) {
+            $.fn.setSeeMore = function (childClass) {
+                var title = $(this).find(childClass);
+                title.each((index, item) => {
+                    console.log(item.scrollHeight, item.clientHeight);
+                    if (item.scrollHeight > item.clientHeight) {
+                        var more = '<span class="see_more_btn">查看更多</span>';
+                        $(item).addClass('seemore').append(more)
+                    }
+                    else {
+                        console.log('hide ...');
+                    }
+                });
+
+                $(this).on('click', '.see_more_btn', function() {
+                    let title = $(this).parent(childClass);
+                    title.removeClass('seemore').addClass('normal');
+                    $(this).remove();
+                })
+
+
+            }
+
+            $.fn.setCursorPosition = function (pos) {
+
+            }
+        })(jQuery);
+
+
+        $(function () {
+            $('.box').setSeeMore('.title');
+        })
+    </script>
+</body>
+
+</html>

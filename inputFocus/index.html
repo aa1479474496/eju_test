@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>focus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        .symbol {
+            display: inline-block;
+            margin-right: 4px;
+            width: 36px;
+            height: 36px;
+            line-height: 36px;
+            background: linear-gradient(0deg, rgba(241, 243, 247, 1), rgba(255, 255, 255, 1));
+            border: 1px solid rgba(234, 234, 234, 1);
+            border-radius: 4px;
+            color: #A7B1C2;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <input type="text" id="text"/>
+
+        <div style="margin-top: 20px;">
+            <span class="symbol">+</span>
+            <span class="symbol">-</span>
+            <span class="symbol">|</span>
+            <span class="symbol">(</span>
+        </div>
+    </div>
+
+
+    <script src="../lib/jquery-2.2.4.min.js"></script>
+    <script src="../lib/jquery.focusPosition.js"></script>
+    <script>
+        let pos = $('#text').getCursorPosition();
+        console.log('gggg', pos);
+        $('.symbol').on('click', function() {
+            let pos = $('#text').getCursorPosition();
+            let value = $('#text').val();
+            let currentV = $(this).html();
+            let newValue = value.slice(0, pos) + currentV + value.slice(pos);
+            $('#text').val(newValue);
+            $('#text').setCursorPosition(pos + 1);
+            $('#text').focus();
+        });
+    </script>
+
+</body>
+
+</html>

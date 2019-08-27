@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        // 纵轴
+        var fieldStatRule = [
+            {
+                type: 'string',
+                list: [
+                    { label: "计数", value: "count" },
+                    { label: "去重计数", value: "uniqCnt" }
+                ]
+            },
+            {
+                type: 'number',
+                list: [
+                    { label: "求和", value: "sum" },
+                    { label: "平均值(去0)", value: "avgExpZero" },
+                    { label: "平均值", value: "avg" },
+                    { label: "最小值", value: "min" },
+                    { label: "最大值", value: "max" },
+                    { label: "计数", value: "count" },
+                    { label: "去重计数", value: "uniqCnt" }
+                ]
+            },
+            {
+                type: 'date',
+                list: [
+                    { label: "计数", value: "count" },
+                    { label: "去重计数", value: "uniqCnt" }
+                ]
+            }
+        ]
+
+        // group 横轴
+        var fieldGroupRule = [
+            {
+                type: 'string',
+                list: [
+                    { label: "", value: "=" }
+                ]
+            },
+            {
+                type: 'number',
+                list: [
+                    { label: "", value: "=" }
+                ]
+            },
+            {
+                type: 'date',
+                list: [
+                    { label: "按月", value: "month" },
+                    { label: "按年", value: "year" },
+                    { label: "按天", value: "day" },
+                    { label: "按周", value: "week" },
+                    { label: "按季", value: "quarter" }
+                ]
+            }
+        ]
+    </script>
+
+
+
+
+</body>
+
+</html>

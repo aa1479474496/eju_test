@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <input type="text" v-model.number="age"> -->
+        <input type="text" v-model.number="age" @input="checkNumber(age)">
+        <button @click="console">testtest</button>
+        <el-date-picker v-model="value1" type="daterange" range-separator="-" start-placeholder="开始日期"
+            end-placeholder="结束日期">
+        </el-date-picker>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+
+            data: {
+                age: '',
+                value1: '',
+            },
+
+            computed: {
+                // age: {
+                //     get() {
+                //         return this.value
+                //     },
+
+                //     set(value) {
+                //         if (isNaN) {
+                //             value = 0;
+                //         }
+                //     }
+                // }
+            },
+
+            methods: {
+                checkNumber(value) {
+                    if (isNaN) {
+                        value = 0;
+                    }
+                    console.log('vvv', value);
+                },
+
+                console() {
+                    console.log('age', this.age, isNaN(this.age));
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="row">
+            <div class="col-3">
+                <h3>Draggable 1</h3>
+                <draggable class="dragArea list-group" :list="list1"
+                    :group="{ name: 'people', pull: 'clone', put: false }" :clone="cloneDog" @change="log">
+                    <div class="list-group-item" v-for="element in list1" :key="element.id">
+                        {{ element.name }}
+                    </div>
+                </draggable>
+            </div>
+
+            <div class="col-3">
+                <h3>Draggable 2</h3>
+                <draggable class="dragArea list-group" :list="list2" group="people" @change="log">
+                    <div class="list-group-item" v-for="element in list2" :key="element.id">
+                        {{ element.name }}
+                    </div>
+                </draggable>
+            </div>
+
+            <div class="col-3">
+                    <h3>Draggable 3</h3>
+                    <draggable class="dragArea list-group" :list="list3" group="people" @change="log">
+                        <div class="list-group-item" v-for="element in list3" :key="element.id">
+                            {{ element.name }}
+                        </div>
+                    </draggable>
+                </div>
+
+        </div>
+    </div>
+
+    <script src="../lib/vue-2.6.10.js"></script>
+    <script src="../lib/Sortable.min.js"></script>
+    <script src="../lib/vuedraggable.umd.min.js"></script>
+    <script>
+        let idGlobal = 8;
+
+        new Vue({
+            el: '#app',
+
+            data() {
+                return {
+                    list1: [
+                        { name: "dog 1", id: 1 },
+                        { name: "dog 2", id: 2 },
+                        { name: "dog 3", id: 3 },
+                        { name: "dog 4", id: 4 }
+                    ],
+                    list2: [
+                        { name: "cat 5", id: 5 },
+                        { name: "cat 6", id: 6 },
+                        { name: "cat 7", id: 7 }
+                    ],
+                    list3: []
+                };
+            },
+            methods: {
+                log: function (evt) {
+                    window.console.log(evt);
+                },
+                cloneDog(item) {
+                    return { ...item, id: idGlobal++ };
+                    // return {
+                    //     id: idGlobal++,
+                    //     name: `cat ${id}`
+                    // };
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
