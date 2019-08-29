@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>htmlCanvas</title>
+    <style>
+        .box {
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+            border: 1px solid skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box"> Text that isn't wrapped in anything.
+        <p>Followed by some text wrapped in a <b>&lt;p&gt; paragraph.</b> </p>
+        Maybe add a <a href="#">link</a> or a different style of <a href="#" style="background:white;"
+            id="highlight">link with a highlight</a>.</div>
+    <script src="../lib/jquery-2.2.4.min.js"></script>
+    <script src="../lib/html2canvas.min.js"></script>
+    <script>
+        $(function () {
+            let boxEl = document.getElementById('box');
+            html2canvas(boxEl, {
+                scale: 2
+            }).then(canvas => {
+                let img = canvas.toDataURL("image/jpeg");
+                console.log('canvas', canvas);
+                console.log('img', img);
+            })
+        });
+    </script>
+</body>
+
+</html>

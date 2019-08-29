@@ -6,47 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="../lib/css/bootstrap.css">
+    <style>
+        .dragArea {
+            min-height: 200px;
+        }
+    </style>
 </head>
 
 <body>
     <div id="app">
         <div class="row">
-            <div class="col-3">
+            <div class="col-md-3">
                 <h3>Draggable 1</h3>
                 <draggable class="dragArea list-group" :list="list1"
-                    :group="{ name: 'people', pull: 'clone', put: false }" :clone="cloneDog" @change="log">
+                    :group="{ name: 'people', pull: 'clone', put: false }" :clone="cloneDog" @change="log"
+                    :move="checkMove" @end="onEnd">
                     <div class="list-group-item" v-for="element in list1" :key="element.id">
                         {{ element.name }}
                     </div>
                 </draggable>
             </div>
 
-            <div class="col-3">
+            <div class="col-md-3">
                 <h3>Draggable 2</h3>
-                <draggable class="dragArea list-group" :list="list2" group="people" @change="log">
+                <draggable class="dragArea list-group" data-type="list2" :list="list2" group="people" @end="onEnd">
                     <div class="list-group-item" v-for="element in list2" :key="element.id">
                         {{ element.name }}
                     </div>
                 </draggable>
             </div>
 
-            <div class="col-3">
-                    <h3>Draggable 3</h3>
-                    <draggable class="dragArea list-group" :list="list3" group="people" @change="log">
-                        <div class="list-group-item" v-for="element in list3" :key="element.id">
-                            {{ element.name }}
-                        </div>
-                    </draggable>
-                </div>
+            <div class="col-md-3">
+                <h3>Draggable 3</h3>
+                <draggable class="dragArea list-group" data-type="list3" :list="list3" group="people" @end="onEnd">
+                    <div class="list-group-item" v-for="element in list3" :key="element.id">
+                        {{ element.name }}
+                    </div>
+                </draggable>
+            </div>
 
         </div>
     </div>
 
+    <script src="../lib/jquery-2.2.4.min.js"></script>
     <script src="../lib/vue-2.6.10.js"></script>
     <script src="../lib/Sortable.min.js"></script>
     <script src="../lib/vuedraggable.umd.min.js"></script>
+    <script src="../lib/bootstrap.js"></script>
     <script>
-        let idGlobal = 8;
+        let idGlobal = 800;
 
         new Vue({
             el: '#app',
@@ -57,20 +66,130 @@
                         { name: "dog 1", id: 1 },
                         { name: "dog 2", id: 2 },
                         { name: "dog 3", id: 3 },
-                        { name: "dog 4", id: 4 }
+                        { name: "dog 4", id: 4 },
+                        { name: "dog 5", id: 5 },
+                        { name: "dog 6", id: 6 },
+                        { name: "dog 7", id: 7 },
                     ],
                     list2: [
-                        { name: "cat 5", id: 5 },
-                        { name: "cat 6", id: 6 },
-                        { name: "cat 7", id: 7 }
+
                     ],
                     list3: []
                 };
             },
+
+            mounted() {
+                // this.addRule();
+                // console.log('this.list2', this.list2);
+            },
+
             methods: {
+                addRule() {
+                    this.list2.forEach((item, index) => {
+                        // if (item['rule']) {
+                        //     return;
+                        // }
+                        if (item['rule'] != 'list2') {
+                            item['rule'] = 'list2';
+                            // 获取对应的规则
+                        }
+                    });
+
+                    this.list3.forEach(item => {
+                        // if (item['rule']) {
+                        //     return;
+                        // }
+                        if (item['rule'] != 'list3') {
+                            item['rule'] = 'list3';
+                            // 获取对应的规则
+                        }
+                    });
+
+                },
+
+
+                onEnd(e) {
+                    console.log('onEnd', e);
+                    let toDom = e.to;
+                    let { newIndex } = e;
+                    let dataType = toDom.getAttribute('data-type') || '';
+                    this.filterResult(dataType, newIndex);
+                },
+
+                filterResult(dataType, newIndex) {
+                    if (!dataType) {
+                        return;
+                    }
+
+                    let currentList = [];
+                    let checkList = []
+
+                    if (dataType == 'list2') {
+                        currentList = this.list2;
+                        checkList = this.list3;
+                    }
+                    else if (dataType == 'list3') {
+                        currentList = this.list3;
+                        checkList = this.list2;
+                    }
+
+                    this.addRule();
+
+                    if (!checkList.length) {
+                        return;
+                    }
+
+                    let element = currentList[newIndex];
+                    let isExit = checkList.find(item => {
+                        return item.name == element.name
+                    });
+
+                    if (isExit) {
+                        currentList.splice(newIndex, 1);
+                        console.log('已存在');
+                    }
+                    // console.log('list2', this.list2);
+                    // console.log('list3', this.list3);
+                },
+
+                checkMove(e) {
+                    // console.log('e', e);
+
+                    // checkmove时判断此数据是否各自存在横轴和纵轴。
+                    // 分别给横轴和纵轴结果的数据中存rule，如stat和group，change中数组遍历判断。
+                    // 如果不是自己对应的rule，那么删除rule然后从规则中去取对应的规则
+                    // debugger
+                    // console.log('e', e.to)
+
+                    // let { draggedContext } = e;
+                    // let { element } = draggedContext;
+
+                    // let toDom = $(e.to);
+
+                    // let dataType = toDom.attr('data-type');
+
+                    // let list2Exit =  this.list2.some(item => {
+                    //     return item.name == element.name;
+                    // });
+
+                    // let list3Exit =  this.list3.some(item => {
+                    //     return item.name == element.name;
+                    // });
+
+                    // if (dataType == 'list2' && list3Exit) {
+                    //     return false
+                    // }
+
+                    // if (dataType == 'list3' && list2Exit) {
+                    //     return false
+                    // }
+
+                },
+
                 log: function (evt) {
                     window.console.log(evt);
                 },
+
                 cloneDog(item) {
                     return { ...item, id: idGlobal++ };
                     // return {
