@@ -12,6 +12,9 @@
             height: 500px;
             margin: 30px auto;
         }
+        .sel {
+            color: skyblue!important;
+        }
     </style>
 </head>
 
@@ -78,10 +81,14 @@
             // console.log('gridOptions', gridOptions.rowData);
 
             let { column, rowIndex } = params;
+            let { colId } = column;
             let attr = `[row-index=${rowIndex}]`;
             // debugger
             let rowEl = $('#myGrid .ag-body-viewport-wrapper').find(attr);
+            let el = rowEl.find(`[col-id=${colId}]`);
+            el.addClass('sel');
             console.log('rowEl', rowEl);
+            console.log('el', el);
         }
 
         document.addEventListener('DOMContentLoaded', function () {
