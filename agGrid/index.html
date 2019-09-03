@@ -73,7 +73,12 @@
             columnDefs: columnDefs,
             rowData: rowData,
 
-            onCellValueChanged: onCellValueChanged
+            onCellValueChanged: onCellValueChanged,
+            onCellEditingStarted :onCellEditingStarted 
+        }
+
+        function onCellEditingStarted(cell) {
+            console.log('cell', cell);
         }
 
         function onCellValueChanged(params, e) {
