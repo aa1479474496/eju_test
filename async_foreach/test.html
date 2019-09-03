@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .test {
+            width: 200px;
+            height: 200px;
+            overflow-y: auto;
+            overflow-x: visible;
+            margin: auto;
+        }
+
+        .child {
+            position: relative;
+            margin-top: 10px;
+            line-height: 80px;
+            background: skyblue;
+        }
+
+        .hide {
+            display: none;
+            position: absolute;
+            z-index: 2;
+            background: #fff;
+            right: 0;
+            top: 0;
+            padding: 40px;
+            border: 1px solid #999;
+            transform: translateX(10%)
+        }
+
+        .child:hover .hide {
+            display: block;
+        }
+
+        .father {
+            position: relative;
+            overflow-x: visible;
+            overflow-y: scroll;
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+        }
+
+        .son {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: orange;
+            left: 200px;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test">
+        <div class="child">
+            <div>show</div>
+            <div class="hide">hide</div>
+        </div>
+        <div class="child">
+            <div>show</div>
+            <div class="hide">hide</div>
+        </div>
+        <div class="child">
+            <div>show</div>
+            <div class="hide">hide</div>
+        </div>
+    </div>
+
+    <div class="father">
+
+        我爱模板网<br>
+
+        我爱模板网<br>
+        我爱模板网<br>
+        我爱模板网<br>
+        我爱模板网<br>
+        我爱模板网<br>
+        我爱模板网<br>
+        我爱模板网<br>
+        我爱模板网<br>
+        我爱模板网<br>
+        我爱模板网<br>
+        我爱模板网<br>
+        <div class="son">123</div>
+
+</body>
+
+</html>
