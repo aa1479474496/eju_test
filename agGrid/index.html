@@ -64,6 +64,12 @@
             { firstName: 'Sadiq', lastName: 'Khan', gender: 'Male', age: 12, address: '3235 High Forest, Glen Campbell, MS, 39035-6845, US, (601) 638-8186', mood: 'Happy', country: 'Ireland' },
             { firstName: 'Jerry', lastName: 'Mane', gender: 'Male', age: 12, address: '2234 Sleepy Pony Mall , Drain, DC, 20078-4243, US, (202) 948-3634', mood: 'Happy', country: 'Ireland' },
         ];
+        columnDefs.forEach(item => {
+            if (item.field == 'firstName') {
+                item.editable = false;
+            }
+            console.log('item', item);
+        })
 
         var gridOptions = {
             defaultColDef: {
@@ -78,11 +84,11 @@
         }
 
         function onCellEditingStarted(cell) {
-            console.log('cell', cell);
+            // console.log('cell', cell);
         }
 
         function onCellValueChanged(params, e) {
-            console.log('params', params);
+            // console.log('params', params);
             // console.log('gridOptions', gridOptions.rowData);
 
             let { column, rowIndex } = params;
@@ -92,8 +98,8 @@
             let rowEl = $('#myGrid .ag-body-viewport-wrapper').find(attr);
             let el = rowEl.find(`[col-id=${colId}]`);
             el.addClass('sel');
-            console.log('rowEl', rowEl);
-            console.log('el', el);
+            // console.log('rowEl', rowEl);
+            // console.log('el', el);
         }
 
         document.addEventListener('DOMContentLoaded', function () {
