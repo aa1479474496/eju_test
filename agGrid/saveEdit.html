@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>save-edit</title>
+    <link rel="stylesheet" href="../lib/css/bootstrap.css">
+    <style>
+        #myGrid {
+            width: 500px;
+            height: 500px;
+            margin: 30px auto;
+        }
+
+        .sel {
+            color: skyblue !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="row text-center" style="margin-top:20px;">
+            <!-- Standard button -->
+            <button type="button" class="btn btn-danger">重置</button>
+            <button type="button" class="btn btn-info" @click="edit">编辑</button>
+            <button type="button" @click="sure" class="btn btn-success">确认</button>
+            <button type="button" class="btn btn-default">取消</button>
+            <p>
+                    <button @click="handleSubmit" type="button" class="btn btn-primary btn-lg">（大按钮）Large submit</button>
+            </p>
+        </div>
+        <div class="row">
+            <div id="myGrid" class="ag-theme-balham col-lg-6 col-md-offset-3">
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="../lib/vue-2.6.10.js"></script>
+    <script src="../lib/jquery-2.2.4.min.js"></script>
+    <script src="../lib/bootstrap.js"></script>
+    <script src="../lib/util.js"></script>
+    <script type="text/javascript" src="./js/ag-grid-enterprise/ag-grid-enterprise.min.js"></script>
+    <script type="text/javascript" src="./js/ag-grid/gridlocale.js"></script>
+
+    <script>
+        var columnDefs = [
+            { field: 'firstName', width: 100 },
+            { field: 'lastName', width: 100 },
+            { field: 'gender', width: 90 },
+            { field: 'age', width: 70 },
+            // { field: 'id', width: 80 }
+        ];
+
+        var rowData = [
+            { firstName: 'Bob1', lastName: 'john1', gender: 'man1', age: 11, id: 1 },
+            { firstName: 'Bob2', lastName: 'john2', gender: 'man2', age: 12, id: 2 },
+            { firstName: 'Bob3', lastName: 'john3', gender: 'man3', age: 13, id: 3 },
+            { firstName: 'Bob4', lastName: 'john4', gender: 'man4', age: 14, id: 4 },
+            { firstName: 'Bob5', lastName: 'john5', gender: 'man5', age: 15, id: 5 }
+        ];
+        columnDefs.forEach(item => {
+            if (item.field == 'id') {
+                item.editable = false;
+                item.pinned = 'left';
+            }
+        });
+    </script>
+
+    <script>
+
+        new Vue({
+            el: '#app',
+
+            data() {
+                return {
+                    columnDefs: columnDefs,
+                    rowData: rowData,
+                    gridOptions: {},
+
+                    backupData: [],
+                    sureBtnTempData: [], // 记录确定按钮保存的数据
+
+                    modifyResultData: [], // 记录每次确定的结果
+
+                    editBtnTempData: [], // 开始存放编辑按键的数据， 每次编辑清空， 确认后存到sureBtn中
+
+                    tempOldValue: '',
+                }
+            },
+
+            mounted() {
+                this.gridOptions = {
+                    defaultColDef: {
+                        editable: false,
+                        resizable: true
+                    },
+                    columnDefs: this.columnDefs,
+                    rowData: this.rowData,
+                    getRowNodeId: function (data) { return data.id; },
+
+                    onCellValueChanged: this.onCellValueChanged,
+                    onCellEditingStarted: this.onCellEditingStarted
+                };
+                this.backupData = this.deepCopy(this.rowData); // 重置使用
+
+
+                this.$nextTick(() => {
+                    // var gridDiv = document.querySelector('#myGrid');
+                    // // new agGrid.Grid(gridDiv, gridOptions);
+
+                    // agGrid.LicenseManager.setLicenseKey("Evaluation_License_Valid_Until__30_September_2018__MTUzODI2MjAwMDAwMA==b0211b0a791ee130b75eaa29a676124a");
+                    // new agGrid.Grid(gridDiv, this.gridOptions);
+                    this.createTable();
+                })
+            },
+
+            methods: {
+                createTable() {
+                    var gridDiv = document.querySelector('#myGrid');
+                    $('#myGrid').html('');
+                    console.log('gridDiv', gridDiv);
+                    // new agGrid.Grid(gridDiv, gridOptions);
+
+                    agGrid.LicenseManager.setLicenseKey("Evaluation_License_Valid_Until__30_September_2018__MTUzODI2MjAwMDAwMA==b0211b0a791ee130b75eaa29a676124a");
+                    new agGrid.Grid(gridDiv, this.gridOptions);
+                },
+
+
+                onCellValueChanged(params) {
+                    let { column, rowIndex, newValue, oldValue, data } = params;
+                    let { colId } = column;
+                    let attr = `[row-index=${rowIndex}]`;
+                    // debugger
+
+                    console.log('params', params);
+                    console.log('colId', colId);
+                    if (colId == 'age') {
+                        if (isNaN(newValue)) {
+                            console.log('不是数字， 不合法');
+                            var rowNode = this.gridOptions.api.getRowNode(data.id);
+                            // console.log('rowNode', rowNode);
+                            // var newPrice = Math.floor(Math.random() * 100000);
+                            rowNode.setDataValue(colId, oldValue);
+                            this.tempOldValue = oldValue;
+                            return;
+                        }
+                    }
+
+                    if (newValue == oldValue) {
+                        console.log('值未修改');
+                        return;
+                    }
+                    if (newValue == this.tempOldValue) {
+                        console.log('不合法输入，恢复原始值， 进入change');
+                        return;
+                    }
+                    console.log('newValue', newValue, oldValue);
+                    if (this.lastStepFlag) {
+
+                    }
+                    let rowEl = $('#myGrid .ag-body-viewport-wrapper').find(attr);
+                    let el = rowEl.find(`[col-id=${colId}]`);
+                    el.addClass('sel');
+                    this.editBtnTempData.push(data);
+                },
+
+                onCellEditingStarted() {
+
+                },
+
+                sure() {
+                    console.log('确定保存', this.editBtnTempData);
+                    this.modifyResultData.push(...this.editBtnTempData);
+                    console.log('this.modifyResultData', this.modifyResultData);
+                },
+
+                edit() {
+                    console.log('edit')
+                    this.gridOptions.defaultColDef.editable = true;
+                    this.createTable();
+                    this.editBtnTempData = [];
+                    // this.gridOptions.set
+                    // this.gridOptions.api.setRowData(this.rowData);
+
+                    // console.log(this.gridOptions.api);
+                    // this.gridOptions.api.refreshCells()
+                    // var colState = this.gridOptions.columnApi.getColumnState();
+                    // var groupState = this.gridOptions.columnApi.getColumnGroupState();
+                    // var sortState = this.gridOptions.api.getSortModel();
+                    // var filterState = this.gridOptions.api.getFilterModel();
+
+                    // console.log("***********************");
+                    // console.log("colState: ", colState);
+                    // console.log("groupState: ", groupState);
+                    // console.log("sortState: ", sortState);
+                    // console.log("filterState: ", filterState);
+                    // console.log("***********************");
+
+
+                    // gridOptions.api.setRowData(httpResult);
+                },
+
+                deepCopy(data) {
+                    return JSON.parse(JSON.stringify(data));
+                },
+
+                handleSubmit() {
+                    this.modifyResultData = util.assignSameKey('id', this.modifyResultData);
+                    console.log('assign', this.modifyResultData);
+                }
+
+               
+
+            }
+        })
+    </script>
+</body>
+
+</html>
