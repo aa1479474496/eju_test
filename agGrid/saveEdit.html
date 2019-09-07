@@ -169,6 +169,7 @@
                     let el = rowEl.find(`[col-id=${colId}]`);
                     el.addClass('sel');
                     this.editBtnTempData.push(data);
+                    this.tempOldValue = '';
                 },
 
                 onCellEditingStarted() {
