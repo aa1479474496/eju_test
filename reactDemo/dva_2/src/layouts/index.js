@@ -5,6 +5,7 @@ function BasicLayout(props) {
     <div className={styles.normal}>
       <h1 className={styles.title}>Yay! Welcome to umi!</h1>
       {props.children}
+      <div>1234</div>
     </div>
   );
 }
