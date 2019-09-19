@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width='device-width', initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100px;
+            height: 30px;
+            /* max-height: 30px; */
+            /* max-height: 0; */
+            overflow: hidden;
+            border: 1px solid #999;
+            margin: 30px auto;
+            /* transition: max-height 0.35s ease-out; */
+            transition: all cubic-bezier(0.075, 0.82, 0.165, 1) .4s;
+
+        }
+
+        .btn {
+            width: 100px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="box">
+        习近平：让黄河成为造福人民的幸福河
+        牢记初心使命 赓续红色基因
+        井冈山市神山村脱贫调查 小小神山村为何这么"神气"
+        【中国稳健前行】开放是当代中国的鲜明标识
+        铸就中华文化新辉煌 重庆24小时
+        "可爱的中国"之乌孜别克族 心连心爱香港
+    </div>
+
+    <div class="btn">btn</div>
+
+    <script src="../lib/jquery-2.2.4.min.js"></script>
+    <script>
+
+
+        var funTransitionHeight = function (element, time) { // time, 数值，可缺省
+            if (typeof window.getComputedStyle == "undefined") return;
+
+            var height = window.getComputedStyle(element).height;
+
+            element.style.transition = "none";    // 本行2015-05-20新增，mac Safari下，貌似auto也会触发transition, 故要none下~
+
+            element.style.height = "auto";
+            var targetHeight = window.getComputedStyle(element).height;
+            element.style.height = height;
+            element.offsetWidth = element.offsetWidth;
+            if (time) element.style.transition = "height " + time + "ms";
+            element.style.height = targetHeight;
+        };
+        var box = document.getElementById("box");
+        $('.btn').on('click', function () {
+            funTransitionHeight(box, 250);
+        });
+    </script>
+</body>
+
+</html>
