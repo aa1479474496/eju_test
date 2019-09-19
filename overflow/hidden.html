@@ -1,18 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>hidden</title>
+    <link rel="stylesheet" href="../lib/css/bootstrap.css">
+    <link rel="stylesheet" href="../iconfont/iconfont.css">
     <style>
         * {
             margin: 0;
             padding: 0;
         }
+
+        .container {
+            margin: 50px auto;
+            /* width: 640px; */
+        }
+
+        .group {
+            position: relative;
+            padding-right: 80px;
+            padding-top: 6px;
+            height: 32px;
+            overflow: hidden;
+            border: 1px solid #999;
+        }
+
+        .search_type_box {
+            margin-left: 76px;
+            font-size: 0;
+        }
+
+        .search_type_box .label_type {
+            margin-right: 24px;
+            margin-bottom: 10px;
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 13px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .toggle_overflow_btn {
+            display: none;
+            position: absolute;
+            z-index: 2;
+            right: 0;
+            bottom: 0;
+            padding: 0 8px;
+            height: 30px;
+            border: 1px solid #56B095;
+            border-radius: 4px;
+            color: #3D977C;
+            font-size: 13px;
+            line-height: 16px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .toggle_overflow_btn .iconfont,
+        .toggle_overflow_btn span {
+            display: inline-block;
+            height: 28px;
+            line-height: 28px;
+        }
+
+        .toggle_overflow_btn .iconfont {
+            transition: cubic-bezier(0.075, 0.82, 0.165, 1) .2s;
+        }
+
+        .toggle_overflow_btn.is_fold .iconfont {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
+
 <body>
-    
+    <div class="container">
+        <div class="group clearfix">
+            <div class="control_label pull-left">公众号名称：</div>
+            <div class="search_type_box">
+                <div class="label_type active">樱桃大房子（13）</div>
+                <div class="label_type">地产商业评论（13）</div>
+                <div class="label_type">地产商业评论（13）</div>
+                <div class="label_type">地产商业评论（13）</div>
+                <div class="label_type">地产商业评论（13）</div>
+                <div class="label_type">地产商业评论（14）</div>
+            </div>
+            <div class="toggle_overflow_btn clearfix">
+                <span class="pull-left">展开</span>&nbsp;
+                <i class="icon iconfont iconiconfont- pull-left"></i>
+            </div>
+        </div>
+    </div>
+
+    <script src="../lib//jquery-2.2.4.min.js"></script>
+    <script src="../lib/jquery_plugins.js"></script>
+    <script>
+        $(function() {
+            $('.group').toggleHeight('.search_type_box');
+        })
+    </script>
 </body>
+
 </html>

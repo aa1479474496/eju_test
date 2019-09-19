@@ -20,6 +20,7 @@ browser-sync start --server --files "**/*.css, **/*.html"
 ### overflow
     1.index.html 内容超过两行出现 查看更多 按钮
     2.scrollHeight.html 判断块区域出现省略号
+    3.hidden.html 一行放不下时 出现展开按钮。  可以展开收起切换
 
 ### htmlCanvas    
     1.index.html 测试截取图片
@@ -35,6 +36,9 @@ browser-sync start --server --files "**/*.css, **/*.html"
 
 ### lib
     放置常用的vue, bootstrap以及部分插件
+
+### iconfont
+    阿里失量图 字体库    
 
 
         
