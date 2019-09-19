@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>bs_modal</title>
+    <link rel="stylesheet" href="../lib/css/bootstrap.css">
+    <style>
+        .append {
+            height: 200px;
+        }
+        /* .modal::after,
+        .modal-dialog::after {
+            content: "";
+            display: inline-block;
+            height: 100%;
+            width: 0;
+            vertical-align: middle;
+        } */
+        .modal {
+            text-align: center;
+        }
+        /* .modal-dialog {
+            display: inline-block;
+            vertical-align: middle;
+        } */
+    </style>
+</head>
+
+<body>
+    <!-- Small modal -->
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small
+        modal</button> -->
+    
+        <div id="openModal">openModal</div>
+
+    <div class="modal fade bs-example-modal-sm" id="attention" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">Smallmodal Smallmodal</div>
+        </div>
+    </div>
+    <!-- <div class="overflow" style="height: 20px;overflow: hidden;">
+        <div>
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+        </div>
+        
+    </div> -->
+    <script src="../lib/jquery-2.2.4.min.js"></script>
+    <script src="../lib/bootstrap.js"></script>
+    <script>
+        $(function () {
+            $('#openModal').on('click', function() {
+                $('#attention').modal('show');
+                setTimeout(() => {
+                    $('.modal-content').append('<div class="append">append</div>');
+                }, 1000);
+            });
+
+
+            var $modal = $('#attention');
+            $modal.on('show.bs.modal', function () {
+                var $this = $(this);
+                var $modal_dialog = $this.find('.modal-dialog');
+                $this.css('display', 'block');
+                $modal_dialog.css({ 'margin-top': Math.max(0, ($(window).height() - $modal_dialog.height()) / 2) });
+                $modal_dialog.on('resize', function() {
+                    console.log('hhh');
+                })
+            });
+        });
+    </script>
+</body>
+
+</html>

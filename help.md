@@ -27,6 +27,12 @@ browser-sync start --server --files "**/*.css, **/*.html"
 ### html2canvas-1.0.0-rc.3
     htmlCanvas 官方demo
 
+### modal
+    1.index.html 采用inline-block方式使modal居中。 使用transform居中时，如果模态框的高度为奇数时，则会出现字体模糊现象。如果
+      使用js动态计算高度， 当模态框内部内容可动态改变时，则需要多次调用方法，不够方便.
+    2.bs_modal.html js改变模态框margin-top, 当模态内容动态改变高度时，则有缺陷
+
+
 ### lib
     放置常用的vue, bootstrap以及部分插件
 
