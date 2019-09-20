@@ -24,18 +24,42 @@
 </head>
 <body>
     <div class="container">
-        <div class="text" data-text="6月梅雨季的周二，我和徐景辉老师一同驱车拜访上实和墅竣工业主陈先生、陈太太家，这是徐老师在该小区竣工的第二个作品。业主陈先生是一位企业家，装修这别墅是为了忙碌的工作装修这别墅是为了忙碌的工作之余从城市抽身，和太太、儿子过上三餐四季的生活。 ■ 所在城市：上海 ■ 楼盘名称：上实和墅■ 房屋类型：独栋别墅 ■ 项目面积：580㎡■ 设计师：徐景辉 ■ 设计风格："></div>
+        <div class="text" data-text="6月梅雨季的周二，我和徐景辉老师一同驱车拜访上实和墅竣工业主陈先生、陈太太家，这是徐老师在该小区竣工的第二个作品。业主陈先生是一位企业家，装修这别墅是为了忙碌的工作装修这别墅是为了忙碌的工作之余从城市抽身，和太太、儿子过上三餐四季的生活。 ■ 所在城市：上海 ■ 楼盘名称：上实和墅■ 房屋类型：独栋别墅 ■ 项目面积：580㎡■ 设计师：徐景辉 ■ 设计风格：">6月梅雨季的周二，我和徐景辉老师一同驱车拜访上实和墅竣工业主陈先生、陈太太家，这是徐老师在该小区竣工的第二个作品。业主陈先生是一位企业家，装修这别墅是为了忙碌的工作装修这别墅是为了忙碌的工作之余从城市抽身，和太太、儿子过上三餐四季的生活。 ■ 所在城市：上海 ■ 楼盘名称：上实和墅■ 房屋类型：独栋别墅 ■ 项目面积：580㎡■ 设计师：徐景辉 ■ 设计风格：</div>
     </div>
     <span style="font-size: 12px;">业主陈先生...</span><br>
     <span style="font-size: 12px;">abcd</span><br>
     <span style="font-size: 12px;">ABCD</span><br>
     <span style="font-size: 12px;">1234</span><br>
 
+    <div class="test" data-text="test1">1</div>
+    <div class="test" data-text="test2">2</div>
+    <div class="test" data-text="test3">3</div>
+    <div class="test" data-text="test4">4</div>
+    <div class="test" data-text="test5">5</div>
+
     <script src="../lib/jquery-2.2.4.min.js"></script>
     <script src="../lib/jquery_plugins.js"></script>
     <script>
         $(function() {
             $('.text').seemore();
+            // let rects = $('.text').get(0).getClientRects();
+            // console.log('rects', rects);
+            var str = 'test6';
+            var tests = $('.test');
+            let texts = tests.map((index, item) => {
+                // console.log('i', index, item);
+                let text = $(item).attr('data-text');
+                return text;
+            });
+            console.log(texts);
+
+            let text2s = [].slice.call(tests).map(item => {
+                let text = $(item).attr('data-text');
+                return text;
+            });
+
+
+            console.log(text2s, text2s.includes(str));
         });
     </script>
 </body>
