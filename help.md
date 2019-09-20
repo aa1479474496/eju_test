@@ -40,5 +40,9 @@ browser-sync start --server --files "**/*.css, **/*.html"
 ### iconfont
     阿里失量图 字体库    
 
+### vue_cli
+    使用的是vue-cli3, 使用nvm 切换版本   nvm list（查看安装的版本）
+    nvm use v10.15.3(使用更高的版本)
+
 
         
