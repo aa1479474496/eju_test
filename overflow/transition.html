@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+        .container {
+            width: 200px;
+            height: 200px;
+            margin: 30px auto;
+            border : 1px solid #999;
+        }
+        .btn {
+            cursor: pointer;
+            width: 60px;
+            line-height: 30px;
+            margin: 10px auto;
+            border: 1px solid gray;
+            text-align: center;
+        }
+        .tag {
+            display: inline-block;
+            padding: 8px 10px;
+            border: 1px solid green;
+            cursor: pointer;
+            margin: 0 5px 5px 0;
+            transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <!-- <span class="tag">测试</span> -->
+        </div>
+        <div class="btn">添加</div>
+    </div>
+
+    <script src="../lib/jquery-2.2.4.min.js"></script>
+    <script>
+        $(function() {
+
+            function create() {
+                return `
+                    <span class="tag">测试</span>
+                `
+            }
+
+            $('.btn').on('click', function() {
+                let str = create();
+                $('.box').append(str);
+            });
+
+
+        });
+    </script>
+</body>
+</html>
