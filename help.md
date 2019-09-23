@@ -33,6 +33,8 @@ browser-sync start --server --files "**/*.css, **/*.html"
       使用js动态计算高度， 当模态框内部内容可动态改变时，则需要多次调用方法，不够方便.
     2.bs_modal.html js改变模态框margin-top, 当模态内容动态改变高度时，则有缺陷
 
+### typescript
+    编译 tsc demo2.ts
 
 ### lib
     放置常用的vue, bootstrap以及部分插件
@@ -43,6 +45,8 @@ browser-sync start --server --files "**/*.css, **/*.html"
 ### vue_cli
     使用的是vue-cli3, 使用nvm 切换版本   nvm list（查看安装的版本）
     nvm use v10.15.3(使用更高的版本)
+
+
 
 
         
