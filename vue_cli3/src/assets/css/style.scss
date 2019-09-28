@@ -3,3 +3,12 @@
 .test {
     color: $baseColor;
 }
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,body {
+    min-width: 1080px;
+}

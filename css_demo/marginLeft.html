@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>marign-left</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            width: 1080px;
+            height: 600px;
+            background: gray;
+            margin-left: auto;
+            margin-right: auto;
+            transition: all .3s;
+        }
+        .btn {
+            width: 100px;
+            height: 60px;
+            background: skyblue;
+            margin: 30px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="btn"></div>
+    <div class="box"></div>
+
+    <script src="../lib/jquery-2.2.4.min.js"></script>
+    <script>
+        $('.btn').on('click', function() {
+            console.log('11');
+            let abbr = `translateX(-100px)`;
+            $('.box').css({
+                'transform': `${abbr}`
+            })
+        })
+    </script>
+</body>
+</html>
