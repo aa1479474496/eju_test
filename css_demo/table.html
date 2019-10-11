@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>table</title>
+    <link rel="stylesheet" href="../lib/css/bootstrap.css">
+    <style>
+        .table{
+            table-layout:fixed
+        }
+    .city {
+        width: 0;
+        /* padding:0!important; */
+        /* padding-left:0!important; */
+        /* padding-right: 0!important; */
+        overflow: hidden;
+        transition: all .3s;
+        opacity: 0;
+
+        /* transform: scale(0) */
+
+        /* display: none; */
+        /* max-width: 0; */
+    }
+    .city.large {
+        /* transform: scale(1); */
+        /* width: 200px; */
+        /* padding-left: 8px!important; */
+        /* padding-right: 8px!important; */
+        /* width: auto; */
+        opacity: 1;
+        width: 120px;
+        
+    }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <table class="table">
+                    <caption>基本的表格布局</caption>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th class="city" >城市</th>
+                            <th>age</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tanmay</td>
+                            <td class="city">Bangalore</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>Sachin</td>
+                            <td class="city">Mumbai</td>
+                            <td>14</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <button type="button" class="btn btn-success">成功按钮</button>
+        </div>
+    </div>
+
+<script src="../lib/jquery-2.2.4.min.js"></script>
+<script>
+    $(function() {
+        $('.btn').on('click', function() {
+            $('.city').toggleClass('large')
+            // $('.city').fadeIn()
+        })
+    })
+</script>
+</body>
+
+</html>
