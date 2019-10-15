@@ -2,6 +2,8 @@
   <div>
     <el-button type="primary" @click="add">添加</el-button>
     <el-button type="primary" @click="del">删除</el-button>
+    <Simple :loading="simpleLoading"></Simple>
+    <el-button type="primary" @click="testSimple">测试simple</el-button>
 
     <transition name="slide-fade">
       <el-table :data="tableData" style="width: 100%" v-show="isExit">
@@ -18,9 +20,14 @@
 </template>
 
   <script>
+import Simple from "@/components/simple.jsx";
 export default {
+  components: {
+    Simple
+  },
   data() {
     return {
+      simpleLoading: true,
       tableHead: [
         {
           prop: "date",
@@ -102,7 +109,11 @@ export default {
     },
 
     del() {
-        this.tableHead.pop();
+      this.tableHead.pop();
+    },
+
+    testSimple() {
+        this.simpleLoading = false;
     }
   }
 };
