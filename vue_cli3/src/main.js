@@ -9,7 +9,8 @@ Vue.use(ElementUI);
 import '@/assets/css/style.scss';
 
 import '@/directives/index.js';
-
+import Simple from "@/components/simple.jsx";
+Vue.component("Simple", Simple);
 Vue.config.productionTip = false
 
 new Vue({

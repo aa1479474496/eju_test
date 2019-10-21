@@ -20,10 +20,10 @@
 </template>
 
   <script>
-import Simple from "@/components/simple.jsx";
+// import Simple from "@/components/simple.jsx";
 export default {
   components: {
-    Simple
+    // Simple
   },
   data() {
     return {

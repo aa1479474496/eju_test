@@ -26,8 +26,8 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.side_bar {
+<style>
+/* .side_bar {
   position: fixed;
   top: 138px;
   right: -280px;
@@ -50,5 +50,5 @@ export default {
   z-index: 2;
 
   cursor: pointer;
-}
+} */
 </style>
