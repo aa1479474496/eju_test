@@ -39,6 +39,7 @@ var app = new Vue({
                 }]
             };
             this.myChart.setOption(option);
+            
         },
 
 
