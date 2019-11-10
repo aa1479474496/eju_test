@@ -46,6 +46,29 @@ export default new Router({
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
             component: () => import(/* webpackChunkName: "Loading" */ './views/Loading.vue')
+        },
+
+        {
+            path: '/scroll',
+            name: 'scroll',
+            // route level code-splitting
+            // this generates a separate chunk (about.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "scroll" */ './views/TestScroll.vue'),
+
+            // TestScrollPageB.vue
+            children: [
+                {
+                    path:'/scroll/a',
+                    name: 'scrollA',
+                    component: () => import(/* webpackChunkName: "scroll" */ './views/TestScrollPageA.vue'),
+                },
+                {
+                    path:'/scroll/B',
+                    name: 'scrollB',
+                    component: () => import(/* webpackChunkName: "scroll" */ './views/TestScrollPageB.vue'),
+                }
+            ]
         }
     ]
 })
