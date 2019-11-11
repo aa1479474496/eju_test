@@ -1,33 +1,30 @@
 <template>
-    <div>
-    scroll_b
+    <div class="content_b">
+    <div class="scroll">scroll</div>
     </div>
 </template>
 
+
+<script>
+export default {
+    mounted() {
+        this.$nextTick(() => {
+            // console.log('aaa');
+            // $('.content_b').niceScroll();
+        })
+    }
+}
+</script>
+
 <style lang="scss" style="scoped">
-    .header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 60px;
-        background: skyblue;
-        font-size: 18px;
+   .content_b {
+       border: 1px solid black;
+       max-height: 300px;
+       overflow-y: auto;
 
-        &>div {
-            line-height: 60px;
-            width: 100px;
-        }
-    }
-
-    .content {
-        width: 800px;
-        min-height: 600px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 10px;
-
-        .header {
-            justify-content: flex-start;
-        }
-    }
+       .scroll {
+           height: 500px;
+           background: gold;
+       }
+   }
 </style>

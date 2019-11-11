@@ -14,6 +14,14 @@ export default {
         this.$nextTick(() => {
             // $("#app").niceScroll();
             $('body').niceScroll();
+            document.body.addEventListener(
+  'touchstart',
+  function() {
+      console.log('touch');
+  },
+  { passive: false }
+);
+            // $("html").niceScroll();
         })
     }
 }
