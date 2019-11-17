@@ -10,6 +10,7 @@
             <div class="header">
                 <div @click="changeRouter('/scroll/a')">pageA</div>
                 <div @click="changeRouter('/scroll/b')">pageB</div>
+                <div @click="changeRouter('/scroll/c')">pageC</div>
             </div>
         <router-view></router-view>
 

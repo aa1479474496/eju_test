@@ -67,6 +67,11 @@ export default new Router({
                     path:'/scroll/B',
                     name: 'scrollB',
                     component: () => import(/* webpackChunkName: "scroll" */ './views/TestScrollPageB.vue'),
+                },
+                {
+                    path:'/scroll/C',
+                    name: 'scrollC',
+                    component: () => import(/* webpackChunkName: "scroll" */ './views/TestScrollPageC.vue'),
                 }
             ]
         }

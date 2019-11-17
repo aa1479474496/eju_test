@@ -13,6 +13,9 @@ import '@/assets/css/style.scss';
 
 import '@/directives/index.js';
 import Simple from "@/components/simple.jsx";
+
+import Scrollbar from '@/components/scrollbar';
+Vue.component("Scrollbar", Scrollbar);
 Vue.component("Simple", Simple);
 
 
