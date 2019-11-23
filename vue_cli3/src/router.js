@@ -47,6 +47,14 @@ export default new Router({
             // which is lazy-loaded when the route is visited.
             component: () => import(/* webpackChunkName: "Loading" */ './views/Loading.vue')
         },
+        {
+            path: '/toggleheight',
+            name: 'toggleheight',
+            // route level code-splitting
+            // this generates a separate chunk (about.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "ToggleHeight" */ './views/ToggleHeight.vue')
+        },
 
         {
             path: '/scroll',
