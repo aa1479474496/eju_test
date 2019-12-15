@@ -63,6 +63,24 @@ export default new Router({
             // which is lazy-loaded when the route is visited.
             component: () => import(/* webpackChunkName: "SearchPage2" */ './views/SearchPage2.vue')
         },
+
+
+        {
+            path: '/SearchPage3',
+            name: 'SearchPage3',
+            // route level code-splitting
+            // this generates a separate chunk (about.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "SearchPage3" */ './views/SearchPage3.vue')
+        },
+        {
+            path: '/SearchPage4',
+            name: 'SearchPage4',
+            // route level code-splitting
+            // this generates a separate chunk (about.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "SearchPage4" */ './views/SearchPage4.vue')
+        },
         {
             path: '/toggleheight',
             name: 'toggleheight',
@@ -83,17 +101,17 @@ export default new Router({
             // TestScrollPageB.vue
             children: [
                 {
-                    path:'/scroll/a',
+                    path: '/scroll/a',
                     name: 'scrollA',
                     component: () => import(/* webpackChunkName: "scroll" */ './views/TestScrollPageA.vue'),
                 },
                 {
-                    path:'/scroll/B',
+                    path: '/scroll/B',
                     name: 'scrollB',
                     component: () => import(/* webpackChunkName: "scroll" */ './views/TestScrollPageB.vue'),
                 },
                 {
-                    path:'/scroll/C',
+                    path: '/scroll/C',
                     name: 'scrollC',
                     component: () => import(/* webpackChunkName: "scroll" */ './views/TestScrollPageC.vue'),
                 }
