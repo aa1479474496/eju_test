@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="main_content">
+    <!-- <div class="main_content">
       <scrollbar
         :native="false"
         wrapStyle
@@ -11,12 +11,15 @@
         tag="section"
       >
         <div id="nav">
-          <!-- <router-link to="/">Home</router-link> | -->
-          <!-- <router-link to="/about">About</router-link> -->
+          <router-link to="/">Home</router-link> |
+          <router-link to="/about">About</router-link>
         </div>
         <router-view />
       </scrollbar>
-    </div>
+
+    </div> -->
+       <router-view />
+
   </div>
 </template>
 

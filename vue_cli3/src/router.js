@@ -48,6 +48,22 @@ export default new Router({
             component: () => import(/* webpackChunkName: "Loading" */ './views/Loading.vue')
         },
         {
+            path: '/searchIndex',
+            name: 'searchIndex',
+            // route level code-splitting
+            // this generates a separate chunk (about.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "searchIndex" */ './views/SearchIndex.vue')
+        },
+        {
+            path: '/SearchPage2',
+            name: 'SearchPage2',
+            // route level code-splitting
+            // this generates a separate chunk (about.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "SearchPage2" */ './views/SearchPage2.vue')
+        },
+        {
             path: '/toggleheight',
             name: 'toggleheight',
             // route level code-splitting
