@@ -1,42 +1,43 @@
-@import './var.scss';
+@import "./var.scss";
 
 .test {
-    color: $baseColor;
+  color: $baseColor;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    touch-action: pan-y; 
+  margin: 0;
+  padding: 0;
+  touch-action: pan-y;
 }
 
 html {
-    height: 100%;
+  height: 100%;
 }
 
-html,body {
-    min-width: 1080px;
-    // height: 100%;
-
+html,
+body {
+  min-width: 1080px;
+  // height: 100%;
 }
 body {
-    // overflow: hidden;
+  // overflow: hidden;
 }
 
 .el-scrollbar {
-    height: 100%;
+  height: 100%;
 }
 
 .main_content .el-scrollbar__wrap {
-    overflow-x: auto; 
+  overflow-x: auto;
 }
 
 // ::-webkit-scrollbar-track-piece { //滚动条凹槽的颜色，还可以设置边框属性
 //     background-color:#f8f8f8;
 // }
-::-webkit-scrollbar {//滚动条的宽度
-    width:4px;
-    height:4px;
+::-webkit-scrollbar {
+  //滚动条的宽度
+  width: 4px;
+  height: 4px;
 }
 // ::-webkit-scrollbar-thumb {//滚动条的设置
 //     background-color:#dddddd;
@@ -48,28 +49,24 @@ body {
 // }
 
 #app {
-    height: 100%;
-    overflow-y: hidden;
-
+  height: 100%;
+  overflow-y: hidden;
 }
 
 .main_content {
-    padding: 0;
-    margin-top: 0;
-    height: 100%;
-    min-height: auto;
+  padding: 0;
+  margin-top: 0;
+  height: 100%;
+  min-height: auto;
 }
 
 .my_loading {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    background: url('../logo.png') no-repeat center;
-    background-size: contain;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background: url("../logo.png") no-repeat center;
+  background-size: contain;
 }
-
-
-
 
 // 张鑫旭解决滚动条抖动方案
 // html.hidden {
@@ -77,29 +74,61 @@ body {
 // }
 
 :root.hidden {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 :root {
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 
 html {
-    overflow-y: scroll;
-  }
-  
+  overflow-y: scroll;
+}
+
 //   :root {
 //     overflow-y: auto;
 //     overflow-x: hidden;
 //   }
-  
-  :root body {
-    position: absolute;
-  }
-  
-  body {
-    width: 100vw;
-    min-height: 100%;
-    // overflow: hidden;
-  }
+
+:root body {
+  position: absolute;
+}
+
+body {
+  width: 100vw;
+  min-height: 100%;
+  // overflow: hidden;
+}
+
+//
+.slide-left-fade-enter-active {
+  //   transition: all 0.5s ease;
+  transition: all 1.5s ease;
+}
+.slide-left-fade-leave-active {
+  //   transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 1.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-left-fade-enter {
+  transform: translateX(30px);
+  opacity: 0;
+}
+.slide-left-fade-leave-to {
+  transform: translateX(-30px);
+  opacity: 0;
+}
+
+.component-fade-enter-active,
+.component-fade-leave-active {
+  transform: translateX(30px);
+
+  //   transition: opacity 0.3s ease;
+  transition: all 1.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.component-fade-enter, .component-fade-leave-to
+  /* .component-fade-leave-active for below version 2.1.8 */ {
+  transform: translateX(-30px);
+
+  opacity: 0;
+}
