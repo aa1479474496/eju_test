@@ -1,4 +1,4 @@
-let data1 = {
+let mockData1 = {
   data: {
     aSelectedGroup: "sCityName|城市|=",
     aSelectedStat: "BasePrice|出让底价|sum",
@@ -904,3 +904,5 @@ let data2 = {
 	"status": true,
 	
 }
+
+export { mockData1 };

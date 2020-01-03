@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>test_chart</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .echarts {
+        width: 600px;
+        height: 300px;
+        margin: 20px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="echarts" ref="myChart1"></div>
+      <div class="echarts" ref="myChart3"></div>
+    </div>
+    <script src="../lib/vue-2.6.10.js"></script>
+    <script src="../lib/jquery-2.2.4.min.js"></script>
+    <script src="../lib/echarts.min.js"></script>
+    <script src="./bi.js"></script>
+    <script src="./bi.compile.js"></script>
+    <script src="./bi.echarts.report.js"></script>
+    <script type="module" src="./test.js"></script>
+  </body>
+</html>
