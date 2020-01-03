@@ -1,0 +1,480 @@
+<link rel="stylesheet" href="<?php echo $sStaticRoot?>/web/css/custom_report_chart.css" />
+
+<div class="animated fadeInRight report_wrapper">
+
+    <div class="report_filter_box beauty_filter externalFilter" id="externalFilter">
+        <div class="filter_title">数据筛选</div>
+        <div id="filterContent">
+            <?php $sTable=$aItem['sTable'];$iDbID=$aItem['iDbID']; $iTableID=0;include dirname(__FILE__) . '/../Data/search_filter.phtml';?>
+        </div>
+        <p class="seeMore"><i class="iconfont iconicon13"></i>展开全部</p>
+    </div>
+    <!--  提交成功跳转原始create页面  -->
+    <div class="">
+        <form method="post" id="jumpInitUrl" action="<?php echo $createAction; ?>">
+            <?php if (isset($aParams)): ?>
+                <?php foreach ($aParams as $k => $v): ?>
+                    <?php if (strpos($k, 'filter_') !== false): ?>
+                        <input type="hidden" name="<?= $k; ?>" value='<?= $v; ?>'>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </form>
+    </div>
+    <div style="display: flex;flex-direction:column;height: 100%"  id="report" v-cloak>
+        <div class="page_load_bg"></div>
+        <div class="report_main_box">
+            <div class="report_main_left">
+                <form method="post" action="" class="form-inline"
+                    id="myform">
+                    <input id="tid" type="hidden" name="tid" value="<?php echo $tid?>">
+                    <input type="hidden" name="sChartName" id="quotaName" value="">
+                    <input type="hidden" name="sTag" id="quotaTags" value="">
+                    <input type="hidden" name="sChartFile" id="preImg" value="">
+                    <input type="hidden" name="sChartType" id="sChartType" value="">
+                    <input type="hidden" name="order" id="order" value='<?php echo $aOrder?>'>
+                    <!-- <input type="hidden" name="groupRange" id="groupRange"> -->
+                    <input type="hidden" name="segmentResult" id="segmentResult">
+                    <input type="hidden" name="modifyData" id="modifyData" value='<?= $modifyData; ?>'>
+                    <input type="hidden" name="chartId" id="chartId" value="<?php echo isset($id) ?: 0 ?>">
+
+                    <div class="report_filter_box beauty_filter mt24">
+                        <div class="filter_title">请选择指标数值</div>
+                        <div class="custom_search_box mt10">
+                            <input type="text" class="custom_search_input form-control" placeholder="请输入搜索内容" @input="inputFun">
+                            <div class="custom_search_wrapper">
+                                <i class="iconfont iconiconfont-sousuo"></i>
+                            </div>
+                        </div>
+                        <input type="hidden" id="stat-val" name="stat"
+                            value="<?php echo !$aSelectedStat?'':$aSelectedStat?>">  
+                        <div class="report_select_list" id="aStatList">
+                            <draggable :list="cloneList" :clone="clone"
+                                        @end="onEnd"
+                                        class="create_left_drag"
+                                    :group="{ name: 'cloneData', pull: 'clone' }">
+                                    <div class="flex_align_center mt6" v-for="(item, index) in cloneList" :data-text="item.text" :key="index">
+                                    <div class="report_select_item select_box">
+                                        <div class="select_show_content">
+                                            <i class="iconfont icontuodong"></i>
+                                            <i :class="[getIconType(item), 'mr8', item.type =='segment' ? 'is_segment' : '']"></i>
+                                            <div :title="item.title" class="select_show_name">{{item.title}}</div>
+                                        </div>
+                                    </div>
+                                    <template v-if="item.type =='segment'">
+                                        <i v-if="item.template" class="iconfont iconiconfont_bi_add hover_btn" @click="createSegment(item, index)" ></i>
+                                        <template v-else>
+                                        <i class="iconfont iconbianjishuju hover_btn mr12" @click="createSegment(item, index)"></i>
+                                        <i class="iconfont iconiconfont-shanchu hover_btn"
+                                        @click="delSegment(item, index)"></i>
+                                        </template>
+                                       
+                                    </template>
+
+                                    </div>
+                            </draggable>
+                        </div>
+                    </div>
+                        <input type="hidden" id="group-val" name="group"
+                            value="<?php echo !$aSelectedGroup?'':$aSelectedGroup?>">     
+                <form>
+
+            </div>
+            <div class="report_main_right">
+                <div class="filter_result_wrapper">
+                    <div class="flex_align_center">
+                        <div class="xais_name">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#iconzongzhou"></use>
+                        </svg>
+                            纵轴：
+                        </div>
+                        <div class="result_middle_content">
+                            <draggable :list="cloneStatResult" group="cloneData" data-type="stat" @end="onEnd">
+                                <div class="result_tag" :data-type="element.type" :data-rule="element.frule" v-for="(element, elKey) in cloneStatResult" :key="elKey">
+                                    <div class="result_content_wrapper">
+                                        <i :class="[getIconType(element), element.type =='segment' ? 'is_segment' : '']"></i>
+                                        <span class="result_tag_content">{{element.title}}</span>
+                                        <div v-if="element.funLabel" class="dropdown" style="display: inline-block">
+                                            <div class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            {{element.funLabel}}
+                                                <span class="caret"></span>
+                                            </div>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                <li v-for="(item, k) in findList(element.type, 'stat')" :key="k" @click="setLabel(item, 'stat', elKey, element)">
+                                                    
+                                                    <el-tooltip popper-class="result_poper" v-if="item.value=='avgExpZero'" class="item" placement="right">
+                                                    <div slot="content">平均值(去0)=总和/该列非空非0值数量<br>若该列数值不为0，建议使用</div>
+                                                        <span class="drop_text">
+                                                            {{item.label}}
+                                                            <i class="iconfont iconiconfont-help"></i>
+                                                        </span>
+                                                    </el-tooltip>
+                                                    <el-tooltip popper-class="result_poper" v-else-if="item.value=='avg'" class="item" placement="right">
+                                                    <div slot="content">平均值=总和/总行数<br>若该列数值存在0值，建议使用</div>
+                                                        <span class="drop_text">
+                                                            {{item.label}}
+                                                            <i class="iconfont iconiconfont-help"></i>
+                                                        </span>
+                                                    </el-tooltip>
+                                                    <span class="drop_text" v-else>
+                                                            {{item.label}}
+                                                        </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <i class="iconfont iconiconfont_bi_clean hover_btn" @click="delSelf(elKey, 'stat')"></i>
+                                    </div>
+
+                                </div>
+                            </draggable>
+                        </div>
+                        <div class="clear_group hover_btn" @click="clearList('stat')">清除</div>
+                    </div>
+
+                    <div class="flex_align_center mt10">
+                        <div class="xais_name">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#iconhengzhou"></use>
+                        </svg>
+                            横轴：
+                        </div>
+                        <div class="result_middle_content">
+                            <draggable :list="cloneGroupResult" group="cloneData"  data-type="group" @end="onEnd">
+                                <div class="result_tag" :data-type="element.type" :data-rule="element.frule" v-for="(element, elKey) in cloneGroupResult" :key="elKey">
+                                    <div class="result_content_wrapper">
+                                    <i :class="[getIconType(element), element.type =='segment' ? 'is_segment' : '']"></i>
+                                        <span class="result_tag_content" :class="[element.funLabel ? '' : 'mr10']">{{element.title}}</span>
+
+                                        <div v-if="element.funLabel" class="dropdown" style="display: inline-block">
+                                            <div class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            {{element.funLabel}}
+                                                <span class="caret"></span>
+                                            </div>
+
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                <li v-for="(item, k) in findList(element.type, 'group')" :key="k" @click="setLabel(item, 'group', elKey)"><span class="drop_text">{{item.label}}</span></li>
+                                            </ul>
+                                        </div>
+                                        <i class="iconfont iconiconfont_bi_clean hover_btn" @click="delSelf(elKey, 'group')"></i>
+                                    </div>
+
+                                </div>
+                            </draggable>
+                        </div>
+                        <div class="clear_group hover_btn" @click="clearList('group')">清除</div>
+                    </div>
+
+                    <div class="flex_align_center mt10">
+                        <div class="xais_name">图表类型：</div>
+                        <div id="ecartTypesResult2" class="flex_1" style="margin-bottom: -6px;">
+                        <div :class="['report_icon_box', activeType=='table'?'is_active':'']" data-href="tab-table" @click="setTable">
+                            <svg class="icon is_default_icon" aria-hidden="true" data-toggle="tab">
+                                <use xlink:href="#iconiconfont_bi_table1"></use>
+                            </svg>
+                        </div>
+                            <div :class="['report_icon_box', activeType == item.chartName?'is_active':'']" :data-href="item.href" v-for="(item, index) in beautyCharts" @click="setChart(item)">
+ 
+                                <el-tooltip class="item" effect="dark" :content="item.tooltip" placement="bottom">
+                                <svg class="icon is_default_icon" aria-hidden="true" data-toggle="tab">
+                                    <use :xlink:href="item.icon"></use>
+                                </svg>
+                                </el-tooltip>
+                            </div>
+                        </div>
+
+                        <div class="report_btn is_report btn-primary" id="generateChartsBtn" style="margin-right: 68px;">生成图表</div>
+                    </div>
+                </div>
+                <div class="split_line"></div>
+                <slot>
+                    <div class="report_chart_box tabs-container">
+                        <div class="white_bg tab-content"  v-loading="loading">
+                            <div id="tab-chart" role="tabpanel" :class="['tab-pane', activeType != 'table' ? 'active' : '']" style="padding-top: 50px;position: relative;">
+                            <div class="self_tool_box is_left" v-if="modifyResultData.length">部分数据已修改</div>
+                            <div class="self_tool_box">
+                                <div class="self_tool_content hover_btn">
+                                    <el-checkbox v-model="shownumFlag" @change="shownum">显示数值&nbsp;&nbsp;&nbsp;&nbsp;|</el-checkbox>
+                                </div>
+                                <div class="self_tool_content hover_btn" title="排序" @click="sortInit">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<i class="iconfont iconpaixu"></i>&nbsp;&nbsp;排序&nbsp;&nbsp;&nbsp;&nbsp;|
+                                </div>
+                                <div class="self_tool_content hover_btn" title="编辑表格"  @click="editTable">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<i class="iconfont iconbianjishuju"></i>&nbsp;&nbsp;编辑&nbsp;&nbsp;&nbsp;&nbsp;|
+                                </div>
+                                <div class="self_tool_content hover_btn" @click="exportTable" title="下载表格">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<i class="iconfont iconxiazai"></i>下载表格
+                                </div>
+                               
+                            </div>
+                                <div class="myChartBox">
+                                <div id="myChart" style="width:100%">
+                                    <div class="normal_no_data">
+                                        <div class="normal_no_text">请先设置图表</div>
+                                    </div>
+                                </div>
+                                </div>
+
+                            </div>
+                            <div role="tabpanel" id="tab-table" style="padding-top: 50px;position: relative;" :class="['tab-pane', activeType == 'table' ? 'active' : '']">
+                            <div class="self_tool_box is_left" v-if="modifyResultData.length">部分数据已修改</div>
+                            <div class="self_tool_box">
+                                <template v-if="!isEditTable">
+                                    <div class="self_tool_content hover_btn" title="排序" @click="sortInit">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<i class="iconfont iconpaixu"></i>&nbsp;&nbsp;排序&nbsp;&nbsp;&nbsp;&nbsp;|
+                                    </div>
+                                    <div @click="editTable" class="self_tool_content hover_btn" title="编辑表格">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<i class="iconfont iconbianjishuju"></i>&nbsp;&nbsp;编辑&nbsp;&nbsp;&nbsp;&nbsp;|
+                                    </div>
+                                    <div class="self_tool_content hover_btn" @click="exportTable" title="下载表格">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<i class="iconfont iconxiazai"></i>下载表格
+                                    </div>
+                                </template>
+
+                                <template v-else>
+                                    <div class="self_tool_content hover_btn" title="重置" @click="resetModal = true">
+                                        <i class="iconfont iconbianjishuju" ></i>&nbsp;&nbsp;重置
+                                    </div>
+                                    <div class="report_btn is_sure_sm hover_btn ml30 mr8" @click="changeRowData">确定</div>
+                                    <div class="report_btn is_cancel_sm hover_btn" @click="cancelEditTable">取消</div>
+                                </template>
+                            </div>    
+                            <div id="myGrid" class="ag-theme-balham col-lg-12">
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top:10px;">数据来源：<?php echo $aItem['sName'];?> <a href='/dai/data/list/id/<?php echo $aItem['iAutoID'];?>' target="_blank"><?php echo $aItem['sTable'];?></a></div>
+                        <div v-if="!isEditTable" class="report_btn is_submit btn-primary" @click="submitReportInit" id="submitReportBtn">保存指标</div>
+                    </div>
+                </slot>
+            </div>
+        </div>
+        
+        <?php include "submitModal.phtml"?>
+        <?php include "resetModal.phtml"?>
+        <?php include "orderModal.phtml"?>
+        <?php include "segmentModal.phtml"?>
+        
+    </div>
+</div>
+<script src="<?php echo $sStaticRoot?>/web/js/Sortable.min.js"></script>
+<script src="<?php echo $sStaticRoot?>/web/js/vuedraggable.umd.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+    var aGroupList = <?php echo json_encode($aGroupList) ?>;
+    var aStatList = <?php echo json_encode($aStatList) ?>;
+    var aDefaultSegment = <?php echo json_encode($aDefaultSegment) ?>;//默认分段
+    var aSelectedGroup = <?php echo $aSelectedGroup ? json_encode(explode(',', $aSelectedGroup)) : '[]' ?>;
+    var aSelectedStat = <?php echo $aSelectedStat ? json_encode(explode(',', $aSelectedStat)) : '[]' ?>;
+    var fieldStatRule = <?php echo json_encode($fieldStatRule) ?>;
+    var fieldGroupRule = <?php echo json_encode($fieldGroupRule) ?>;
+    var aDetailFilters = <?php echo isset($aDetailFilters) && $aDetailFilters ? json_encode(http_build_query($aDetailFilters)) : '""'?>;
+
+    var myData = <?php echo json_encode($aList,256); ?>;
+    var myId = '<?php echo $aItem['iAutoID']?>';
+    var myName = '<?php echo $aItem['sName']?>';
+    var sChartType = '<?php echo $sChartType?>';
+    var sChartName = '<?php echo $sChartName?>';
+    var sTag = '<?php echo $sTag?>';
+
+    var createAction = '<?php echo $createAction?>';
+    var addAction = '<?php echo $addAction?>';
+
+    var aSegmentInfo = <?php echo json_encode($aSegmentInfo)?>;
+    var myChart;
+
+    // 将图表变了长宽比为2:1
+    $(window).resize(function () {
+        caclChartHeight();
+    });
+
+    function caclChartHeight() {
+        var _width = $('#tab-chart').width();
+        var height = _width / 2;
+        var parentHeight = $('#tab-chart').height();
+        var _height = height > parentHeight ? parentHeight : height;
+        $('#myChart').css({
+            '_width': _width + 'px',
+            'height': _height + 'px'
+        });
+    }
+</script>
+
+
+
+<script type="text/javascript" src="<?php echo $sStaticRoot.'/echarts/echarts.min.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo $sStaticRoot.'/echarts/theme/dms.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo $sStaticRoot.'/echarts/theme/dark.js'; ?>"></script>
+<!--
+<script type="text/javascript" src="<?php echo $sStaticRoot.'/echarts/theme/essos.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo $sStaticRoot.'/echarts/theme/infographic.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo $sStaticRoot.'/echarts/theme/macarons.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo $sStaticRoot.'/echarts/theme/roma.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo $sStaticRoot.'/echarts/theme/shine.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo $sStaticRoot.'/echarts/theme/vintage.js'; ?>"></script>
+-->
+<script type="text/javascript" src="<?php echo $sStaticRoot.'/bi/bi.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo $sStaticRoot.'/bi/bi.compile.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo $sStaticRoot.'/bi/bi.echarts.report.js'; ?>"></script>
+
+<script src="<?php echo $sStaticRoot; ?>/web/js/blueimp/jquery.blueimp-gallery.min.js"></script>
+<script type="text/javascript"
+    src="<?php echo $sStaticRoot.'/admin/js/ag-grid-enterprise/ag-grid-enterprise.min.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo $sStaticRoot.'/admin/js/ag-grid/gridlocale.js'; ?>"></script>
+
+<script src="<?php echo $sStaticRoot?>/web/js/lib/html2canvas.min.js"></script>
+<script src="<?php echo $sStaticRoot?>/web/js/utils.js"></script>
+<script src="<?php echo $sStaticRoot?>/web/js/platform/quota_editable.mixin.js?v=<?= time();?>"></script>
+<script src="<?php echo $sStaticRoot?>/web/js/platform/quota_order_mixin.js"></script>
+<script src="<?php echo $sStaticRoot?>/web/js/platform/quota_segment_mixin.js"></script>
+
+<script src="<?php echo $sStaticRoot?>/web/js/platform/quotaReportHelper.js"></script>
+<script src="<?php echo $sStaticRoot?>/web/js/platform/quotaReport.js"></script>
+
+<?php {?>
+
+<script type="text/javascript" charset="utf-8">
+<?php
+$columnDefs = [];
+    foreach($aFieldSet as $aField) {
+        $columnDefs[] = [
+            'headerName' => $aField['title'],
+            'field' => $aField['title'],
+            'enableRowGroup' => true,
+            'enableValue' => $aField['type'] == 'stat',
+            'type' => $aField['type'] == 'stat' ? 'numericColumn' : '',
+            'maxWidth' => 300,
+            'minWidth' => 80,
+            'cellEditor' => 'agLargeTextCellEditor'
+        ];
+    }
+?>
+    var columnDefs = <?php echo json_encode($columnDefs) ?>;
+    var rowData = <?php echo json_encode($aList) ?>;
+    var aFieldSet = <?php echo json_encode($aFieldSet) ?>;
+    // let the grid know which columns and what data to use
+    var gridOptions = {
+        columnDefs: columnDefs,
+        // rowData: rowData,
+        defaultColDef: {
+            width: 100,
+            enableRowGroup: true,
+            enablePivot: true,
+            enableValue: true,
+            suppressMenu: false,
+            editable: false, // add
+        },
+        groupHideOpenParents: false,
+        groupMultiAutoColumn: true,
+        suppressAggFuncInHeader: true,
+        enableSorting: true,
+        enableFilter: false,
+        enableColResize: true,
+        rowGroupPanelShow: 'always',
+        showToolPanel: false,
+        //toolPanelSuppressSideButtons: true,
+        floatingFilter: false,
+        enableRangeSelection: true,
+        localeText: localeText,
+        suppressCopyRowsToClipboard: true,
+        rememberGroupStateWhenNewData: true,
+
+        // onCellValueChanged: onCellValueChanged, // add
+        stopEditingWhenGridLosesFocus: true,
+        getRowNodeId: function (data) { return data.id; },
+    };
+
+    function autoSizeAll() {
+        var allColumnIds = [];
+        gridOptions.columnApi.getAllColumns().forEach(function (column) {
+            allColumnIds.push(column.colId);
+        });
+        gridOptions.columnApi.autoSizeColumns(allColumnIds);
+    }
+
+
+//autoSizeAll();
+</script>
+
+
+
+<script type="text/javascript" charset="utf-8">
+
+
+
+    // bi.compile.run(chartData);
+
+    function echarts_refresh() {
+        echarts.dispose(myChart);
+        myChart = null;
+        myChart = echarts.init(document.getElementById('myChart'), myTheme);
+        chartData.chart = myChart;
+        bi.compile.run(chartData);
+    }
+
+    // 显示功能栏
+    $('#echarts-btnbar').removeClass('hide');
+
+    // 修改主题
+    $('#echart-theme').change(function () {
+        myTheme = this.value;
+        echarts_refresh(myTheme);
+    });
+
+
+
+    // 显示双轴
+
+    // 暂时未用上，如果需要 ， 则移动到vue中， aStatField 修改为this.aStatField
+    // if (aStatField.length >= 2) {
+    //     $('#echart-show2y').parent().removeClass('hide');
+    // }
+    // $('#echart-show2y').click(function () {
+    //     if (this.checked) {
+    //         var mvlist = {};
+    //         var argvsum = 0;
+    //         for (var i = 0; i < aStatField.length; i++) {
+    //             var index = aStatField[i].title;
+    //             var minv = Infinity;
+    //             var maxv = -Infinity;
+    //             for (var j = 0; j < myData.length; j++) {
+    //                 minv = Math.min(minv, Number(myData[j][index]));
+    //                 maxv = Math.max(maxv, Number(myData[j][index]));
+    //             }
+    //             var argv = (maxv - minv) / myData.length;
+    //             argvsum += argv;
+    //             mvlist[index] = argv;
+    //         }
+    //         var argvv = argvsum / aStatField.length;
+    //         var lefty = [];
+    //         var righty = [];
+    //         for (var i = 0; i < aStatField.length; i++) {
+    //             var index = aStatField[i].title;
+    //             if (mvlist[index] <= argvv) {
+    //                 lefty.push(aStatField[i]);
+    //             } else {
+    //                 righty.push(aStatField[i]);
+    //             }
+    //         }
+    //         chartData.fields1 = lefty;
+    //         chartData.fields2 = righty;
+    //         chartData.type = 'linebar';
+    //     } else {
+    //         chartData.type = 'line';
+    //         chartData.fields1 = aStatField;
+    //         chartData.fields2 = [];
+    //     }
+    //     echarts_refresh();
+    // });
+
+    // 显示数值
+    $('#echart-shownum').click(function () {
+        chartData.shownum = this.checked;
+        echarts_refresh();
+    });
+</script>
+
+
+<?php }?>
+
+<!-- add -->
