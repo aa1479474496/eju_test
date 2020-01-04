@@ -1,0 +1,52 @@
+@import "mainTheme.scss";
+.l-form .login-info label {
+  color: $fontColor;
+}
+
+.l-form .login-info input.has-text+label,
+.l-form .login-info input:focus+label {
+  color: $fontColor;
+}
+
+.l-form .login-info input.has-text+label {
+  color: $fontColor
+}
+
+.l-form .login-info input:focus+label {
+  color: $input_borderbottom_hover_color
+}
+
+.l-form .l-input {
+  color: $white;
+  background: 0 0;
+  box-shadow: $l-input_boxShadow;
+}
+
+.l-form .l-input:focus {
+  box-shadow: $l-input_focus_boxshaowd
+}
+
+.l-form .l-btn {
+  color: $white;
+  background: $--color-primary;
+}
+
+.l-form .l-btn:hover {
+  background: $l-btn_hover;
+}
+
+.l-form .error {
+  color: $l-btn_error;
+}
+
+.footer {
+  color: $footer_color;
+}
+
+.forget-pwd a {
+  color: $fontColor;
+}
+
+.forget-pwd a:hover {
+  color: $hoverfontColor
+}

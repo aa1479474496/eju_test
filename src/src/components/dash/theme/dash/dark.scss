@@ -1,0 +1,94 @@
+.dash-theme-dark {
+  .dash-item {
+    box-sizing: border-box;
+    background: #1D2532;
+    color: #fff;
+  }
+  .dash-page {
+    box-sizing: border-box;
+    background: #000;
+    color: #fff ;
+  }
+  .dash-img {
+
+  }
+  .dash-iframe {
+
+  }
+  .dash-chart {
+
+  }
+  .dash-line {
+
+  }
+  .dash-tab {
+
+  }
+  .dash-panel {
+
+  }
+  .dash-placeSearch {
+    
+  }
+  .dash-text {
+    color: #fff;
+    font-size: 12px;
+    font-family: Microsoft Yahei;
+    text-align: left;
+  }
+  .dash-text-title1 {
+    font-size: 72px;
+    font-weight: bold;
+  }
+  .dash-text-title2 {
+    font-size: 48px;
+    font-weight: bold;
+  }
+  .dash-text-title3 {
+    font-size: 36px;
+    font-weight: bold;
+  }
+  .dash-text-text {
+  }
+  .dash-text-html {
+  }
+  .dash-text-keypoint {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .dash-text-quote {
+    font-style: italic;
+    color: #ccc;
+  }
+  .dash-text-link {
+    text-decoration: underline;
+    color: blue;
+  }
+  .dash-text-label {
+
+  }
+  .dash-text-button {
+
+  }
+  .placesearch {
+    color: #fff;
+  }
+  .placesearch .distanceBox {
+    select {
+      background: rgba(19,28,38,1);
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .b {
+      border-top-color: #fff;
+      border-left-color: #fff;
+    }
+  }
+  
+  .placesearch .amap-demo {
+    color: #000;
+  }
+
+  .amap-layers,.amap-info{
+    color: #333;
+  }
+}

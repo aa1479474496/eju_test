@@ -1,0 +1,368 @@
+.dash-main-grid {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    user-select: none;
+}
+
+.dash-grid-item {
+    // top: 0;
+    // left: 0;
+    // right: 0;
+    // bottom: 0;
+    // position: absolute;
+    // position: relative;
+    height: 100%;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+    user-select: none;
+}
+
+.dash-mode-show,
+.dash-mode-edit {
+    width: 100% !important;
+    min-height: 100%;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.dash-mode-edit {
+    .dash-item:hover {
+        display: block;
+    }
+}
+
+.chart-box-wrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    border: none;
+}
+
+/*** dash home 页面 ***/
+
+.dash-home-header {
+    position: fixed;
+    height: 64px;
+    width: 100%;
+    z-index: 2;
+}
+
+.dash-home-nav {
+    top: 64px;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    height: calc(100% - 64px);
+    overflow-y: scroll;
+    width: 220px;
+}
+
+.dash-home-content {
+    position: absolute;
+    left: 220px;
+    top: 64px;
+    right: 0;
+    bottom: 0;
+}
+
+.dash-home-tsmain {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.dash-home-banner {
+    height: 48px;
+    line-height: 48px;
+    padding: 0 20px;
+    position: relative;
+}
+
+.dash-home-editbtn {
+    display: inline-block;
+    position: absolute;
+    text-decoration: none;
+    top: 0;
+    right: 100px;
+    cursor: pointer;
+}
+
+.dash-home-showbtn {
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+    text-decoration: none;
+    top: 0;
+    cursor: pointer;
+}
+
+/*** compent homeHeader ***/
+
+.BI-header {
+    height: 64px;
+    font-family: "PingFang SC", "Helvetica Neue", Helvetica, STHeitiSC-Light, WOL_SB, "Segoe UI Semibold", "Segoe UI", Tahoma, Helvetica, sans-serif;
+    .glog {
+        width: 84px;
+        height: 64px;
+        line-height: 64px;
+        background-size: 84px auto;
+        font-size: 26px;
+        text-align: center;
+        font-family: Comic Sans MS, Comic Sans, cursive;
+        user-select: none;
+        cursor: pointer;
+        float: left; // font-family: OCR A Std, monospace;
+        //  font-family: Brush Script MT, Brush Script Std, cursive;
+        font-weight: bold;
+    }
+    .router-group {
+        height: 64px;
+        float: left;
+        margin-left: 50px;
+        font-size: 0;
+        top: 0;
+        .items {
+            display: inline-block;
+            border-bottom: 2px solid transparent;
+            height: 62px;
+            cursor: pointer;
+            font-weight: 700;
+            line-height: 62px;
+            font-size: 14px;
+            padding: 0 16px;
+            text-decoration: none;
+        }
+    }
+}
+
+/*** compent homeleft ***/
+
+.editBx {
+    height: 32px;
+    text-align: right;
+    line-height: 32px;
+    padding-right: 8px;
+    cursor: pointer;
+}
+
+.dash-home-nav {
+    .editBx-ul {
+        display: none;
+        position: absolute;
+        z-index: 2;
+        top: 26px;
+        right: 8px;
+    }
+    .editBx-ul .editbx-li {
+        line-height: 32px;
+        display: block;
+        height: 32px;
+        text-align: left;
+        cursor: pointer;
+        padding: 0 16px;
+        white-space: nowrap;
+        font-size: 12px;
+    }
+}
+
+.bi-leftnav {
+    font-size: 12px;
+}
+
+.hideChild .li {
+    display: none;
+}
+
+.bi-leftnav .ul-header,
+.bi-leftnav .li .items {
+    height: 32px;
+    cursor: pointer;
+    line-height: 32px;
+}
+
+.bi-leftnav .ul-header {
+    padding-left: 16px;
+    position: relative;
+}
+
+.bi-leftnav .li .items {
+    padding-left: 36px;
+    position: relative;
+}
+
+.bi-leftnav .ul-header:hover .opt {
+    display: block;
+}
+
+.bi-leftnav .li .items:hover .opt {
+    display: block;
+}
+
+.opt {
+    display: none;
+    float: right;
+    width: 16px;
+    height: 16px;
+    position: relative;
+}
+
+.el-icon-more {
+    transform: rotate(90deg);
+    margin-top: -8px;
+    color: gray;
+}
+
+.optList {
+    position: absolute;
+    right: 0;
+    z-index: 10;
+    padding: 8px 0;
+    top: 32px;
+}
+
+.optList .ipti {
+    cursor: pointer;
+    padding: 0 16px;
+    min-width: 50px;
+    line-height: 32px;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.userSet {
+    float: right;
+    height: 64px;
+    margin-right: 8px;
+    font-size: 12px;
+    .users {
+        height: 64px;
+        vertical-align: middle;
+        line-height: 64px;
+    }
+    .users:hover {
+        cursor: pointer;
+    }
+    .bdp-icon {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .ico-default-photo-32 {
+        width: 32px;
+        height: 32px;
+    }
+    .ico-default-photo-32::after {
+        content: "";
+        display: block;
+        width: 18px;
+        height: 16px;
+        background: url(../../assets/png-sprite.png) -1051px -496px no-repeat;
+        -webkit-transform: scale(2);
+        -moz-transform: scale(2);
+        -ms-transform: scale(2);
+        -o-transform: scale(2);
+        transform: scale(2);
+        -webkit-transform-origin: 0 0 0;
+        -moz-transform-origin: 0 0 0;
+        -ms-transform-origin: 0 0 0;
+        -o-transform-origin: 0 0 0;
+        transform-origin: 0 0 0;
+    }
+    i {
+        font-size: 14px;
+        margin-left: 12px;
+        vertical-align: middle;
+    }
+    .uText {
+        margin-left: 5px;
+    }
+}
+
+/*** dash edit 页面 ***/
+
+.dash-edit-pages {
+    position: relative;
+    box-sizing: border-box;
+    position: absolute;
+    background-image: url(../../assets/data-screen-grid.png);
+    background-repeat: repeat;
+    width: 100%;
+    display: flex;
+    top: 106px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.dash-edit-left {
+    overflow-x: auto;
+    position: relative;
+    flex: 1;
+}
+
+.dash-edit-addnav {
+    padding-top: 64px;
+    position: relative;
+    padding-left: 30px;
+    height: 40px;
+    line-height: 40px;
+    i {
+        margin-left: 15px;
+        cursor: pointer;
+        font-size: 18px;
+        vertical-align: middle;
+    }
+}
+
+.dash-edit-item-opt {
+    height: 32px;
+    text-align: right;
+    font-size: 14px;
+    line-height: 32px;
+    padding-right: 8px;
+    cursor: pointer;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 999;
+    width: 60px;
+    .el-icon-more {
+        padding: 5px;
+        transform: rotate(90deg);
+        margin-top: -8px;
+    }
+    .dash-edit-item-opt-ul {
+        position: absolute;
+        z-index: 2;
+        top: 28px;
+        right: 8px;
+        z-index: 100;
+        .dash-edit-item-opt-li {
+            line-height: 32px;
+            display: block;
+            height: 32px;
+            text-align: left;
+            cursor: pointer;
+            padding: 0 16px;
+            white-space: nowrap;
+            font-size: 12px;
+        }
+    }
+}
+
+/*** dash show 页面 ***/
+
+.dash-show-fullscreen {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

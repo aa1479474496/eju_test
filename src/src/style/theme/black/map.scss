@@ -1,0 +1,126 @@
+@import "mainTheme.scss";
+.contentInfo {
+  background-color: $divBg;
+  box-shadow: $contentinfo-map_boxshadow;
+  &::after {
+    content: "";
+    border-top: 12px solid $divBg;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+  }
+  .contentinner {
+    .cityname {
+      color: $white;
+    }
+    .seeinfo {
+      color: $map_seeinfocolor;
+    }
+    .tflags {
+      .flag1 {
+        color: $white;
+      }
+      .fg1 {
+        background-color: $map_tflags_flg1;
+      }
+      .fg2 {
+        background-color: $map_tflags_flg2;
+      }
+      .fg3 {
+        background-color: $map_tflags_flg3;
+      }
+    }
+    .listul {
+      .listli {
+        border-bottom: 1px solid $map_listul_li-bottom;
+        color: $white;
+      }
+    }
+  }
+}
+
+.prompt {
+  background: $divBg;
+  color: $white;
+  .link {
+    color: $map_seeinfocolor;
+  }
+  .ul {
+    .li {
+      border-bottom: 1px solid $map_listul_li-bottom;
+    }
+  }
+  .bottoms {
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 25px solid $divBg;
+  }
+}
+
+/** mapHeader **/
+
+.g_map_header {
+  background-color: $g_map_header_bg;
+  border-bottom: 1px solid $g_map_header_bordercolor;
+  color: $white;
+  .h_name {
+    .font {
+      color: $white;
+    }
+  }
+  .user {
+    .s_down {
+      color: $g_map_user_down_color;
+    }
+  }
+}
+
+/** mapmenu **/
+
+.g_map_menuWrap {
+  background-color: $g_map_menuWrap_bg;
+  .menu {
+    .navli {
+      .rightrow {
+        color: $g_map_menuWrap_right_rowcolor;
+      }
+      .title {
+        color: $g_map_menuWrap_right_rowcolor;
+      }
+      .ulinfo {
+        .slink {
+          color: $g_map_menuWrap_right_rowcolor;
+        }
+      }
+    }
+    .current {
+      .rightrow {
+        color: $white;
+      }
+      .title {
+        color: $white;
+      }
+      .ulinfo {
+        .slink {
+          color: $g_map_menuWrap_right_rowcolor;
+        }
+        .current {
+          color: $g_map_menuWrap_right_row_current;
+        }
+      }
+    }
+  }
+}
+
+/** mapSelectDown 组件css **/
+
+.g_c_mapSelectDown {
+  background-color: $divBg;
+  color: $fontColor;
+  .icon {
+    color: $g_c_mapSelectDown_icon;
+  }
+  select {
+    background: $divBg url("../../../assets/triangle-down.svg") right center no-repeat;
+    color: $fontColor;
+  }
+}

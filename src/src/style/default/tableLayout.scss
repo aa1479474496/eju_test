@@ -1,0 +1,628 @@
+.table-main-wrap {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    .table-main,
+    .join-main {
+        position: absolute;
+        left: 220px;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        padding: 0 24px;
+        .table-header-wrap {
+            position: relative;
+            height: 64px;
+            .table-header {
+                line-height: 64px;
+                position: absolute;
+                top: 0;
+                right: 0;
+                left: 0;
+                padding-right: 300px;
+                height: 64px;
+                .title {
+                    font-size: 22px;
+                }
+                .id {
+                    position: absolute;
+                    top: 50px;
+                    line-height: 15px;
+                    font-size: 12px;
+                    font-style: italic;
+                }
+                .btn-layer {
+                    position: absolute;
+                    top: 0;
+                    right: 24px;
+                    width: auto;
+                    height: 48px;
+                    .creat-table-btn {
+                        font-size: 12px;
+                        cursor: pointer;
+                        i {
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .tab-body {
+        position: absolute;
+        top: 74px;
+        left: 24px;
+        right: 24px;
+        bottom: 0;
+    }
+    .el-tabs__item {
+        font-size: 12px;
+    }
+    .el-tabs__content {
+        position: absolute;
+        top: 40px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    .el-table th div {
+        line-height: 1;
+    }
+    .el-table .caret-wrapper {
+        position: absolute;
+        left: 0px;
+        top: -10px;
+        z-index: 100;
+    }
+    .table-info {
+        position: absolute;
+        right: 0px;
+        width: 80%;
+        padding-left: 0;
+        height: 32px;
+        line-height: 32px;
+        z-index: 12;
+        text-align: right;
+        .table-infodetail {
+            display: inline-block;
+            font-size: 12px;
+            span {
+                margin: 0 5px;
+            }
+        }
+        .split {
+            margin: 0 10px;
+            font-size: 12px;
+        }
+        .changetime {
+            font-size: 12px;
+        }
+        .t-edit,
+        .t-save,
+        .t-cancle {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 12px;
+            cursor: pointer;
+        }
+    }
+    .table-data-detail {
+        position: absolute;
+        top: 30px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: auto;
+    }
+    .data-set-wrap {
+        padding: 10px 0;
+        .data-set-title,
+        .data-set-ul {
+            display: flex;
+            font-size: 12px;
+            .li {
+                flex: 1;
+                padding: 5px 24px;
+            }
+            .sw130 {
+                flex: 0 0 135px;
+            }
+        }
+        .data-set-ul {
+            .li {
+                padding: 12px 24px;
+                .showlabel {
+                    position: relative;
+                    .iconfont {
+                        font-size: 12px;
+                        margin-right: 5px;
+                    }
+                    .sdown {
+                        display: none;
+                    }
+                }
+                .showdown {
+                    padding: 5px 25px 0px 0;
+                    cursor: pointer;
+                    .sdown {
+                        position: absolute;
+                        font-size: 12px;
+                        right: -5px;
+                        display: inline-block;
+                    }
+                    &:hover {
+                        .changeType {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .changeType {
+        position: absolute;
+        display: none;
+        left: 0;
+        z-index: 9999;
+        padding: 8px 0;
+        top: 100%;
+        .boxselect {
+            cursor: pointer;
+            padding: 0 16px;
+            min-width: 50px;
+            line-height: 32px;
+            display: block;
+            white-space: nowrap;
+            text-align: center;
+        }
+    }
+    .table-main {
+        .shide {
+            display: none !important;
+        }
+    }
+    .tableType {
+        padding-bottom: 36px;
+        .creatList {
+            display: inline-block;
+            float: left;
+            width: 130px;
+            .creatMerge {
+                cursor: pointer;
+                display: block;
+                text-decoration: none;
+                font-size: 16px;
+                text-align: center;
+                font-weight: 400;
+                position: relative;
+                padding: 35px 0;
+                .sicon {
+                    display: block;
+                    margin: 0 auto 20px;
+                    font-size: 50px;
+                }
+            }
+            .tips {
+                position: absolute;
+                bottom: -5px;
+                left: 20px;
+                display: none;
+                width: 95%;
+                line-height: 1.2;
+            }
+            &:hover {
+                .tips {
+                    display: block;
+                }
+            }
+        }
+    }
+    .jointable_title {
+        float: left;
+        height: 42px;
+        padding-top: 10px;
+        line-height: 42px;
+        font-size: 12px;
+    }
+    .common_input {
+        background-color: transparent;
+        outline: 0;
+        display: inline-block;
+        font-size: 12px;
+        margin-left: 5px;
+        border: none;
+    }
+    .save-btn {
+        position: absolute;
+        right: 24px;
+        top: 20px;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    .join-main {
+        .tab-body {
+            top: 54px;
+        }
+    }
+    .join_dragArea {
+        position: absolute;
+        top: 20px;
+        left: 0;
+        right: 0;
+        height: 45%;
+    }
+    .dataShow {
+        position: absolute;
+        top: 48%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    .join-data-detail {
+        position: absolute;
+        top: 10px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: auto;
+    }
+    .dragList {
+        cursor: pointer;
+        padding: 0px 10px;
+        display: inline-block;
+        height: 26px;
+        line-height: 26px;
+        margin: 10px 10px 0 0;
+        position: absolute;
+        left: 30px;
+        top: 30px;
+        font-size: 12px;
+        &:hover {
+            .iconfont {
+                display: inline-block;
+            }
+        }
+        .iconfont {
+            font-size: 12px;
+            width: 16px;
+            height: 16px;
+            margin-left: 6px;
+            display: none;
+        }
+    } // @for $i from 1 to 20 {
+    //     .dragList:nth-child(#{$i}) {
+    //         top: floor(random()*60%+2%*$i);
+    //         left: floor(random()*60%+2%*$i);
+    //     }
+    // }
+    .dataSetcontent {
+        position: absolute;
+        padding: 20px;
+        top: 20px;
+        left: 0;
+        right: 0;
+        bottom: 10px;
+        overflow-y: scroll;
+        .topFilter {
+            font-size: 12px;
+            label {
+                cursor: pointer;
+            }
+        }
+    }
+    .detailshow {
+        padding-left: 24px;
+        margin-top: 15px;
+        summary {
+            font-size: 12px;
+            position: relative;
+            dt::after {
+                content: '';
+                position: absolute;
+                left: -18px;
+                top: 3px;
+                width: 6px;
+                height: 6px;
+                transform: rotate(45deg);
+                transition: transform .2s;
+            }
+        }
+    }
+    [open].detailshow {
+        summary {
+            dt::after {
+                content: '';
+                transform: rotate(135deg);
+            }
+        }
+    }
+    .stablelist {
+        margin-top: 20px;
+    }
+    .join_head,
+    .table_line {
+        font-size: 12px;
+        height: 34px;
+        line-height: 34px;
+        .head_li {
+            padding-left: 15px;
+            height: 34px;
+            line-height: 34px;
+            label {
+                cursor: pointer;
+            }
+            .editinput {
+                height: 25px;
+                line-height: 25px;
+            }
+        }
+    }
+    .editinput {
+        background-color: transparent;
+        outline: 0;
+        display: block;
+        width: 90%;
+        font-size: 12px;
+        border: none;
+    }
+    .node-container {
+        font-size: 12px;
+        padding: 5px 20px 5px 10px;
+        z-index: 50;
+        .icon-close {
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            font-size: 14px;
+            z-index: 100;
+        }
+    }
+    .joindialog {
+        position: absolute;
+        top: 200px;
+        left: 300px;
+        z-index: 100;
+        line-height: 24px;
+        padding: 16px 18px 10px;
+        font-size: 12px;
+        .join-type-title {
+            height: 32px;
+            .join-type {
+                float: left;
+                margin-left: 10px;
+                .dialog-select {
+                    border: 0;
+                    outline: 0;
+                    height: 24px;
+                    line-height: 24px;
+                    box-shadow: none;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    padding: 0 24px 0 0;
+                    border-radius: 0;
+                    font-size: 12px;
+                    margin-right: 12px;
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+            }
+        }
+        .left-column {
+            padding-top: 13px;
+            width: 420px;
+            .onelist {
+                p {
+                    width: 150px;
+                    text-align: left;
+                    float: left;
+                    width: 150px;
+                    margin-bottom: 8px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    &:last-child {
+                        margin-left: 46px;
+                    }
+                }
+            }
+        }
+    }
+    .onelist {
+        .dialog-select {
+            border: 0;
+            outline: 0;
+            height: 24px;
+            line-height: 24px;
+            box-shadow: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            padding: 0 24px 0 0;
+            border-radius: 0;
+            font-size: 12px;
+            margin-right: 12px;
+            display: inline-block;
+            vertical-align: middle;
+            width: 150px;
+        }
+        .clickbtn {
+            display: inline-block;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    }
+    .xiangdeng {
+        margin: 0 15px 0 5px;
+    }
+    .editit {
+        position: absolute;
+        right: 24px;
+        top: 20px;
+        font-size: 12px;
+        height: 28px;
+        padding: 0 8px;
+        margin-left: 8px;
+        border: 0;
+        cursor: pointer;
+        text-transform: uppercase;
+        min-width: 48px;
+        text-align: center;
+        line-height: 28px;
+        transition: all .2s ease-in-out;
+    }
+    .showG6s {
+        position: absolute;
+        top: 60px;
+        bottom: 20px;
+        right: 0;
+        left: 0;
+        height: auto;
+    }
+    .showDatabtn,
+    .showDatabtn2 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        border: 0;
+        cursor: pointer;
+        text-transform: uppercase;
+        width: 100px;
+        text-align: center;
+        line-height: 28px;
+        transition: all .2s ease-in-out;
+        font-size: 12px;
+        height: 28px;
+        padding: 0 8px;
+    }
+    .showDatabtn2 {
+        right: 20px;
+        margin: 0;
+        top: 0px;
+        left: auto;
+        bottom: auto;
+        z-index: 500;
+    }
+    .errortipsshow {
+        font-size: 12px;
+        margin: 10px;
+    }
+    .table-filter {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 0 24px;
+        min-height: 24px;
+        z-index: 10;
+        line-height: 32px;
+        .filteraction {
+            .topspan {
+                display: inline-block;
+                font-size: 12px;
+                cursor: pointer;
+                margin-right: 12px;
+            }
+        }
+        .preview-filter-wrap {
+            padding: 10px 24px 10px 10px;
+            .fllist {
+                margin-bottom: 5px;
+                .common-select {
+                    border: 0;
+                    outline: 0;
+                    height: 24px;
+                    line-height: 24px;
+                    box-shadow: none;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    padding: 0 24px 0 0;
+                    border-radius: 0;
+                    font-size: 12px;
+                    margin-right: 12px;
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                .common-input {
+                    border-top: 0;
+                    border-left: 0;
+                    border-right: 0;
+                    background-color: transparent;
+                    outline: 0;
+                    display: inline-block;
+                    margin: 0 auto;
+                    height: 25px;
+                    line-height: 25px;
+                    width: 150px;
+                }
+                .fclickbtn {
+                    cursor: pointer;
+                    margin-right: 10px;
+                }
+                .confrimbtn{
+                    display: inline-block;
+                    font-size: 12px;
+                    height: 28px;
+                    padding: 0 8px;
+                    margin-left: 8px;
+                    border: 0;
+                    cursor: pointer;
+                    text-transform: uppercase;
+                    min-width: 48px;
+                    text-align: center;
+                    line-height: 28px;
+                    transition: all .2s ease-in-out;
+                }
+                .el-date-editor.el-input{
+                    width:165px;
+                    .el-input__inner{
+                        border:none;
+                        height:28px;
+                        padding-right:2px;
+                    }
+                }
+            }
+            .btntops{
+                margin-right:24px;
+                .confrimbtn{
+                    margin-top:10px;
+                }
+            }
+            .typeli{
+                display: block;
+                width: 100%;
+                .fieldType{
+                    cursor: pointer;
+                    float: left;
+                    width: 80px;
+                    margin-right: 16px;
+                    line-height: 32px;
+                    font-size:12px;
+                    font-weight: 700;
+                    label{
+                        cursor: pointer;
+                        i{
+                            font-size:12px;
+                        }
+                    }
+                }
+                .fieldList{
+                    margin-left:96px;
+                    .fieldli{
+                        cursor: pointer;
+                        float: left;
+                        margin-right: 24px;
+                        line-height: 32px;
+                        font-size:12px;
+                    }
+                }
+            }
+        }
+    }
+}

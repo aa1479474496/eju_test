@@ -1,0 +1,359 @@
+@import "mainTheme.scss";
+.table-main-wrap {
+    .table-main {
+        .table-header-wrap {
+            .table-header {
+                .title {
+                    color: $fontColor;
+                }
+                .id {
+                    color: $afontColor;
+                }
+                .btn-layer {
+                    .creat-table-btn {
+                        color: $fontColor;
+                        i {
+                            color: $chart-zd-li_spancolor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .tab-body {
+        .el-tabs__nav-wrap {
+            box-shadow: 0 -1px 0 0 rgba(81, 130, 228, .2) inset;
+        }
+        .el-tabs__nav-wrap::after {
+            background-color: transparent;
+        }
+        .el-tabs__item {
+            color: $fontColor;
+            &:hover {
+                color: $hoverfontColor;
+            }
+        }
+        .el-tabs__item.is-active {
+            color: $hoverfontColor;
+        }
+    }
+    .table-info {
+        .table-infodetail {
+            color: $afontColor;
+            span {
+                color: $l-btn_error;
+            }
+        }
+        .split {
+            color: $--color-primary
+        }
+        .changetime {
+            color: $afontColor
+        }
+        .t-edit,
+        .t-save,
+        .t-cancle {
+            color: $fontColor;
+            &:hover {
+                color: $hoverfontColor;
+            }
+            margin-right: 12px;
+        }
+    }
+    .table-data-detail,
+    .join-data-detail,
+    .stablelist {
+        .el-table::before {
+            height: 0 !important;
+        }
+        .el-table::after {
+            width: 0 !important;
+        }
+        .el-table tr {
+            background-color: #313449;
+            color: rgba(255, 255, 255, .5);
+            td {
+                border: none !important;
+                border-right: 1px solid #24273E !important;
+                border-bottom: 1px solid #24273E !important;
+                padding: 6px 0;
+            }
+        }
+        .el-table tr:nth-child(even) {
+            td {
+                background-color: #2b2e44 !important;
+                color: rgba(255, 255, 255, .5);
+                border: none !important;
+                border-right: 1px solid #24273E !important;
+                border-bottom: 1px solid #24273E !important;
+            }
+        }
+        .el-table tr:hover {
+            td {
+                background-color: #292b3a;
+            }
+        }
+        .el-table--border th.gutter:last-of-type {
+            background-color: #191a2c;
+            border-bottom-width: 0px;
+        }
+        .el-table--border,
+        .el-table--group {
+            border: none;
+            max-height: none !important;
+        }
+        .el-table th {
+            border: none;
+            background-color: #191a2c;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 0;
+        }
+    }
+    .data-set-wrap {
+        background-color: $chart-edit-wrap_background;
+        box-shadow: 0 0 4px 0 rgba(0, 0, 0, .1), 0 6px 6px 0 rgba(0, 0, 0, .1);
+        .data-set-title {
+            .li {
+                box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, .12);
+                color: rgba(255, 255, 255, .42);
+            }
+        }
+        .data-set-ul {
+            .li {
+                color: $fontColor;
+                .showlabel {
+                    .iconfont {
+                        color: $--color-primary;
+                    }
+                }
+                .showdown {
+                    border-bottom: 1px solid $dialog-textarea-border;
+                    .sdown {
+                        color: $fontColor;
+                    }
+                }
+            }
+            &:hover {
+                background-color: $editBx-ulHover
+            }
+        }
+    }
+    .changeType {
+        box-shadow: $editBx-ul_shadow;
+        background-color: $editBx-ul_backgroundcolor;
+        .boxselect {
+            &:hover {
+                background-color: $editBx-ulHover;
+            }
+        }
+    }
+    .tableType {
+        .creatList {
+            color: rgba(255, 255, 255, .7);
+            border-right: 1px solid transparent;
+            border-top: 1px solid transparent;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .3);
+            background: rgba(36, 39, 62, .6);
+            .creatMerge {
+                color: rgba(255, 255, 255, .7);
+            }
+            &:hover {
+                background-color: #24273E;
+                color: rgba(255, 255, 255, 1);
+                box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .3), 0 16px 24px 0 rgba(0, 0, 0, .3);
+                .creatMerge {
+                    color: rgba(255, 255, 255, .7);
+                    .sicon {
+                        color: $--color-primary;
+                    }
+                }
+                .tips {
+                    color: $fontColor;
+                }
+            }
+        }
+    }
+    .jointable_title {
+        color: $fontColor;
+    }
+    .common_input {
+        border-bottom: 1px solid $dialog-textarea-border;
+        color: $fontColor;
+        &:focus {
+            border-bottom: 1px solid $input_borderbottom_hover_color;
+        }
+    }
+    .save-btn {
+        color: $fontColor;
+        i {
+            color: $chart-zd-li_spancolor;
+        }
+    }
+    .join_dragArea {
+        box-shadow: $chart-edit-main_box-shadow;
+        background-color: $chart-edit-main_backgroundColor;
+        .dragList,
+        .node-container {
+            background-color: $addAxis_fontColor;
+            color: $hoverfontColor;
+        }
+    }
+    .dataShow {
+        background-color: rgba(32, 34, 55, .3);
+    }
+    .dataSetcontent {
+        box-shadow: $chart-edit-main_box-shadow;
+        background-color: $chart-edit-main_backgroundColor;
+        .topFilter {
+            color: $fontColor;
+        }
+    }
+    .editinput {
+        border-bottom: 1px solid $dialog-textarea-border;
+        color: $fontColor;
+        &:focus {
+            border-bottom: 1px solid $input_borderbottom_hover_color;
+        }
+    }
+    .detailshow {
+        summary {
+            color: $fontColor;
+            dt::after {
+                border-top: 2px solid $hoverfontColor;
+                border-right: 2px solid $hoverfontColor;
+            }
+        }
+    }
+    .join_head,
+    .table_line {
+        background-color: $globalcolor;
+        color: $hoverfontColor;
+        .head_li {
+            border-right: 1px solid $chart-edit-wrap_background;
+        }
+    }
+    .table_line {
+        &:nth-child(odd) {
+            background-color: #2b2e44;
+        }
+        &:nth-child(even) {
+            background-color: #313449;
+        }
+    }
+    .node-container {
+        &:hover {
+            cursor: pointer;
+            background-color: rgba(81, 130, 228, .5);
+        }
+    }
+    .joindialog {
+        background: #24273E;
+        color: $fontColor;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .3), 0 16px 24px 0 rgba(0, 0, 0, .3);
+        .dialog-select {
+            background: #24273E url("../../../assets/triangle-down.svg") right 4px no-repeat;
+            color: $fontColor;
+        }
+    }
+    .onelist {
+        .dialog-select {
+            border-bottom: 1px solid $dialog-textarea-border;
+        }
+    }
+    .editit,
+    .showDatabtn,
+    .showDatabtn2 {
+        color: $fontColor;
+        box-shadow: 0 0 0 1px rgba(81, 130, 228, .6) inset;
+        &:hover {
+            color: $hoverfontColor;
+            box-shadow: 0 0 0 1px rgba(81, 130, 228, 1) inset;
+        }
+    }
+    .showDatabtn2 {
+        background-color: #191a2c;
+    }
+    .el-table {
+        background-color: transparent
+    }
+    .errortipsshow {
+        color: $fontColor;
+    }
+    .table-left-tree {
+        .icon-mysql {
+            color: $--color-primary
+        }
+        .icon-view {
+            color: yellow
+        }
+    }
+    .table-filter {
+        .filteraction {
+            .topspan {
+                color: $fontColor;
+                &:hover {
+                    color: $hoverfontColor;
+                }
+            }
+        }
+        .preview-filter-wrap {
+            background-color: $editBx-ul_backgroundcolor;
+            .fllist {
+                .common-select {
+                    border-bottom: 1px solid $dialog-textarea-border;
+                    background: $editBx-ul_backgroundcolor url("../../../assets/triangle-down.svg") right 4px no-repeat;
+                    color: $fontColor;
+                }
+                .common-input {
+                    border-bottom: 1px solid $dialog-textarea-border;
+                    color: $fontColor;
+                    &:focus {
+                        border-bottom: 1px solid $input_borderbottom_hover_color;
+                    }
+                }
+                .fclickbtn {
+                    color: $fontColor;
+                    &:hover {
+                        color: $hoverfontColor;
+                    }
+                }
+                .confrimbtn {
+                    color: $fontColor;
+                    box-shadow: 0 0 0 1px rgba(81, 130, 228, .6) inset;
+                    &:hover {
+                        color: $hoverfontColor;
+                        box-shadow: 0 0 0 1px rgba(81, 130, 228, 1) inset;
+                    }
+                }
+                .el-date-editor.el-input {
+                    .el-input__inner {
+                        background: transparent;
+                        color: $fontColor;
+                        border-bottom: 1px solid $dialog-textarea-border;
+                    }
+                }
+            }
+            .btntops{
+               border-top:1px solid rgba(81,130,228,.15);
+            }
+            .typeli {
+                .fieldType {
+                    color: rgba(255, 255, 255, .38);
+                    label {
+                        i {
+                            color: #5182e4;
+                        }
+                    }
+                }
+                .fieldList{
+                    .fieldli{
+                        color: $fontColor;
+                        &:hover {
+                            color: $hoverfontColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

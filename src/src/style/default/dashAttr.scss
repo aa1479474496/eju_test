@@ -1,0 +1,125 @@
+.dash-attr {
+  width: 320px;
+  height: 100%;
+  padding: 0px 0 8px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+  .dash-attr-title {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    text-transform: capitalize;
+  }
+  .toggleclass {
+    .sdisplay {
+      display: none;
+    }
+  }
+  .dash-attr-block {
+    padding: 0px 16px 15px 0;
+    clear: both;
+    .dash-attr-block-title {
+      font-size: 12px;
+      cursor: pointer;
+      margin-left: 16px;
+      height: 32px;
+      line-height: 32px;
+      span {
+        margin-right: 10px;
+      }
+      .el-icon-plus {
+        float: right;
+        cursor: pointer;
+        margin-top: 12px;
+        padding: 0px 5px;
+      }
+      clear: both;
+    }
+    .dash-attr-row {
+      padding-left: 10px;
+      font-size: 12px;
+      clear: both;
+      .dash-attr-marginl20 {
+        margin-left: 20px;
+      }
+      .dash-attr-colorpick {
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+        display: inline-block;
+        margin-top: 8px;
+      }
+      .dash-attr-colorpick .el-color-picker__trigger {
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 0;
+      }
+      .dash-attr-span, .dash-attr-span2, .dash-attr-span3{
+        line-height: 28px;
+        height: 28px;
+        vertical-align: bottom;
+        display: inline-block
+      }
+      .dash-attr-span2 {
+        width: 30px;
+      }
+      .dash-attr-span {
+        width: 50px;
+      }
+      .dash-attr-span6 {
+        width: 50px;
+        display: inline-block;
+      }
+      .dash-attr-textarea {
+        margin-top: 10px;
+        width: 100%;
+        font-size: 12px;
+        outline: none;
+      }
+      .dash-attr-input {
+        border: 0;
+        outline: none;
+        text-align: center;
+        line-height: 28px;
+        height: 28px;
+        display: inline-block;
+      }
+      .dash-attr-select {
+        width: 100px;
+        box-sizing: border-box;
+        padding-left: 10px;
+        line-height: 30px;
+        height: 30px;
+        border: none;
+        outline: none;
+        display: inline-block;
+      }
+      .opt-icon, .el-icon-delete {
+        cursor: pointer;
+        float: right;
+        margin-top: 15px;
+        padding: 0px 5px;
+      }
+
+      .dash-attr-input.px {
+        width: 42px;
+      }
+      .dash-attr-input.min,
+      .dash-attr-select.min {
+        width: 60px;
+      }
+      .dash-attr-input.mid,
+      .dash-attr-select.mid {
+        width: 100px;
+      }
+      .dash-attr-input.max,
+      .dash-attr-select.max {
+        width: 218px;
+        text-align: left;
+        padding-left: 10px;
+      }
+    }
+  }
+}

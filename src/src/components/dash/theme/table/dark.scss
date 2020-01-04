@@ -1,0 +1,52 @@
+.chart-theme-dark {
+  .el-table{
+    background: transparent
+  }
+  .el-table::before {
+    height:0 !important;
+  }
+  .el-table::after {
+    width:0 !important;
+  }
+  .el-table tr {
+    background-color: #203e68;
+    color:rgba(255,255,255,.7);
+    td {
+      border:none !important;
+      padding:6px 0;
+    }
+  }
+  .el-table tr:nth-child(even) {
+    td {
+        background-color:#4d6586 !important;
+        color:rgba(255,255,255,.7);
+        border:none !important;
+    }
+  }
+  .el-table--border th.gutter:last-of-type {
+    background-color:#191a2c;
+    border-bottom-width: 0px;
+  }
+  .el-table--border, .el-table--group {
+    border: none;
+    max-height:	none !important;
+  }
+  .el-table__body tr.hover-row > td{
+    background-color:transparent;
+  }
+  .el-table__fixed, .el-table__fixed-right{
+    &::before{
+      background-color: transparent;
+    }
+  }
+  .el-table tr:hover{
+    td {background:rgba(0, 0, 0, 0.2)}
+  }
+  .el-table th {
+    border:none;
+    background-color: #286ac5;
+    color: rgba(255,255,255,0.7);
+    padding:0;
+    height: 42px;
+  }
+}

@@ -1,0 +1,8 @@
+@import "mainTheme.scss";
+.topbanner {
+  background-color: $globalcolor;
+  box-shadow:$contentinfo-map_boxshadow;
+  .title_head {
+    color:$fontColor;
+  }
+}

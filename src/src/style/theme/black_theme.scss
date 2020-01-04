@@ -1,0 +1,147 @@
+$fontColor: rgba(255, 255, 255, 0.7);
+$hoverColor: #1e2440;
+$hoverfontColor: rgba(255, 255, 255, 1);
+$input_borderbottom_color:rgba(81, 130, 228, 0.3);
+$input_borderbottom_hover_color:rgba(81, 130, 228, 1);
+$chart-edit-main_box-shadow:0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 10px 24px 0 rgba(0, 0, 0, 0.3);
+$chart-edit-main_backgroundColor:#202237;
+$addAxis_fontColor:#5182e4;
+$chart-edit-wrap_background:#24273e;
+$oneblock_boxShadow:inset 0 -1px 0 0 rgba(81, 130, 228, 0.2);
+$textareaJson_background:#202237;
+$row_hover:#27304f;
+$yellow:yellow;
+$attr-select_backgroundColor:rgba(41, 45, 71, 0.94);
+$chart-zd-li_spancolor:rgb(81, 130, 228);
+$changeOptionsshadow:0 2px 4px 0 rgba(0, 0, 0, 0.3);
+
+$editBx-ul_shadow:  0 0 6px 0 rgba(0, 0, 0, 0.1), 0 12px 12px 0 rgba(0, 0, 0, 0.3);
+$editBx-ul_backgroundcolor : #2e324d;
+$editBx-ulHover:rgba(81, 130, 228, 0.1);
+$chartTypeSelectactiveShadow:0 0 0 2px rgba(81, 130, 227, 0.15), inset 0 0 0 2px #5182e4;
+.chart-worktitle {
+    color: $fontColor;
+  }
+  .chart-edit-container {
+    .chart-edit-left {
+      .chart-add-field {
+        color: $fontColor;
+      }
+      .chart-search-input {
+          border-bottom: 1px solid $input_borderbottom_color;
+          color: $fontColor;
+          &:focus {
+          border-bottom: 1px solid $input_borderbottom_hover_color;
+          }
+      }
+      .chart-table-info {
+        color: $fontColor;
+        &:hover {
+          background-color: $hoverColor;
+          color: $hoverfontColor;
+        }
+      }
+    }
+    .chart-edit-main {
+      box-shadow: $chart-edit-main_box-shadow;
+      background-color: $chart-edit-main_backgroundColor;
+      .axis {
+        border-bottom: 1px solid $input_borderbottom_color;
+        color: $fontColor;
+        .drag-content {
+          .addAxis {
+            color:$addAxis_fontColor;
+          }
+          .dragArea {
+            .sDrag {
+              background-color:$addAxis_fontColor;
+              color: $hoverfontColor;
+            }
+          }
+        }
+      }
+      #chart-box {
+        .chart-edit-wrap {
+          background:$chart-edit-wrap_background;
+        }
+      }
+    }
+    .chart-right {
+      .oneblock {
+        box-shadow: $oneblock_boxShadow;
+        .sdisplay {
+          .row {
+            &:hover {
+              background-color:$row_hover;
+            }
+          }
+          .textareaJson {
+            background:$textareaJson_background;
+            color:$hoverfontColor;
+          }        
+          .attr-span, .attr-span0 {
+            color: $hoverfontColor;
+          }
+          .attr-select, .attr-input {
+            color: $hoverfontColor;
+            box-shadow: 0 -1px 0 0 $input_borderbottom_color inset;
+          }
+          .attr-select option {
+            background: $attr-select_backgroundColor;
+          }
+        }
+        .attr-block-title {
+          color: $hoverfontColor;
+        }
+        .editdialog {
+          color:$hoverfontColor; 
+        }
+      }
+    }
+  }
+  
+  .chart-zd-ul {
+    .chart-zd-li {
+      color: $fontColor;
+      span {
+        color:$chart-zd-li_spancolor;
+      }
+      .yellow {
+        color:$yellow;
+      }
+      &:hover {
+        color: $hoverfontColor;
+      }
+    }
+  }
+  .chart-nodata {
+    color:$fontColor;
+
+  }
+
+  .changeOptions {
+    background-color:$chart-edit-main_backgroundColor;
+    box-shadow: $changeOptionsshadow;
+  }
+
+  .editBx-ul {
+    box-shadow: $editBx-ul_shadow;
+    background-color:$editBx-ul_backgroundcolor;
+  }
+  .editBx-ul .editbx-li:hover {
+    background-color: $editBx-ulHover;
+  }
+
+  .chartTypeSelect {
+    ul {
+      li {
+        &:hover {
+          background-color:$chart-edit-wrap_background;
+        }
+        .active {
+          background-color: $editBx-ulHover;
+          box-shadow:$chartTypeSelectactiveShadow;
+        }
+      }
+    }
+  }

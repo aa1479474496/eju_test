@@ -1,0 +1,133 @@
+@import "mainTheme.scss";
+.dash-mode-edit {
+  .dash-item:hover {
+    box-shadow: $dash-mode-edit_hover
+  }
+}
+
+.chart-box-wrap {
+  background-color: transparent;
+}
+
+/*** dash home 页面 ***/
+
+.dash-home-header {
+  background-color: $globalcolor;
+  box-shadow: $dash-attr-block_shadow
+}
+.dash-home-showbtn,.dash-home-editbtn{
+  color:$fontColor;
+  &:hover{
+    color:$hoverfontColor
+  }
+}
+.dash-home-nav {
+  background: $dash-home-nav_bg;
+  box-shadow: $dash-home-nav_bg_shadow;
+}
+
+.dash-home-banner {
+  color: $white;
+  box-shadow: $dash-attr-block_shadow;
+}
+
+.dash-edit-addnav {
+  box-shadow: $dash-attr-block_shadow;
+  color: $fontColor;
+  i {
+    color: $fontColor;
+  }
+  i:hover {
+    color: $hoverfontColor;
+  }
+}
+
+.dash-edit-item-opt {
+  color: $fontColor;
+  .dash-edit-item-opt-ul {
+    box-shadow: $dash-edit-item-opt-ul_shadow;
+    background-color: $editBx-ul_backgroundcolor;
+    .dash-edit-item-opt-li:hover {
+      background-color: $editBx-ulHover;
+    }
+  }
+}
+
+.dash-edit-item-opt:hover {
+  color: $white;
+}
+
+.BI-header {
+  .glog {
+    background: $--color-primary url("../../../assets/logo.png") center center no-repeat;
+    color: $white;
+  }
+  .router-group {
+    .items {
+      color: $fontColor;
+    }
+    .items.active {
+      border-bottom-color: $BI-header_item_active;
+      background-color: $editBx-ulHover;
+      color: $white;
+    }
+    .items:hover {
+      background-color: $BI-header_item_hover;
+    }
+  }
+}
+
+.editBx {
+  color: $fontColor;
+}
+
+.editBx:hover {
+  color: $white;
+}
+
+.editBx-ul {
+  box-shadow: $editBx-ul_shadow;
+  background-color: $editBx-ul_backgroundcolor;
+}
+
+.editBx-ul .editbx-li:hover {
+  background-color: $editBx-ulHover;
+}
+
+.bi-leftnav {
+  color: $fontColor;
+}
+
+.bi-leftnav .li .items.active {
+  background-color: $editBx-ulHover;
+}
+
+.optList {
+  background-color: $editBx-ul_backgroundcolor;
+  box-shadow: $editBx-ul_shadow;
+}
+
+.optList .ipti:hover {
+  color: $fontColor;
+  background-color: $editBx-ulHover;
+}
+
+.iactive {
+  background-color: $editBx-ulHover;
+}
+
+.userSet {
+  .users:hover {
+    color: $white;
+  }
+  i {
+    color: $fontColor;
+  }
+  i:hover,
+  .uText:hover {
+    color: $white;
+  }
+  .uText {
+    color: $fontColor;
+  }
+}

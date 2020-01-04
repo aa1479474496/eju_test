@@ -1,0 +1,46 @@
+@import "mainTheme.scss";
+.form-group .fli {
+  .label {
+    color: $fontColor;
+  }
+  .inners {
+    input {
+      background: transparent;
+      box-shadow: $inners-shadow;
+      color: $fontColor;
+    }
+    input:focus {
+      box-shadow: $input-focus-box-shadow;
+    }
+    select {
+      background: transparent;
+      box-shadow: $inners-shadow;
+      color: $fontColor;
+    }
+    select option {
+      background: $attr-select_backgroundColor;
+    }
+  }
+}
+
+.dialog-buttons {
+  .ngdialog-button {
+    background: transparent;
+    color: $input_borderbottom_hover_color;
+  }
+  .ngdialog-button:hover {
+    background: $editBx-ulHover;
+  }
+}
+
+.g-dialog {
+  background: $dash-attr-select_option;
+}
+
+.gd-content {
+  background: $globalcolor;
+  color: $fontColor;
+}
+.radio{
+  color: $fontColor;
+}

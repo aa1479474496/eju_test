@@ -1,0 +1,84 @@
+.placesearch {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  .surrounds {
+    display: flex;
+    position: absolute;
+    top:0;
+    left: 30px;
+    right: 10px;
+    bottom: 70px;
+  }
+  .titles {
+    line-height: 40px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .mpcontainer {
+    flex: 1;
+  }
+  .mpopt {
+    width: 290px;
+    position: relative;
+    .li {
+      display: inline-block;
+      text-align: center;
+      font-size: 12px;
+      cursor: pointer;
+      margin-left: 25px;
+      margin-bottom: 10px;
+      .item {
+        width: 68px;
+        height: 68px;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+}
+.distanceBox {
+  display: block;
+  position: relative;
+  padding-left:28px; 
+  margin-bottom: 10px;
+  top: 0;
+  .label {
+    font-size: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+  select {
+    width: 190px;
+    box-sizing: border-box;
+    font-size: 14px;
+    display: inline-block;
+    height: 39px;
+    border-radius: 20px;
+    outline: none;
+    padding: 0 10px;
+    border: none;
+    vertical-align: middle;
+    cursor: pointer;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+  }
+  .b {
+    position: absolute;
+    top: 13px;
+    left: 235px;
+    display: block;
+    height: 8px;
+    width: 8px;
+    border-width: 1px;
+    border-color: transparent;
+    border-style: solid;
+    transform: rotate(-135deg);
+  }
+}

@@ -1,0 +1,304 @@
+body,
+html {
+    padding: 0;
+    margin: 0;
+    min-width: 1200px;
+    position: relative;
+    height: 100%;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="search"],
+input[type="reset"] {
+    -webkit-appearance: none;
+}
+
+textarea {
+    -webkit-appearance: none;
+}
+
+.clear:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.pre {
+    white-space: pre;
+}
+
+.clear {
+    zoom: 1;
+}
+
+.margin {
+    margin: 0 auto;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.inlineblock {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@keyframes backOpacity {
+    0% {
+        opacity: 1
+    }
+    25% {
+        opacity: .5
+    }
+    50% {
+        opacity: 1
+    }
+    75% {
+        opacity: .5
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+.animation_opactiy {
+    animation: backOpacity 2s ease-in-out infinite;
+}
+
+::-webkit-scrollbar {
+    overflow: visible;
+    width: 0px;
+    height: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    min-height: 10px;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:vertical:hover {
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:vertical:active {
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+::-webkit-scrollbar-track-piece {
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.bi-dialog {
+    .el-dialog__body {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .chart-drag-field {
+        overflow-y: auto;
+        height: 252px;
+    }
+    .chart-table-list {
+        height: 230px;
+        margin-top: 15px;
+        overflow-y: auto;
+    }
+    .chart-filter-box {
+        display: flex;
+        height: 320px;
+        .flex1 {
+            flex: 1;
+        }
+    }
+    .field-list {
+        cursor: pointer;
+        display: block;
+        .deletebtn {
+            display: none;
+            float: right;
+            vertical-align: middle;
+            margin-top: 5px;
+        }
+        &:hover {
+            .deletebtn {
+                display: inline-block;
+            }
+        }
+    }
+    .dialog-textarea {
+        border: 0;
+        outline: 0;
+        height: 24px;
+        line-height: 24px;
+        box-shadow: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        padding: 0;
+        border-radius: 0;
+        font-size: 12px;
+        margin-right: 12px;
+        vertical-align: middle;
+        width: 90%;
+        height: 100px;
+        margin: 0 20px 0px 20px;
+    }
+    .dialog-select {
+        border: 0;
+        outline: 0;
+        height: 24px;
+        line-height: 24px;
+        box-shadow: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        padding: 0 24px 0 0;
+        border-radius: 0;
+        font-size: 12px;
+        margin-right: 12px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .dialog-input {
+        border-top: 0;
+        border-left: 0;
+        border-right: 0;
+        background-color: transparent;
+        outline: 0;
+        display: block;
+        margin: 0 auto;
+        height: 25px;
+        line-height: 25px;
+        width: 90%;
+    }
+    .el-input__inner {
+        background-color: transparent;
+        border: 0;
+        background-color: transparent;
+        outline: 0;
+        display: block;
+        margin: 0 auto;
+    }
+}
+.dialog-buttons {
+    text-align: right;
+    padding: 10px;
+    box-sizing: border-box;
+    .ngdialog-button {
+        background: transparent;
+        height: 32px;
+        padding: 0 16px;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-size: 14px;
+        margin: 0 0 0 8px;
+        border: none;
+        outline: none;
+        font-weight: 700;
+    }
+}
+
+.amap-copyright,
+.amap-logo {
+    display: none !important;
+}
+
+.router-fade-enter-active,
+.router-fade-leave-active {
+    transition: opacity 0.3s;
+}
+
+.router-fade-enter,
+.router-fade-leave-active {
+    opacity: 0;
+}
+
+.g_fullAbs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+::-webkit-details-marker {
+    display: none;
+}
+
+::-moz-list-bullet {
+    font-size: 0;
+    float: left;
+}
+
+summary {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: 0;
+}
+
+.commoncheckbox {
+    position: relative;
+    margin-right: 1px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+    bottom: 2px;
+    width: 12px;
+    height: 12px;
+    vertical-align: middle;
+    margin-right: 4px;
+    &:checked::before {
+        position: absolute;
+        top: 5px;
+        left: 4px;
+        width: 65%;
+        height: 2px;
+        content: '';
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+    }
+    &:checked::after {
+        position: absolute;
+        top: 6px;
+        left: 2px;
+        width: 5px;
+        height: 2px;
+        content: '';
+        -webkit-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+        margin: 0;
+    }
+}

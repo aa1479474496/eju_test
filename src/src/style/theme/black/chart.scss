@@ -1,0 +1,253 @@
+@import "mainTheme.scss";
+.chart-worktitle {
+    color: $fontColor;
+}
+.table_border_bottom {
+    .el-input__inner{
+        border-bottom: 1px solid $input_borderbottom_color
+    }
+}
+.chart-edit-container {
+    .chart-edit-left {
+        .chart-add-field {
+            color: $fontColor;
+        }
+        .chart-search-input {
+            border-bottom: 1px solid $input_borderbottom_color;
+            color: $fontColor;
+            &:focus {
+                border-bottom: 1px solid $input_borderbottom_hover_color;
+            }
+        }
+        .chart-table-info {
+            color: $fontColor;
+            &:hover {
+                background-color: $hoverColor;
+                color: $hoverfontColor;
+            }
+        }
+    }
+    .chart-edit-main {
+        box-shadow: $chart-edit-main_box-shadow;
+        background-color: $chart-edit-main_backgroundColor;
+        .axis {
+            border-bottom: 1px solid $input_borderbottom_color;
+            color: $fontColor;
+            .drag-content {
+                .addAxis {
+                    color: $addAxis_fontColor;
+                }
+                .dragArea {
+                    .sDrag {
+                        background-color: $addAxis_fontColor;
+                        color: $hoverfontColor;
+                    }
+                }
+            }
+        }
+        #chart-box {
+            .chart-edit-wrap {
+                background: $chart-edit-wrap_background;
+            }
+        }
+    }
+    .chart-right {
+        .oneblock {
+            box-shadow: $oneblock_boxShadow;
+            .sdisplay {
+                .row {
+                    &:hover {
+                        background-color: $row_hover;
+                    }
+                }
+                .textareaJson {
+                    background: $textareaJson_background;
+                    color: $hoverfontColor;
+                }
+                .attr-span,
+                .attr-span0 {
+                    color: $hoverfontColor;
+                }
+                .colorList {
+                    color: $fontColor;
+                    li {
+                        .cricle {
+                            background-color: $fontColor;
+                        }
+                        &:hover {
+                            background-color: $editBx-ulHover;
+                        }
+                    }
+                }
+                .attr-select,
+                .attr-input {
+                    color: $hoverfontColor;
+                    box-shadow: 0 -1px 0 0 $input_borderbottom_color inset;
+                }
+                .attr-select option {
+                    background: $attr-select_backgroundColor;
+                }
+            }
+            .attr-block-title {
+                color: $hoverfontColor;
+            }
+            .editdialog {
+                color: $hoverfontColor;
+            }
+        }
+    }
+}
+
+.chart-zd-ul {
+    .chart-zd-li {
+        color: $fontColor;
+        span {
+            color: $chart-zd-li_spancolor;
+        }
+        .yellow {
+            color: $yellow;
+        }
+        &:hover {
+            color: $hoverfontColor;
+        }
+    }
+}
+
+.chart-nodata {
+    color: $fontColor;
+}
+
+.changeOptions {
+    background-color: $chart-edit-main_backgroundColor;
+    box-shadow: $changeOptionsshadow;
+}
+
+.editBx-ul,
+.editBx-ulinner {
+    box-shadow: $editBx-ul_shadow;
+    background-color: $editBx-ul_backgroundcolor;
+}
+
+.editBx-ul .editbx-li:hover,
+.editBx-ulinner .editbx-li:hover {
+    background-color: $editBx-ulHover;
+}
+
+.chartTypeSelect {
+    ul {
+        li {
+            &:hover {
+                background-color: $chart-edit-wrap_background;
+            }
+            .active {
+                background-color: $editBx-ulHover;
+                box-shadow: $chartTypeSelectactiveShadow;
+            }
+        }
+    }
+}
+
+.leftfield {
+    box-shadow: 1px 0 0 0 rgba(0, 0, 0, .15);
+    .stitle {
+        color: $fontColor;
+    }
+    .colorLists {
+        li {
+            color: $fontColor;
+            .cricle {
+                background-color: $fontColor;
+            }
+        }
+        .active {
+            background-color: rgba(81, 130, 228, .1)
+        }
+    }
+}
+
+.rightselect {
+    .stitle {
+        color: $fontColor;
+    }
+    .colorList {
+        .current {
+            i {
+                color: #fff
+            }
+        }
+    }
+    .colorzdy {
+        .sfonts {
+            color: $fontColor;
+        }
+    }
+}
+
+.sgongneng {
+    .leftname {
+        color: $fontColor;
+        font-size: 12px;
+    }
+    .sicons {
+        color: rgb(163, 171, 176)
+    }
+    .dayu {
+        color: rgb(228, 81, 81)
+    }
+    .dengyu {
+        color: rgb(163, 171, 176)
+    }
+    .xiaoyu {
+        color: rgb(64, 162, 118)
+    }
+}
+
+.gongnengdialog {
+    .notiaojian {
+        color: $fontColor;
+        .addbtn {
+            box-shadow: 0 0 0 1px rgba(81, 130, 228, .6) inset;
+            &:hover {
+                color: rgba(255, 255, 255, 1);
+                box-shadow: 0 0 0 1px rgba(81, 130, 228, 1) inset
+            }
+        }
+    }
+    .dialog-select {
+        background-color: #191A2C;
+        border-bottom: 1px solid rgba(81, 130, 228, 0.5);
+    }
+    .clickbtn {
+        color: $fontColor;
+    }
+    .rowys {
+        color: $fontColor;
+        .sricon {
+            background-color: rgba(81, 130, 228, .1);
+        }
+        .iconchange {
+            background-color: #2E324D;
+            box-shadow: 0 0 6px 0 rgba(0, 0, 0, .1), 0 12px 24px 0 rgba(0, 0, 0, .3);
+            .iconlist {
+                background-color: rgba(81, 130, 228, .1);
+                &:hover {
+                    box-shadow: 0 0 0 1px rgba(81, 130, 228, 1) inset;
+                }
+            }
+            .oneline {
+                border-bottom: 1px solid rgba(81, 130, 228, .15);
+            }
+        }
+    }
+}
+
+.setFormat {
+    .el-radio__label {
+        color: rgba(255, 255, 255, 0.7);
+    }
+    .formatDetail {
+        .oneline {
+            color: rgba(255, 255, 255, 0.7);
+        }
+    }
+}

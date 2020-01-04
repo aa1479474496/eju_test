@@ -1,0 +1,87 @@
+.userSet {
+    float: right;
+    height: 64px;
+    margin-right: 8px;
+    font-size: 12px;
+    .users {
+      height: 64px;
+      vertical-align: middle;
+      line-height: 64px;
+    }
+    .users:hover {
+      cursor: pointer;
+    }
+    .bdp-icon {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  
+    .ico-default-photo-32 {
+      width: 32px;
+      height: 32px;
+    }
+    .ico-default-photo-32::after {
+      content: "";
+      display: block;
+      width: 18px;
+      height: 16px;
+      background: url(../../assets/png-sprite.png) -1051px -496px no-repeat;
+      -webkit-transform: scale(2);
+      -moz-transform: scale(2);
+      -ms-transform: scale(2);
+      -o-transform: scale(2);
+      transform: scale(2);
+      -webkit-transform-origin: 0 0 0;
+      -moz-transform-origin: 0 0 0;
+      -ms-transform-origin: 0 0 0;
+      -o-transform-origin: 0 0 0;
+      transform-origin: 0 0 0;
+    }
+  
+    i {
+      font-size: 14px;
+      margin-left: 12px;
+      vertical-align: middle;
+    }
+    .uText {
+      margin-left: 5px;
+    }
+  }
+  
+  .BI-header {
+    height: 64px;
+    font-family: "PingFang SC", "Helvetica Neue", Helvetica, STHeitiSC-Light,
+      WOL_SB, "Segoe UI Semibold", "Segoe UI", Tahoma, Helvetica, sans-serif;
+    .glog {
+      width: 84px;
+      height: 64px;
+      line-height: 64px;
+      background-size: 84px auto;
+      font-size: 26px;
+      text-align: center;
+      font-family: Comic Sans MS, Comic Sans, cursive;
+      user-select: none;
+      cursor: pointer;
+      float: left; // font-family: OCR A Std, monospace;
+      //  font-family: Brush Script MT, Brush Script Std, cursive;
+      font-weight: bold;
+    }
+    .router-group {
+      height: 64px;
+      float: left;
+      margin-left: 50px;
+      font-size: 0;
+      top: 0;
+      .items {
+        display: inline-block;
+        border-bottom: 2px solid transparent;
+        height: 62px;
+        cursor: pointer;
+        font-weight: 700;
+        line-height: 62px;
+        font-size: 14px;
+        padding: 0 16px;
+        text-decoration: none;
+      }
+    }
+  }

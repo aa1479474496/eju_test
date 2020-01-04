@@ -1,0 +1,67 @@
+@import "mainTheme.scss";
+.table-left-layout {
+    background: $dash-home-nav_bg;
+    box-shadow: $dash-home-nav_bg_shadow;
+    .table-left-title {
+        color: $fontColor;
+    }
+    .table-left-tree {
+        color: $fontColor;
+    }
+}
+
+.table-editBx-ul {
+    box-shadow: $editBx-ul_shadow;
+    background-color: $editBx-ul_backgroundcolor;
+    .table-editbx-li {
+        &:hover {
+            background-color: $editBx-ulHover;
+        }
+    }
+}
+
+.table-tree-leaf {
+    &:hover {
+        background-color: $editBx-ulHover;
+    }
+}
+
+.activeClass {
+    background-color: $editBx-ulHover;
+}
+
+.down-opt {
+    .down-optList {
+        background-color: $editBx-ul_backgroundcolor;
+        box-shadow: $editBx-ul_shadow;
+        .ipti {
+            &:hover {
+                color: $fontColor;
+                background-color: $editBx-ulHover;
+            }
+        }
+    }
+}
+
+.onegroup {
+    .leftTitle {
+        color: $fontColor;
+    }
+}
+
+.el-dialog__body {
+    color: $fontColor;
+}
+
+.dialogtree {
+    .select {
+        box-shadow: $editBx-ul_shadow;
+        background-color: $editBx-ul_backgroundcolor;
+    }
+}
+
+.showTips {
+    color: $fontColor;
+    box-shadow: $editBx-ul_shadow;
+    background-color: $editBx-ul_backgroundcolor;
+}

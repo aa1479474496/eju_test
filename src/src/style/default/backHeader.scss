@@ -1,0 +1,26 @@
+.topbanner {
+    line-height: 40px;
+    position: absolute;
+    z-index: 2000;
+    top: 0;
+    width: 100%;
+    height: 64px;
+    margin: 0 auto;
+    .shead_goback {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      text-align: left;
+      padding: 24px 0px 0 24px;
+      height: 64px;
+      width: 64px;
+      box-sizing: border-box;
+    }
+    .title_head {
+      display: inline-block;
+      font-size: 22px;
+      line-height: 64px;
+      padding-left: 110px;
+    }
+  }

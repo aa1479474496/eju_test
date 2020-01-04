@@ -1,0 +1,56 @@
+.chart-theme-default {
+  .el-table{
+    background: transparent
+  }
+  .el-table::before {
+    height:0 !important;
+  }
+  .el-table::after {
+    width:0 !important;
+  }
+  .el-table tr {
+    background-color: #313449;
+    color:rgba(255,255,255,.5);
+    td {
+      border: none !important;
+      border-right: 1px solid #24273E !important;
+      border-bottom: 1px solid #24273E !important;
+      padding:6px 0;
+    }
+  }
+  .el-table tr:nth-child(even) {
+    td {
+        background-color:#2b2e44 !important;
+        color:rgba(255,255,255,.5);
+        border: none !important;
+        border-right: 1px solid #24273E !important;
+        border-bottom: 1px solid #24273E !important;
+    }
+  }
+  .el-table--border th.gutter:last-of-type {
+    background-color:#191a2c;
+    border-bottom-width: 0px;
+  }
+  .el-table--border, .el-table--group {
+    border: none;
+    max-height:	none !important;
+  }
+  .el-table tr:hover{
+    td {background:rgba(0, 0, 0, 0.2)}
+  }
+  .el-table__body tr.hover-row > td{
+    background-color:transparent;
+  }
+  .el-table__fixed, .el-table__fixed-right{
+    &::before{
+      background-color: transparent;
+    }
+  }
+  .el-table th {
+    border:none;
+    background-color: #191a2c;
+    color: rgba(255,255,255,0.5);
+    padding:0;
+    height: 42px;
+  }
+}

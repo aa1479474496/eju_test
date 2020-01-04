@@ -1,0 +1,41 @@
+@import "mainTheme.scss";
+.dash-attr {
+  box-shadow: $dash-attr_shadow;
+  background: $globalcolor;
+  .dash-attr-title {
+    color: $white
+  }
+  .dash-attr-block {
+    box-shadow: $dash-attr-block_shadow;
+    .dash-attr-block-title {
+      color: $white;
+      .el-icon-plus {
+        color: $white;
+      }
+    }
+    .dash-attr-row {
+      color: $hoverfontColor;
+      .dash-attr-textarea {
+        background: transparent;
+        color: $white;
+        border-color: $dialog-textarea-border; // box-shadow:0 -1px 0 0 rgba(81, 130, 228, 0.5) inset
+      }
+      .dash-attr-input {
+        color: $white;
+        box-shadow: $dash-attr-input_shadow;
+        background: transparent;
+      }
+      .dash-attr-select {
+        background: transparent;
+        box-shadow: $dash-attr-input_shadow;
+        color: $fontColor;
+      }
+      .dash-attr-select option {
+        background: $dash-attr-select_option;
+      }
+      .opt-icon, .el-icon-delete {
+        color: $white;
+      }
+    }
+  }
+}

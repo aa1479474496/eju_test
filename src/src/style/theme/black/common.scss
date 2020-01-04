@@ -1,0 +1,115 @@
+@import "mainTheme.scss";
+
+/* 改变 icon 字体路径变量，必需 */
+
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+@import '~element-ui/packages/theme-chalk/src/index';
+
+body,
+html {
+    background-color: $globalcolor !important;
+}
+
+::-webkit-scrollbar {
+    background-color: $scrollbar;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $scrollbar-thumb;
+}
+
+::-webkit-scrollbar-thumb:vertical:hover {
+    background-color: $scrollbar-thumb-hover;
+}
+
+::-webkit-scrollbar-thumb:vertical:active {
+    background-color: $scrollbar-thumb-hover;
+}
+
+.el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content {
+    background-color: $--color-primary;
+    color: $hoverfontColor;
+}
+
+.bi-dialog {
+    background: $globalcolor;
+    color: $fontColor;
+    .chart-filter-box {
+        background: $chart-edit-wrap_background;
+        .flex1 {
+            border-right: 1px solid $scrollbar-thumb-hover;
+        }
+    }
+    .field-list {
+        color: $fontColor;
+        &:hover {
+            background-color: $row_hover;
+        }
+    }
+    .dialog-textarea {
+        border-bottom: 1px solid $dialog-textarea-border;
+        background: $textareaJson_background;
+        color: $fontColor;
+    }
+    .dialog-select {
+        border-bottom: 1px solid $dialog-textarea-border;
+        background: $dialog-select-bg url("../../../assets/triangle-down.svg") right 4px no-repeat;
+        color: $fontColor;
+    }
+    .dialog-input {
+        border-bottom: 1px solid $dialog-textarea-border;
+        color: $fontColor;
+        &:focus {
+            border-bottom: 1px solid $input_borderbottom_hover_color;
+        }
+    }
+    .el-dialog__title {
+        color: $fontColor;
+    }
+    .el-input__inner {
+        border-bottom: 1px solid $dialog-textarea-border;
+        background-color: transparent;
+        color: $fontColor;
+        &:focus {
+            border-bottom: 1px solid $input_borderbottom_hover_color;
+        }
+    }
+    .el-tree {
+        color: $fontColor;
+        background: transparent;
+    }
+    .el-tree-node__content {
+        &:hover {
+            background-color: $addAxis_fontColor;
+            color: $fontColor;
+        }
+    }
+}
+
+.el-switch__label {
+    color: $fontColor;
+}
+
+.dialog-buttons {
+    .ngdialog-button {
+        color: $input_borderbottom_hover_color;
+    }
+    .ngdialog-button:hover {
+        background: $dialog-buttons-hover;
+    }
+}
+
+.commoncheckbox {
+    border: 1px solid #5182E4;
+    background-color: rgba(81, 129, 228, .1);
+    &:checked {
+        background-color: #5182E4;
+        border: 0;
+    }
+    &:checked::before {
+        background-color: $hoverfontColor;
+    }
+    &:checked::after {
+        background-color: $hoverfontColor;
+    }
+}
