@@ -2,19 +2,21 @@
   <div class="home">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <div>home</div>
+    <div class="test">home</div>
     <!-- <p class="test">test</p>
     <current-user>
       <template v-slot:default="slotProps">{{ slotProps.user.firstName }}</template>
 
       <template v-slot:other="otherSlotProps">{{ otherSlotProps.animal.age }}</template>
     </current-user> -->
-<!-- 
+    <!-- 
     <updated :list="list"></updated>
     <button @click="updateTitle">updated</button> -->
     <button @click="test">test promise</button>
     <async-fun v-if="show"></async-fun>
-    <div v-for="(item, index) in list2" :key="index" :class="isExit(item.id)">{{item.name}}</div>
+    <div v-for="(item, index) in list2" :key="index" :class="isExit(item.id)">
+      {{ item.name }}
+    </div>
   </div>
 </template>
 
@@ -50,10 +52,10 @@ export default {
       show: false,
 
       list2: [
-          { id: 1, name: 'a1' },
-          { id: 2, name: 'a2' },
-          { id: 3, name: 'a3' },
-          { id: 4, name: 'a4' },
+        { id: 1, name: "a1" },
+        { id: 2, name: "a2" },
+        { id: 3, name: "a3" },
+        { id: 4, name: "a4" }
       ]
     };
   },
@@ -64,11 +66,11 @@ export default {
     },
 
     isExit(id) {
-        console.log('id', id);
-        if (this.status.includes(id)) {
-            return 'is_exit'
-        }
-        return ''
+      console.log("id", id);
+      if (this.status.includes(id)) {
+        return "is_exit";
+      }
+      return "";
     },
 
     test() {
@@ -83,21 +85,24 @@ export default {
     },
 
     changeStatus() {
-        console.log('list2发生改变');
+      console.log("list2发生改变");
     }
   },
 
   watch: {
-      status(val, oldVal) {
-          console.log('change');
-          this.changeStatus();
-      }
+    status(val, oldVal) {
+      console.log("change");
+      this.changeStatus();
+    }
   }
 };
 </script>
 
 <style lang="scss">
-    .is_exit {
-        color: red;
-    }
+.is_exit {
+  color: red;
+}
+.test {
+  color: $header_color;
+}
 </style>

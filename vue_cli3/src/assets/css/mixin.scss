@@ -1,0 +1,99 @@
+$g_text_color: #b0b9cd;
+$header_color: #3673dd; // 头部背景色
+
+$basic_bac: #1890ff;
+$sec_color: #1890ff;
+$list_color: #0f2f61; //表单和列表背景色
+$item_bg: #0f3466; //新增报告背景色
+
+$compon_light_bac: #323745; // 组件背景右边浅色
+$compon_dark_bac: #17202b; // 组件背景左边深色
+$compon_dark_normal_bac: #2a303a; // 地区组件背景左边深色
+$compon_sec_color: #0071e7; // 选中按钮，侧边选中条背景色
+
+$compon_dark_font_color: #7b8bab;
+
+/* 箭头
+@include arrow(bottom,10px,#F00);//向下，10px大小，红色箭头
+*/
+@mixin arrow($direction, $size, $color) {
+  width: 0;
+  height: 0;
+  line-height: 0;
+  font-size: 0;
+  overflow: hidden;
+  border-width: $size;
+  cursor: pointer;
+  @if $direction == top {
+    border-style: dashed dashed solid dashed;
+    border-color: transparent transparent $color transparent;
+    border-top: none;
+  } @else if $direction == bottom {
+    border-style: solid dashed dashed dashed;
+    border-color: $color transparent transparent transparent;
+    border-bottom: none;
+  } @else if $direction == right {
+    border-style: dashed dashed dashed solid;
+    border-color: transparent transparent transparent $color;
+    border-right: none;
+  } @else if $direction == left {
+    border-style: dashed solid dashed dashed;
+    border-color: transparent $color transparent transparent;
+    border-left: none;
+  }
+}
+
+@mixin one_line_hidden {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin multiple_line_hidden($clamp) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $clamp;
+  overflow: hidden;
+}
+
+@mixin el_input_inner {
+  height: 32px;
+  line-height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #b0b9cd;
+  background: rgba(50, 55, 69, 1);
+  font-size: 14px;
+}
+
+@mixin filter_com_shadow {
+  // 过滤组件弹窗阴影
+  box-shadow: 0px 0px 20px 0px rgba(14, 28, 58, 0.1);
+}
+
+@mixin placeholder-color($color: rgba(176, 185, 205, 0.4)) {
+  &::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: $color;
+  }
+  &:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: $color;
+  }
+  &::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: $color;
+  }
+  &:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: $color;
+  }
+}
+// 关闭 x 动画
+@mixin closeAnimate {
+  cursor: pointer;
+
+  transition: all 0.3s ease-in;
+  &:hover {
+    transform: rotate(180deg);
+  }
+}
