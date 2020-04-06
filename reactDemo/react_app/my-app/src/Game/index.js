@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Board from "./Board.js";
-class Game extends React.Component {
+import "./Game.css";
+
+class Game extends Component {
   constructor() {
     super();
     this.state = {
