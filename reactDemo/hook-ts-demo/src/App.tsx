@@ -1,16 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
-import { User } from './example';
+// import logo from './logo.svg';
+// import { User } from './example';
 import Counter from './Counter';
 import Article from './Article';
+import User from './User';
+import CounterRef from './CounterRef';
+import CreateRef from './CreateRef';
 import './App.css';
 
-const user = <User name='vortesnail' age={25}>I am children text!</User>
+// const user = <User name='vortesnail' age={25}>I am children text!</User>
 
 function App() {
     return (
         <div>
-            {user}
+            {/* {user} */}
             <div>
                 <span>Counter:</span>
                 <Counter />
@@ -19,6 +22,21 @@ function App() {
             <div>
                 <span>Article:</span>
                 <Article title='第一篇' content='第一篇内容' />
+            </div>
+            <hr/>
+            <div>
+                <span>User:useEffect</span>
+                <User />
+            </div>
+            <hr/>
+            <div>
+                <span>CounterRef:useRef</span>
+                <CounterRef />
+            </div>
+            <hr/>
+            <div>
+                <span>CreateRef:useRef</span>
+                <CreateRef />
             </div>
         </div>
     );
