@@ -6,6 +6,9 @@ import Article from './Article';
 import User from './User';
 import CounterRef from './CounterRef';
 import CreateRef from './CreateRef';
+import MemoExample1 from './MemoExample1';
+import MemoExample2 from './MemoExample2';
+import UseState2 from './UseState2';
 import './App.css';
 
 // const user = <User name='vortesnail' age={25}>I am children text!</User>
@@ -38,6 +41,23 @@ function App() {
                 <span>CreateRef:useRef</span>
                 <CreateRef />
             </div>
+            <hr/>
+            {/* <div>
+                <span>useMemo:MemoExample1</span>
+                <MemoExample1 />
+            </div>
+            <hr/> */}
+            <div>
+                <span>useMemo:MemoExample2</span>
+                <MemoExample2 />
+            </div>
+
+            <hr/>
+            <div>
+                <span>UseState2:UseState2</span>
+                <UseState2 />
+            </div>
+            
         </div>
     );
 }
