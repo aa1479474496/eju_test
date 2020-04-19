@@ -21,22 +21,9 @@ const Child:React.FC<ChildProps> = props => {
             console.log('time...count', _count, countRef.current);
 
             setCount(_count);
-            // setCount(++countRef.current);
-            // ++countRef.current;
         },1000);
         return () => clearInterval(timer);
     }, []);
-
-    // useEffect(() => {
-    //     console.log('cccccc', count);
-    //     // console.log('use effect...',count)
-    //     // const timer = setInterval(() => {
-    //     //     console.log('timer...count:', count)
-    //     //     setCount(count + 1)
-    //     // }, 1000)
-    //     // return ()=> clearInterval(timer)
-    // }, [])
-
     return (
         <>
             <p>{name}-{data}=={count}</p>

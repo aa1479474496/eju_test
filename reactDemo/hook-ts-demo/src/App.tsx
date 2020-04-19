@@ -1,71 +1,27 @@
 import React from 'react';
-// import logo from './logo.svg';
-// import { User } from './example';
-import Counter from './Counter';
-import Article from './Article';
-import User from './User';
-import CounterRef from './CounterRef';
-import CreateRef from './CreateRef';
-import MemoExample1 from './MemoExample1';
-import MemoExample2 from './MemoExample2';
-import UseState2 from './UseState2';
+import { HashRouter as Router, Link, Route } from 'react-router-dom';
 
-import  HooksSimple from './hooksSimple/HooksSimple';
+import InitHooks from './initHooks/InitHooks';
+import HooksSimple from './hooksSimple/HooksSimple';
 import './App.css';
 
 // const user = <User name='vortesnail' age={25}>I am children text!</User>
 
 function App() {
     return (
-        <div>
-            {/* {user} */}
+        <Router>
+            <div>
+                <Link className="link" to='/'>initHooks</Link>
+                <Link className="link" to='/simple'>hooksSimple</Link>
+                <div style={{ padding: '20px', border: '1px solid green', margin: '20px' }}>
+                    <Route path="/" exact component={InitHooks}></Route>
+                    <Route path="/simple" component={HooksSimple}></Route>
+                </div>
 
-            <div style={{padding:'20px',border: '1px solid green', margin:'20px'}}>
-            <HooksSimple />
-            </div>
 
-            <div>
-                <span>Counter:</span>
-                <Counter />
-            </div>
-            <hr />
-            <div>
-                <span>Article:</span>
-                <Article title='第一篇' content='第一篇内容' />
-            </div>
-            <hr/>
-            <div>
-                <span>User:useEffect</span>
-                <User />
-            </div>
-            <hr/>
-            <div>
-                <span>CounterRef:useRef</span>
-                <CounterRef />
-            </div>
-            <hr/>
-            <div>
-                <span>CreateRef:useRef</span>
-                <CreateRef />
-            </div>
-            <hr/>
-            {/* <div>
-                <span>useMemo:MemoExample1</span>
-                <MemoExample1 />
-            </div>
-            <hr/> */}
-            <div>
-                <span>useMemo:MemoExample2</span>
-                <MemoExample2 />
-            </div>
 
-            <hr/>
-            <div>
-                <span>UseState2:UseState2</span>
-                <UseState2 />
             </div>
-            
-        </div>
+        </Router>
     );
 }
 
