@@ -7,7 +7,7 @@ const User: React.FC = () => {
     const [count, setCount] = useState<number>(0);
     // const [name, setName] = useState<string>('');
     useEffect(() => {
-        console.log('effect');
+        // console.log('effect');
     },[]);
 
     return (

@@ -20,7 +20,7 @@ interface Data {
 
 const Show: React.FC<Data> = ({ time, children }) => {
     function changeTime(time: number): string {
-        console.log('changeTime excuted ...');
+        // console.log('changeTime excuted ...');
         return new Date(time).toISOString();
     }
 

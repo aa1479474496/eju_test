@@ -4,7 +4,7 @@ interface Data {
     data: string
 }
 const Child:React.FC<Data>= memo(({data}) =>{
-    console.log('child render...', data)
+    // console.log('child render...', data)
     const [name, setName] = useState(data)
     return (
         <div>
@@ -16,7 +16,7 @@ const Child:React.FC<Data>= memo(({data}) =>{
 })
 
 const Hook =()=>{
-    console.log('Hook render...')
+    // console.log('Hook render...')
     const [count, setCount] = useState(0)
     const [name, setName] = useState('rose')
 

@@ -38,17 +38,17 @@ interface Data {
 
 const Show:React.FC<Data> = ({ time, children }) => {
     function changeTime(time: number): string {
-      console.log('changeTime excuted345...')
+    //   console.log('changeTime excuted345...')
       return new Date(time).toISOString()
     }
   
     const newTime: string = useMemo(() => {
-        console.log('23232')
+        // console.log('23232')
       return changeTime(time)
     }, [time]);
 
     useEffect(() => {
-        console.log('effect usememo')
+        // console.log('effect usememo')
     }, [time]);
 
     // useEffect(() => {

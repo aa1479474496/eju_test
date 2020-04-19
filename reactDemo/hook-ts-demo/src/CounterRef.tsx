@@ -7,14 +7,15 @@ const CounterRef:React.FC = () => {
     const countRef = useRef<number>(count)
 
     useEffect(() => {
+        // console.log('111')
         countRef.current = count;
-        console.log('effect', countRef.current)
+        // console.log('effect', countRef.current)
     },[count]);
 
     const handleCount = () => {
         setTimeout(() => {
-            console.log('current count:', count);
-            console.log('countRef:', countRef.current);
+            // console.log('current count:', count);
+            // console.log('countRef:', countRef.current);
             
         }, 2000);
         // console.log('count:', count)
@@ -24,6 +25,7 @@ const CounterRef:React.FC = () => {
         <div>
             {/* <p>pre count: { preCountRef.current }</p> */}
             <p>current count: { count }</p>
+            <p>current2 count: { countRef.current }</p>
             <button onClick={() => setCount(count + 1)}>加</button>
             <button onClick={() => handleCount()}>alert</button>
         </div>
