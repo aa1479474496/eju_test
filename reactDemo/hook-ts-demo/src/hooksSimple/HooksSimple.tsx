@@ -2,6 +2,7 @@ import React from 'react';
 
 import StateParent from './SetName/Parent';
 import MemnName from './MemoName/MemoName';
+import MemoCallback from './MemoCallback/MemoCallback';
 
 
 const HooksSimple:React.FC = () => {
@@ -11,6 +12,9 @@ const HooksSimple:React.FC = () => {
             {/* <StateParent /> */}
             <hr/>
             <MemnName />
+
+            <hr/>
+            <MemoCallback />
         </>
     )
 }
