@@ -1,5 +1,9 @@
 {
   "dependencies": {
+    "antd": "^4.1.4",
     "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "babel-plugin-import": "^1.13.0"
   }
 }
