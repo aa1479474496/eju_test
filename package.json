@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "vue-skeleton-webpack-plugin": "^1.2.2"
   }
 }
