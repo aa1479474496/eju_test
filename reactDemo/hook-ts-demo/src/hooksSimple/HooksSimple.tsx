@@ -5,6 +5,7 @@ import MemnName from './MemoName/MemoName';
 import MemoCallback from './MemoCallback/MemoCallback';
 import UseReducer from './UseReducer/ReducerDemo';
 import UseContext from './UseContext/ContextDemo';
+import CustomHook from './CustomHook/CustomHook';
 
 const HooksSimple:React.FC = () => {
     return (
@@ -24,6 +25,10 @@ const HooksSimple:React.FC = () => {
             <hr/>
             <p>UseContext</p>
             <UseContext />
+
+            <hr/>
+            <p>CustomHook</p>
+            <CustomHook />
         </>
     )
 }

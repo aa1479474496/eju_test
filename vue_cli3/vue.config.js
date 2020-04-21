@@ -2,6 +2,8 @@
  * 配置扩展
  */
 const webpack = require("webpack");
+const path = require("path");
+const SkeletonWebpackPlugin = require("vue-skeleton-webpack-plugin");
 
 module.exports = {
   lintOnSave: false,
@@ -31,6 +33,29 @@ module.exports = {
         $: "jquery",
         jQuery: "jquery",
         "windows.jQuery": "jquery"
+      }),
+
+      new SkeletonWebpackPlugin({
+        webpackConfig: {
+          entry: {
+            app: path.join(
+              __dirname,
+              "./src/components/Skeleton/entry-skeleton.js"
+            )
+          }
+        },
+        // minimize: true,
+        quiet: true,
+        router: {
+          mode: "hash",
+          // mode: 'history',
+          routes: [
+            {
+              path: "/skeleton",
+              skeletonId: "skeleton-home"
+            }
+          ]
+        }
       })
     ]
   },
