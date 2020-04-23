@@ -2,21 +2,21 @@ import React from 'react';
 import { Button, Switch } from 'antd';
 import useToggle from './useToggle';
 
-export default () => {
+const ToggleDemo:React.FC = () => {
     const { state, toggle } = useToggle();
-    // const { state, toggle } = useToggle();
-    console.log('useToggle', useToggle)
-    return (
-        <div>
+    return  (
+        <>
+            <div>{state}</div>
             <p>
-                Effects: 
-                <Switch checked={state}/>
+                Effects:
+                <Switch checked={state} />
             </p>
-
             <p>
                 <Button type="default" onClick={() => toggle()}>Toggle</Button>
             </p>
-        </div>
+        </>
     )
 }
-// export default toggleDemo;
+
+
+export default ToggleDemo;
