@@ -89,3 +89,13 @@ let ro: ReadonlyArray<number> = arr1;
 // ro.push(5); // error
 // ro.length = 100; // error
 // arr1 = ro;
+
+function identity<T>(name: string, age: T): T {
+    return age;
+}
+
+let output = identity<number>('mystring', 123); 
+
+function beConfusion<T = boolean> (name: string, isDone: T):void {
+    // return 'aaa';
+}
