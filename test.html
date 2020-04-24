@@ -1,30 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> -->
+    <meta name="viewport" content="width=device-375, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>test</title>
 
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-      .iframe {
-        width: 800px;
-        height: 800px;
-        border: 1px solid green;
-        margin: 30px auto;
-      }
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .iframe {
+            width: 800px;
+            height: 800px;
+            border: 1px solid green;
+            margin: 30px auto;
+        }
+
+        #app {
+            width: 100%;
+            height: 100%;
+        }
+
+        .mobile_show_toolbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            line-height: 60px;
+            background-color: rgba(0, 0, 0, .8);
+            z-index: 99;
+            transform: translateY(100%);
+            transition: transform .4s;
+            color: #fff;
+        }
+
+        .mobile_show_toolbar.is_show {
+            transform: translateY(0);
+        }
+
+        .btn {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 40px;
+            line-height: 40px;
+        }
     </style>
-  </head>
-  <body>
-    <iframe
+</head>
+
+<body>
+    <!-- <iframe
       class="iframe"
       src="http://dztzjc.cric.com/"
       frameborder="0"
-    ></iframe>
-  </body>
+    ></iframe> -->
+    <div id="app">
+        <div @touchStart="test" class="btn" style="position: absolute">message</div>
+        <!-- <button @touchStart="test" class="btn">message</button> -->
+        <div style="height: 1500px;border: 1px solid red;"></div>
+        <div :class="['mobile_show_toolbar', show ? 'is_show' : '']"></div>
+
+        <!-- <div :class='dddd'></div> -->
+    </div>
+</body>
+
+<script src="./lib//vue-2.6.10.js"></script>
+<script>
+
+
+
+    window.onload = function () {
+        let winW = window.innerWidth;
+        let winH = window.innerHeight;
+        let bodyW = document.body.clientWidth;
+        let bodyH = document.body.clientHeight;
+
+        alert('wind:' + winW + ',' + winH + ';  body:' + bodyW + ' , ' + bodyH);
+
+        new Vue({
+            el: "#app",
+
+            data: {
+                message: "testtest",
+                myChart: null,
+                show: false,
+                dddd: 'test'
+            },
+
+            mounted() {
+                this.$nextTick(() => {
+
+                });
+            },
+
+            methods: {
+                test() {
+                    console.log('test');
+                    this.show = !this.show;
+                }
+            }
+        })
+    }
+</script>
+
 </html>
