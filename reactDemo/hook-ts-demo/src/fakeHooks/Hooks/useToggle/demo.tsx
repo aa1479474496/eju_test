@@ -3,7 +3,7 @@ import { Button, Switch } from 'antd';
 import useToggle from './useToggle';
 
 const ToggleDemo:React.FC = () => {
-    const { state, toggle } = useToggle('Hello', 'World');
+    const { state, toggle ,setLeft, setRight} = useToggle('Hello', 'World');
     return  (
         <>
             <div>{state}</div>
@@ -16,6 +16,10 @@ const ToggleDemo:React.FC = () => {
             </p>
             <Button type="danger" onClick={() => toggle('Hello')} style={{ margin: '0 16px' }}>
                 Toggle Hello
+            </Button>
+
+            <Button type="danger" onClick={setLeft} style={{ margin: '0 16px' }}>
+                Set Hello
             </Button>
         </>
     )
