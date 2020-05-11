@@ -17,6 +17,9 @@
     <div v-for="(item, index) in list2" :key="index" :class="isExit(item.id)">
       {{ item.name }}
     </div>
+
+
+
   </div>
 </template>
 
@@ -56,17 +59,54 @@ export default {
         { id: 2, name: "a2" },
         { id: 3, name: "a3" },
         { id: 4, name: "a4" }
-      ]
+      ],
+      testId: ''
     };
   },
 
+  created() {
+    this.init();
+  },
+
   methods: {
+    init() {
+      console.log('iiii');
+      this.asyncTest1();
+      this.asyncTest2();
+    },
+    async asyncTest1() {
+      await this.getParam();
+      console.log('asyncTest1')
+    },
+    async asyncTest2() {
+      await this.getParam();
+      console.log('asyncTest2')
+    },
+
+    async getParam() {
+      return new Promise(async (resolve) => {
+        if (this.testId) {
+          return resolve(this.testId);
+        }
+
+        await this.getId();
+        resolve(this.testId);
+      })
+    },
+
+    async getId() {
+      await setTimeout(() => {
+        console.log('set');
+        this.testId = 1;
+      }, 2000);
+    }, 
+
     updateTitle() {
       this.list = ["d", "e"];
     },
 
     isExit(id) {
-      console.log("id", id);
+      // console.log("id", id);
       if (this.status.includes(id)) {
         return "is_exit";
       }
