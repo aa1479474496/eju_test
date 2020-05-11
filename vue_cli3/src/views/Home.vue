@@ -64,11 +64,25 @@ export default {
     };
   },
 
-  created() {
-    this.init();
+  async created() {
+    // await this.init();
+    // await this.init2();
+    await this.getParam();
+    console.log('created');
+    console.log('this', this.testId);
   },
 
   methods: {
+    async init2() {
+        await this.timeout(2000);
+        console.log('init2');
+    },
+    timeout(ms) {
+        return new Promise(resolve => setTimeout(function() {
+            console.log('tttt');
+            resolve();
+        }, ms));
+    },
     init() {
       console.log('iiii');
       this.asyncTest1();
@@ -84,21 +98,20 @@ export default {
     },
 
     async getParam() {
-      return new Promise(async (resolve) => {
+      return new Promise((resolve) => {
         if (this.testId) {
           return resolve(this.testId);
         }
+        setTimeout(() => {
+            this.testId = 1;
+            resolve(this.testId);
+        }, 2000);
 
-        await this.getId();
-        resolve(this.testId);
       })
     },
 
     async getId() {
-      await setTimeout(() => {
-        console.log('set');
         this.testId = 1;
-      }, 2000);
     }, 
 
     updateTitle() {
