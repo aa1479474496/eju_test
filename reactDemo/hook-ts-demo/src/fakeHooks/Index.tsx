@@ -3,11 +3,11 @@ import { Link, Route } from 'react-router-dom';
 import { Button, Card, Divider } from 'antd';
 
 import toggleDemo from "./Hooks/useToggle/demo";
-import toggleDemo1 from "./Hooks/useToggle/demo";
+import booleanDemo from "./Hooks/useBoolean/demo";
 
 const links = [
     {path: '/fakehooks/toggle', component: toggleDemo, text: 'toggle'},
-    {path: '/fakehooks/toggle1', component: toggleDemo1, text: 'toggle1'}
+    {path: '/fakehooks/boolean', component: booleanDemo, text: 'boolean'}
 ]
 
 const createLinks = (type, setPath) => {
