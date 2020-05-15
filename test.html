@@ -74,6 +74,8 @@
         <div :class="['mobile_show_toolbar', show ? 'is_show' : '']"></div>
 
         <!-- <div :class='dddd'></div> -->
+
+        <button @click="toReport">去测试页面</button>
     </div>
 </body>
 
@@ -88,7 +90,7 @@
         let bodyW = document.body.clientWidth;
         let bodyH = document.body.clientHeight;
 
-        alert('wind:' + winW + ',' + winH + ';  body:' + bodyW + ' , ' + bodyH);
+        // alert('wind:' + winW + ',' + winH + ';  body:' + bodyW + ' , ' + bodyH);
 
         new Vue({
             el: "#app",
@@ -110,6 +112,11 @@
                 test() {
                     console.log('test');
                     this.show = !this.show;
+                },
+
+                toReport() {
+                  console.log('report');
+                  location.href = 'http://localhost:8080/#/report/edit?id=106687&city=%E4%B8%8A%E6%B5%B7&back=true&token=1c58312c027a00a1789f9ed09792e979';
                 }
             }
         })
