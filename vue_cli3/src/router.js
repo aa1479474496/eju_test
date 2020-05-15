@@ -122,14 +122,14 @@ export default new Router({
     },
 
     {
-        path: "/skeleton",
-        name: "skeleton",
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () =>
-          import(/* webpackChunkName: "skeleton" */ "./views/Skeleton.vue")
-      },
+      path: "/skeleton",
+      name: "skeleton",
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () =>
+        import(/* webpackChunkName: "skeleton" */ "./views/Skeleton.vue")
+    },
 
     {
       path: "/scroll",
@@ -167,6 +167,13 @@ export default new Router({
             )
         }
       ]
-    }
+    },
+
+    {
+      path: "/map",
+      name: "map",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/Map.vue")
+    },
   ]
 });
