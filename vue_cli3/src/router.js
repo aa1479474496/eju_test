@@ -169,11 +169,24 @@ export default new Router({
       ]
     },
 
+    // {
+    //   path: "/map",
+    //   name: "map",
+    //   component: () =>
+    //     import(/* webpackChunkName: "about" */ "./views/Map.vue")
+    // },
+
     {
-      path: "/map",
-      name: "map",
+      path: "/ckeditor",
+      name: "ckeditor",
       component: () =>
-        import(/* webpackChunkName: "about" */ "./views/Map.vue")
+        import(/* webpackChunkName: "about" */ "./views/CkEditor/index.vue")
+    },
+    {
+      path: "/testckeditor",
+      name: "testckeditor",
+      component: () =>
+        import(/* webpackChunkName: "testckeditor" */ "@/components/ckeditor/index.vue")
     },
   ]
 });
