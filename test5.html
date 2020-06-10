@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .list {
+      width: 500px;
+      height: 300px;
+      border: 1px solid green;
+      margin: 30px auto;
+    }
+
+    .item {
+      line-height: 24px;
+      color: #000;
+    }
+    .item.sec {
+      color: red;
+    }
+    .item.sec:nth-last-of-type(2n) {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <ul class="list">
+    <li class="item">item1</li>
+    <li class="item">item2</li>
+    <li class="item">item3</li>
+    <li class="item sec">item4</li>
+    <li class="item sec">item5</li>
+    <li class="item sec">item6</li>
+  </ul>
+</body>
+</html>

@@ -14,6 +14,7 @@
     "jquery": "^3.4.1",
     "jquery.nicescroll": "^3.7.6",
     "moment": "^2.24.0",
+    "more-tree-table": "^0.1.9",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"
