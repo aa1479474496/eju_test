@@ -3,9 +3,6 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import ElementUI from 'element-ui';
-import CKEditor from '@ckeditor/ckeditor5-vue';
-
-Vue.use( CKEditor );
 import 'jquery';
 import 'jquery.nicescroll';
 import 'element-ui/lib/theme-chalk/index.css';

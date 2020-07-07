@@ -14,7 +14,8 @@
 
     .container {
       width: 960px;
-      height: 540px;
+      min-height: 540px;
+      height: auto;
       margin: 30px auto;
       border: 1px solid green;
       overflow: auto;
@@ -22,8 +23,24 @@
 
     .content {
       width: 1000px;
-      height: 50px;
+      height: 600px;
       border: 1px solid blue;
+    }
+
+    .container2 {
+      width: 300px;
+      height: 300px;
+      position: relative;
+      border: 1px solid yellow;
+      overflow-y: auto;
+    }
+    .content2 {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      background: red;
     }
   </style>
 </head>
@@ -31,9 +48,15 @@
 <body>
   <div id="app">
     <div class="container">
-      <div class="content"></div>
+      <div class="content" :style="style">测试</div>
+    </div>
+
+    <div class="container2">
+      <div class="content2"></div>
     </div>
     <el-button @click="getWidth">test</el-button>
+    <el-button @click="getOffset">getOffset</el-button>
+    <el-button @click="setTop">setTop</el-button>
   </div>
 
   <script src="./lib//vue-2.6.10.js"></script>
@@ -42,18 +65,49 @@
   <script>
     new Vue({
       el: '#app',
+      data() {
+        return {
+          style: {
+
+          }
+        }
+      },
       mounted() {
         console.log('app');
       },
       methods: {
+        setTop() {
+          $('.content2').css({
+            top: '600px'
+          })
+        },
         getWidth() {
           let el = $('.container');
           let _width = el.width();
+          let _height = el.height();
+
           let _scrollLeft = el.scrollLeft();
           // let _scrollRight = $('.container').scrollRight();
           let _scrollWidth = el.get(0).scrollWidth;
+          console.log('height', _height);
           console.log('width', _width, _scrollLeft);
           console.log('ssss', _scrollWidth);
+          this.style = {
+            color: 'red',
+            fontSize: '24px'
+          }
+        },
+
+        getOffset() {
+          let el = $('.container').get(0);
+          let realNum = el['offsetLeft'];
+          let positionParent = el.offsetParent;
+          while(positionParent != null) {
+            realNum += positionParent['offsetLeft'];
+            positionParent = positionParent.offsetParent;
+          }
+
+          console.log('realNum:::', realNum);
         }
       }
     })

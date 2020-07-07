@@ -1,40 +1,44 @@
 <template>
   <div>
-    <myckeditor></myckeditor>
+    <myckeditor v-if="show" @handlChange='handleChangeFirst'></myckeditor>
     <el-button @click="test">test</el-button>
+    <myckeditor @handlChange='handleChangeSecond'></myckeditor>
+    <el-button @click="replaceRouter">replace router</el-button>
   </div>
 </template>
 
 <script>
 import myckeditor from "@/components/ckeditor/index.vue";
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-// import InlineEditor from "@ckeditor/ckeditor5-build-inline";
-// import "@ckeditor/ckeditor5-build-classic/build/translations/zh-cn";
+
 export default {
   components: {
     myckeditor
   },
   data() {
     return {
-      // editor: ClassicEditor,
-      // editor: InlineEditor,
-      // editorData: "<p>Content of the editor.</p>",
-      // editorConfig: {
-      //   language: "zh-cn", //中文包
-      //   fontSize: {
-      //     options: [8, 10, "default", 14, 16, 18, 20, 22, 24, 26, 28, 32, 48]
-      //   },
-      //   alignment: {
-      //     options: ["left", "right"]
-      //   },
-      //   toolbar: ["bold", "italic", "|", "alignment", "table", "undo", "redo"]
-      // }
+     show: false
     };
   },
 
   methods: {
     test() {
       console.log("--");
+      this.show = !this.show;
+    },
+
+    handleChangeFirst(val) {
+      console.log('first val', val);
+    },
+    handleChangeSecond(val) {
+      console.log('second val', val);
+    },
+    replaceRouter() {
+      let { $route, $router } = this;
+      let { path } = $route;
+      let query = {
+        time: +new Date()
+      }
+      $router.replace({ path, query });
     }
   }
 };

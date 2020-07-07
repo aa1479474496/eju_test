@@ -63,3 +63,33 @@ data.forEach(item => {
   console.log('assignment', assignment);
 })
 console.log('mmmm', means);
+
+
+
+function tranItem(setting, key, val) {
+  let current = setting;
+  let arrkeys = key.split(".");
+  let lastkey = arrkeys.pop();
+  for (let i = 0; i < arrkeys.length; i++) {
+    if (current[arrkeys[i]] == undefined) {
+      current[arrkeys[i]] = {};
+    }
+    current = current[arrkeys[i]];
+  }
+  current[lastkey] = val;
+}
+
+// 合并配置
+function tranSetting(setting, conf) {
+  for (let key in conf) {
+    tranItem(setting, key, conf[key]);
+  }
+  return setting;
+}
+
+
+let res = tranSetting({title: 'aaa' }, {'yAxis.1.axisLabel.fontFamily': "FangSong,STFangsong"});
+console.log('rrrr', res);
+
+
+

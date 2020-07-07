@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="editor" ref="editor">
+   
+  </div>
+  <script src="./ckeditor.js"></script>
+  <script>
+    let re = document.querySelector('.editor');
+ InlineEditor
+			.create( re, {
+				toolbar: {
+					items: [
+						'bold',
+						'italic',
+						'alignment',
+						'bulletedList',
+						'numberedList',
+						'|',
+						'|',
+						'insertTable',
+						// 'undo',
+						// 'redo',
+						// 'fontFamily',
+						'fontSize',
+						'fontColor',
+						'fontBackgroundColor',
+						'heading'
+					]
+				},
+				language: 'zh-cn',
+				table: {
+					contentToolbar: [
+						'tableColumn',
+						'tableRow',
+						'mergeTableCells',
+						'tableCellProperties',
+						'tableProperties'
+					]
+				},
+        licenseKey: '',
+        fontSize: {
+            options: [
+                12,
+                13,
+                14,
+                16,
+                18,
+                21
+            ]
+        },
+        fontFamily: {
+          supportAllValues: false,
+          options: ['FangSong,STFangsong']
+        }
+				
+			} )
+			.then( editor => {
+        this.editor = editor;
+        this.editor.setData('12345');
+         this.editor.model.document.on('change:data', this.changeData);
+			} )
+			.catch( error => {
+				console.error( 'Oops, something gone wrong!' );
+			} );
+  </script>
+</body>
+</html>

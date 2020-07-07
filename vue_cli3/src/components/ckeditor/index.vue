@@ -1,25 +1,16 @@
 <template>
   <div>
-    <h1>myckeditor -- component</h1>
-    <ckeditor id="article-editor" :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+   
+    <div class="editor" ref="editor">
+      <!-- <div v-html="testData">
+      </div> -->
+    </div>
   </div>
 </template>
 
 <script>
-// import CKEditor from '@ckeditor/ckeditor5-vue';
-// import InlineEditor from "@ckeditor/ckeditor5-build-inline";
-import InlineEditor from "@ckeditor/ckeditor5-editor-inline/src/inlineeditor";
-
-// import EssentialsPlugin from '@ckeditor/ckeditor5-essentials/src/essentials';
-// import FontFamilyPlugin from '@ckeditor/ckeditor5-font/src/fontfamily';
-
-// console.log('CKEditor---', CKEditor);
-import EssentialsPlugin from "@ckeditor/ckeditor5-essentials/src/essentials";
-import BoldPlugin from "@ckeditor/ckeditor5-basic-styles/src/bold";
-import ItalicPlugin from "@ckeditor/ckeditor5-basic-styles/src/italic";
-import LinkPlugin from "@ckeditor/ckeditor5-link/src/link";
-import ParagraphPlugin from "@ckeditor/ckeditor5-paragraph/src/paragraph";
-console.log("++", InlineEditor);
+import './ckeditor.js';
+let testData = '<figure class="table"><table><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>'
 export default {
   components: {
     // ckeditor: CKEditor.component
@@ -27,22 +18,82 @@ export default {
 
   data() {
     return {
-      editor: InlineEditor,
-      editorData: "<p>测试数据</>",
-      editorConfig: {
-        plugins: [
-          EssentialsPlugin,
-          BoldPlugin,
-          ItalicPlugin,
-          LinkPlugin,
-          ParagraphPlugin
-        ],
-        toolbar: {
-          items: ["bold", "italic", "link", "undo", "redo"]
-        }
-        // toolbar: [ 'bold', 'italic', '|' ,'link']
-      }
+      editor: null,
+      testData
     };
+  },
+
+  mounted() {
+    this.$nextTick(() => {
+      // this.$refs.baseMap
+      let re = this.$refs.editor;
+      let ir = document.querySelector('.editor')
+      console.log('reeee', InlineEditor);
+      InlineEditor
+			.create( re, {
+				toolbar: {
+					items: [
+						'bold',
+						'italic',
+						'alignment',
+						'bulletedList',
+						'numberedList',
+						'|',
+						'|',
+						'insertTable',
+						// 'undo',
+						// 'redo',
+						// 'fontFamily',
+						'fontSize',
+						'fontColor',
+						'fontBackgroundColor',
+						'heading'
+					]
+				},
+				language: 'zh-cn',
+				table: {
+					contentToolbar: [
+						'tableColumn',
+						'tableRow',
+						'mergeTableCells',
+						'tableCellProperties',
+						'tableProperties'
+					]
+				},
+        licenseKey: '',
+        fontSize: {
+            options: [
+                12,
+                13,
+                14,
+                16,
+                18,
+                21
+            ]
+        },
+        fontFamily: {
+          supportAllValues: false,
+          options: ['FangSong,STFangsong']
+        }
+				
+			} )
+			.then( editor => {
+        this.editor = editor;
+        this.editor.setData('12345');
+         this.editor.model.document.on('change:data', this.changeData);
+			} )
+			.catch( error => {
+				console.error( 'Oops, something gone wrong!' );
+			} );
+    })
+  },
+
+  methods: {
+    changeData() {
+      let data = this.editor.getData();
+      this.$emit('handlChange', data);
+      // console.log('vvvvv',data);
+    }
   }
 };
 </script>
