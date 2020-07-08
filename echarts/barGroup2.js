@@ -17,7 +17,7 @@ new Vue({
       let group = ['汇总', 'T1', 'T2', 'T3'];
       // let group = ['汇总', 'T1'];
       let colors = ['#a22125', '#e5e5e5', '#7a94ad', '#dcddd9']
-
+      let _width = 199.999999;
 
       let option = {
         title: {
@@ -63,30 +63,29 @@ new Vue({
 
               rich: {
                 a0: {
-                  color: 'red',
-                  width: 199.99999,
+                  color: '#fff',
+                  width: _width,
                   backgroundColor: '#a22125',
                   lineHeight: 10
                 },
                 a1: {
-                  color: 'red',
-                  width: 199.99999,
+                  color: '#000',
+                  width: _width,
                   backgroundColor: '#e5e5e5',
                   lineHeight: 10
                 },
                 a2: {
-                  color: 'red',
-                  width: 199.99999,
+                  color: '#000',
+                  width: _width,
                   backgroundColor: '#7a94ad',
                   lineHeight: 10
                 },
                 a3: {
-                  color: 'red',
-                  width: 199.99999,
+                  color: '#000',
+                  width: _width,
                   backgroundColor: '#dcddd9',
                   lineHeight: 10
                 }
-
               },
             },
 
