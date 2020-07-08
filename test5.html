@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
       margin: 0;
       padding: 0;
     }
+
     .list {
       width: 500px;
       height: 300px;
@@ -20,14 +22,17 @@
       line-height: 24px;
       color: #000;
     }
+
     .item.sec {
       color: red;
     }
+
     .item.sec:nth-last-of-type(2n) {
       color: green;
     }
   </style>
 </head>
+
 <body>
   <ul class="list">
     <li class="item">item1</li>
@@ -37,5 +42,51 @@
     <li class="item sec">item5</li>
     <li class="item sec">item6</li>
   </ul>
+
+  <script>
+    function formatSplit(_min, _max, _len) {
+      // debugger
+      let _realMin = Math.min(0, _min);
+      let _realMax = _max;
+      _min = _max / 10 > _min ? _realMin : _min;
+      
+      // _min = _max / 10 > _min ? 0 : _min;
+
+      let _pow = Math.pow(10, Math.floor(Math.log10(Math.abs(_max)))) / 10;
+      _pow = _realMax < 0 ? -_pow: _pow;
+      let _maxnum = Math.ceil(_max / _pow);
+      let _minnum = Math.floor(_min / _pow);
+      // let _minnum = _min / _pow;
+      let _lennum = 2;
+      _max = (_maxnum + (_maxnum % _lennum == 0 ? 0 : _lennum - _maxnum % _lennum)) * _pow;
+      console.log('aaaa:', _minnum, _lennum, _pow);
+      // _min = (_minnum - _minnum % _lennum) * _pow;
+      _min = Math.floor((_minnum - _minnum % _lennum) * _pow);
+      console.log('-----min', _min)
+      let _split =Math.ceil((_max - _min) / _len / 10) * 10;
+
+      if (_realMin < 0) {
+        _split = Math.ceil((_max - _min) / (_len - 1) / 10) * 10;
+        _min = -_split;
+      }
+
+
+      _max = _min + _split * _len;
+      _max = _realMax < 0 ? -_max : _max;
+      return {
+        min: _min,
+        max: _max,
+        split: Math.abs(_split),
+        len: _len
+      };
+    }
+    let res = formatSplit(-890, -8, 5);
+    // let res = formatSplit(-13, 890, 5);
+    // let res = formatSplit(-19, 217984, 5);
+    // let res = formatSplit(0, 16.1, 5);
+    // let res = formatSplit(-118, -89, 5);
+    console.log('res', res);
+  </script>
 </body>
+
 </html>
