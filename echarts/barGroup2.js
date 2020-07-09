@@ -4,7 +4,11 @@ new Vue({
   data: {
     message: "test_bargroup1",
     myChart: null,
-
+    chartStyle: {
+      width: '800px',
+      height: '315px',
+      margin: '50px auto'
+    }
   },
 
   mounted() {
@@ -17,7 +21,8 @@ new Vue({
       let group = ['汇总', 'T1', 'T2', 'T3'];
       // let group = ['汇总', 'T1'];
       let colors = ['#a22125', '#e5e5e5', '#7a94ad', '#dcddd9']
-      let _width = 199.999999;
+      // let _width = 199.999999;
+      let _width = '18%';
 
       let option = {
         title: {
@@ -148,6 +153,20 @@ new Vue({
       //   console.log('ymax', ymax);
       // }, 100);
 
+    },
+
+    changeWidth(type) {
+      let { width } = this.chartStyle;
+      width = parseFloat(width);
+      if (type == 'in') {
+        width += 10;
+      }
+      else {
+        width -= 10;
+      }
+      this.chartStyle.width = width + 'px';
+      this.myChart.resize();
     }
+
   }
 });
