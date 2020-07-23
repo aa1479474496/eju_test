@@ -182,6 +182,14 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "about" */ "./views/CkEditor/index.vue")
     },
+
+    {
+      path: '/drag',
+      name: 'drag',
+      component: () =>
+      import(/* webpackChunkName: "about" */ "./views/Drag/index.vue")
+    },
+
     {
       path: "/testckeditor",
       name: "testckeditor",
