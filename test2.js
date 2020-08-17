@@ -114,3 +114,17 @@ function makeAssignments() {
 
 makeAssignments();
 console.log('assignments', assignments);
+
+function rgbToHex(rgbColor) {
+  var rgb = rgbColor.split(',');
+    var r = parseInt(rgb[0].split('(')[1]);
+    var g = parseInt(rgb[1]);
+    var b = parseInt(rgb[2].split(')')[0]);
+    var hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+    return hex;
+}
+
+// let color = rgbToHex('rgb(57, 75, 93)');
+let color = rgbToHex('rgb(1, 78, 162)');
+
+console.log('color:::', color);

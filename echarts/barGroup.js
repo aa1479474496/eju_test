@@ -4,6 +4,11 @@ new Vue({
   data: {
     message: "test_bargroup1",
     myChart: null,
+    chartStyle: {
+      width: '800px',
+      height: '315px',
+      margin: '50px auto'
+    }
 
   },
 

@@ -196,5 +196,11 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "testckeditor" */ "@/components/ckeditor/index.vue")
     },
+    {
+      path: "/testtable",
+      name: "testtable",
+      component: () =>
+        import(/* webpackChunkName: "testckeditor" */ "./views/ElTable/index.vue")
+    },
   ]
 });
