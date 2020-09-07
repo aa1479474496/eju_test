@@ -187,7 +187,7 @@ export default new Router({
       path: '/drag',
       name: 'drag',
       component: () =>
-      import(/* webpackChunkName: "about" */ "./views/Drag/index.vue")
+        import(/* webpackChunkName: "about" */ "./views/Drag/index.vue")
     },
 
     {
@@ -202,5 +202,22 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "testckeditor" */ "./views/ElTable/index.vue")
     },
+
+    {
+      path: "/handsontable",
+      name: "handsontable",
+      component: () =>
+        import(/* webpackChunkName: "handsontable" */ "./views/HandsonTable/index.vue"),
+
+      children: [
+        {
+          path: "/handsontable/test1",
+          name: "handsontabletest1",
+          component: () =>
+            import(/* webpackChunkName: "handsontable" */ "./views/HandsonTable/test1.vue"),
+        }
+      ]
+    }
+
   ]
 });
