@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>handsontable - test1 - 行透视</p>
+    <p>handsontable - test3 - 测试merge-cell</p>
     <hot-table :settings="hotSettings" ref="hottable"></hot-table>
   </div>
 </template>
@@ -10,7 +10,7 @@ import "handsontable/languages/zh-CN";
 import "handsontable/dist/handsontable.full.css";
 import { HotTable } from "@handsontable/vue";
 import Handsontable from "handsontable";
-let colHeaders = ["板块", "区域", "成交面积", "平均租金"];
+let colHeaders = [`<p class="is_right">版块</p>`, "区域", "成交面积", "平均租金"];
 // let _data = [
 //   ["七宝", "七宝", "9425.16", "6798.99"],
 //   ["七宝", "闵行", "141146.98", "6720.46"]
@@ -21,6 +21,11 @@ let rowList = [
   { 板块: "七宝", 区域: "宝山", 成交面积: "1418", 平均租金: "6726" }
 ];
 
+let nestedHeaders = [
+  ['23', {label: '上海', colspan: 3}],
+  [22, 1980, 1998, 1999]
+]
+
 let mergeCells = [{ col: 0, colspan: 1, row: 0, rowspan: 2 }];
 export default {
   components: {
@@ -29,19 +34,23 @@ export default {
   data() {
     return {
       hotSettings: {
-        data: null,
-        colHeaders: [],
+        // data: null,
+        data: rowList,
+        colHeaders,
+        // colHeaders: function(index) {
+        //   return `<p>index + ': AB'<p>`
+        // },
         startCols: 0,
         startRows: 0,
-        // data: Handsontable.helper.createSpreadsheetData(5, 10),
+        // data: Handsontable.helper.createSpreadsheetData(6, 10),
         // colHeaders: false,
         rowHeaders: false,
         contextMenu: true,
         mergeCells: true,
         language: "zh-CN",
-        // autoColumnSize:true,
-        // stretchH:'all' 
-        // afterChange: this.afterChangeMe,
+        // autoColumnSize: true,
+        stretchH: "all",
+        afterChange: this.afterChangeMe,
         // mergeCells: []
       },
 
@@ -51,7 +60,7 @@ export default {
   created() {
     // let _data = Handsontable.helper.createSpreadsheetData(5, 10);
     // console.log('------', _data);
-    this.getRowMergeCell();
+    // this.getRowMergeCell();
   },
 
   mounted() {
@@ -104,20 +113,19 @@ export default {
           });
         }
       });
-       console.log("no 1000", mergeCells2);
-        console.log("rowData::::", rowData);
-        // this.hotSettings.colHeaders = colHeaders;
-        // this.hotSettings.data = rowData;
-        // this.hotSettings.mergeCells = mergeCells2;
-        this.$nextTick(() => {
- this.$refs.hottable.hotInstance.updateSettings({
+      console.log("no 1000", mergeCells2);
+      console.log("rowData::::", rowData);
+      // this.hotSettings.colHeaders = colHeaders;
+      // this.hotSettings.data = rowData;
+      // this.hotSettings.mergeCells = mergeCells2;
+      this.$nextTick(() => {
+        this.$refs.hottable.hotInstance.updateSettings({
           colHeaders,
           data: rowData,
           mergeCells: mergeCells2
-        })
-        })
+        });
+      });
 
-       
       // setTimeout(() => {
       //   console.log("timeout 1000", mergeCells2);
       //   console.log("rowData::::", rowData);
@@ -138,7 +146,7 @@ export default {
 
       let _data = this.$refs.hottable.hotInstance.getData();
 
-      // console.log("mmmmm", this.mergeArr);
+      console.log("mmmmm", this.mergeArr);
       // console.log("ddddddd", _data);
     },
 
@@ -157,7 +165,15 @@ export default {
 #hot-display-license-info {
   display: none;
 }
-.handsontable th, .handsontable td {
+.handsontable th,
+.handsontable td {
   vertical-align: middle;
+}
+.colHeader {
+  width: 100%;
+  height: 100%;
+  .is_right {
+    text-align: right;
+  }
 }
 </style>
