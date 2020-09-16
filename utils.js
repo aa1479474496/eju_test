@@ -88,3 +88,13 @@ let test_arr = [
 let keys = ["field", "title"];
 let result = utils.arrayUnique(test_arr, keys);
 console.log("result", result.length);
+
+
+var Quo = function(string) {
+  this.status = string;
+}
+Quo.prototype.getStatus = function() {
+  return this.status;
+}
+var myQuo = new Quo('test');
+console.log('::::', myQuo.getStatus());
