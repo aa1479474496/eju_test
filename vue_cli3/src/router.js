@@ -239,6 +239,12 @@ export default new Router({
           name: "handsontabletest5",
           component: () =>
             import(/* webpackChunkName: "handsontable" */ "./views/HandsonTable/test5.vue"),
+        },
+        {
+          path: "/handsontable/test6",
+          name: "handsontabletest6",
+          component: () =>
+            import(/* webpackChunkName: "handsontable" */ "./views/HandsonTable/test6.vue"),
         }
       ]
     }
