@@ -67,8 +67,9 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
+        // @import "@/assets/css/mixin.scss";
         prependData: `
-          @import "@/assets/css/mixin.scss";
+          @import "@/assets/css/handle.scss";
         `
       }
     }

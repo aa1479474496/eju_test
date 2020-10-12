@@ -8,18 +8,15 @@
       <template v-slot:default="slotProps">{{ slotProps.user.firstName }}</template>
 
       <template v-slot:other="otherSlotProps">{{ otherSlotProps.animal.age }}</template>
-    </current-user> -->
+    </current-user>-->
     <!-- 
     <updated :list="list"></updated>
-    <button @click="updateTitle">updated</button> -->
+    <button @click="updateTitle">updated</button>-->
     <button @click="test">test promise</button>
     <async-fun v-if="show"></async-fun>
-    <div v-for="(item, index) in list2" :key="index" :class="isExit(item.id)">
-      {{ item.name }}
-    </div>
+    <div v-for="(item, index) in list2" :key="index" :class="isExit(item.id)">{{ item.name }}</div>
 
-
-
+    <div class="test_theme_bg" @click="toggleTheme">测试切换主题背景色</div>
   </div>
 </template>
 
@@ -60,59 +57,67 @@ export default {
         { id: 3, name: "a3" },
         { id: 4, name: "a4" }
       ],
-      testId: ''
+      testId: ""
     };
   },
 
   async created() {
+    window.document.documentElement.setAttribute("data-theme", "light");
     // await this.init();
     // await this.init2();
     await this.getParam();
-    console.log('created');
-    console.log('this', this.testId);
+    console.log("created");
+    console.log("this", this.testId);
   },
 
   methods: {
+    toggleTheme() {
+      let theme = window.document.documentElement.getAttribute("data-theme");
+
+      theme = theme == "light" ? "dark" : "light";
+      window.document.documentElement.setAttribute("data-theme", theme);
+    },
     async init2() {
-        await this.timeout(2000);
-        console.log('init2');
+      await this.timeout(2000);
+      console.log("init2");
     },
     timeout(ms) {
-        return new Promise(resolve => setTimeout(function() {
-            console.log('tttt');
-            resolve();
-        }, ms));
+      return new Promise(resolve =>
+        setTimeout(function() {
+          console.log("tttt");
+          resolve();
+        }, ms)
+      );
     },
     init() {
-      console.log('iiii');
+      console.log("iiii");
       this.asyncTest1();
       this.asyncTest2();
     },
     async asyncTest1() {
       await this.getParam();
-      console.log('asyncTest1')
+      console.log("asyncTest1");
     },
     async asyncTest2() {
       await this.getParam();
-      console.log('asyncTest2')
+      console.log("asyncTest2");
     },
 
     async getParam() {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         if (this.testId) {
           return resolve(this.testId);
         }
         setTimeout(() => {
-            this.testId = 1;
-            resolve(this.testId);
+          this.testId = 1;
+          resolve(this.testId);
         }, 2000);
-
-      })
+      });
     },
 
     async getId() {
-        this.testId = 1;
-    }, 
+      this.testId = 1;
+    },
 
     updateTitle() {
       this.list = ["d", "e"];
@@ -156,6 +161,15 @@ export default {
   color: red;
 }
 .test {
-  color: $header_color;
+  // color: $header_color;
+}
+.test_theme_bg {
+  width: 300px;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  color: red;
+  cursor: pointer;
+  @include bg_color("background_color1");
 }
 </style>
