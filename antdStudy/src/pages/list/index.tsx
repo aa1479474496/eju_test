@@ -1,7 +1,11 @@
 import React from 'react';
+import Spin from '@/components/spin';
 
 export default () => {
   return (
-    <p>umi list</p>
+    <div>
+      <p>umi list</p>
+      <Spin></Spin>
+    </div>
   )
 }
