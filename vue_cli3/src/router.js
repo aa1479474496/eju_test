@@ -247,7 +247,39 @@ export default new Router({
             import(/* webpackChunkName: "handsontable" */ "./views/HandsonTable/test6.vue"),
         }
       ]
-    }
+    },
 
+    {
+      path: '/attrs',
+      name: 'attrs',
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/Attrs/index.vue"),
+      children: [
+        {
+          path: "/attrs",
+          name: "attrs",
+          component: () =>
+            import(
+                /* webpackChunkName: "scroll" */ "./views/Attrs/attrs/index.vue"
+            )
+        },
+        {
+          path: "/props",
+          name: "props",
+          component: () =>
+            import(
+                /* webpackChunkName: "scroll" */ "./views/Attrs/props/index.vue"
+            )
+        },
+        {
+          path: "/listeners",
+          name: "listeners",
+          component: () =>
+            import(
+                /* webpackChunkName: "scroll" */ "./views/Attrs/listeners/index.vue"
+            )
+        },
+      ]
+    },
   ]
 });
