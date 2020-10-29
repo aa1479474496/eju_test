@@ -1,11 +1,6 @@
 <template>
   <div>
-    <!-- <h3>$attrs,$props, $listeners 测试</h3> -->
-    <div class="header">
-      <span @click="changeRouter('/attrs')">$attrs页面</span>
-      <span @click="changeRouter('/props')">$props页面</span>
-      <span @click="changeRouter('/listeners')">$listeners页面</span>
-    </div>
+    <h3>$attrs,$props, $listeners 测试</h3>
     <router-view></router-view>
   </div>
 </template>

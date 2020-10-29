@@ -262,23 +262,7 @@ export default new Router({
             import(
                 /* webpackChunkName: "scroll" */ "./views/Attrs/attrs/index.vue"
             )
-        },
-        {
-          path: "/props",
-          name: "props",
-          component: () =>
-            import(
-                /* webpackChunkName: "scroll" */ "./views/Attrs/props/index.vue"
-            )
-        },
-        {
-          path: "/listeners",
-          name: "listeners",
-          component: () =>
-            import(
-                /* webpackChunkName: "scroll" */ "./views/Attrs/listeners/index.vue"
-            )
-        },
+        }
       ]
     },
   ]
