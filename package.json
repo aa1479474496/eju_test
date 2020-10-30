@@ -4,6 +4,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
+    "@types/node": "^12.6.8",
     "vue-skeleton-webpack-plugin": "^1.2.2"
   }
 }
