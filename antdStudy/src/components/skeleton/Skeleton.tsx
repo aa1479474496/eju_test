@@ -1,5 +1,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
+import './style/index.less';
 
 import Title, { SkeletonTitleProps } from './Title';
 import Avatar from 'antd/es/avatar/avatar';

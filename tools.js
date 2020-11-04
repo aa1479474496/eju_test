@@ -89,5 +89,16 @@ let filterObj = {
 
 let { list: data, time } = filterObj;
 
-console.log('data::', data, time);
+// console.log('data::', data, time);
+
+
+function camelCase(name) {
+  return name.chartAt(0).toUpperCase() + name.slice(1).replace(/-(\w)/g, (m, n) => {
+    return n.toUpperCase();
+  });
+}
+var str = 'hello world';
+var res = str.match('o');
+console.log('res::', res);
+
 
