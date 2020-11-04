@@ -74,5 +74,20 @@ testData.forEach(item => {
   let rewrite = Tools.thousandsFormat(item[0], item[1]);
   let native = Tools.nativeTofixed(item[0], item[1]);
   console.log(item[0] + '-' + item[1], '-|-rewrite', rewrite, ';-|-native', native);
-})
+});
+
+
+
+
+let filterObj = {
+  list: { 
+    source: 'baidu',
+    count: 12
+  },
+  time: 12345
+}
+
+let { list: data, time } = filterObj;
+
+console.log('data::', data, time);
 

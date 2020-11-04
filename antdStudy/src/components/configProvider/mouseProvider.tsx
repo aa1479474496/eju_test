@@ -16,7 +16,6 @@ export class MouseProvider extends React.Component<MouseProviderProps, MouseProv
   constructor(props: MouseProviderProps) {
     super(props);
     const { x = 0, y = 0 } = props;
-    console.log('constructor', x, y);
     this.state = {
       x,
       y,
