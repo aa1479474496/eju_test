@@ -10,7 +10,7 @@ export interface SkeletonProps {
   loading?: boolean;
   prefixCls?: string;
   className?: string;
-  children?: React.ReactNode;
+  children?: any;
   title?: SkeletonTitleProps | Boolean;
 }
 
@@ -38,10 +38,10 @@ const Skeleton = (props: SkeletonProps) => {
   const { 
     prefixCls: customizePrefixCls, 
     loading, 
-    className,
+    // className,
     children,
-    title,
-    active 
+    // title,
+    // active 
   } = props;
 
   const prefixCls = getPrefix('skeleton', customizePrefixCls);
@@ -54,7 +54,6 @@ const Skeleton = (props: SkeletonProps) => {
 
     let $title;
     if (hasTitle) {
-      console.log('++++++', hasTitle);
       const titleProps: SkeletonTitleProps = {
         prefixCls: `${prefixCls}-title`,
         ...getTitleBasicProps(hasAvatar, hasParagraph)
