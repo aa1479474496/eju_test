@@ -17,6 +17,8 @@
     <div v-for="(item, index) in list2" :key="index" :class="isExit(item.id)">{{ item.name }}</div>
 
     <div class="test_theme_bg" @click="toggleTheme">测试切换主题背景色</div>
+    <div v-scroll="handleScroll" style="height: 300px; border:1px solid skyblue;">111111</div>
+    <div style="height: 1000px;"></div>
   </div>
 </template>
 
@@ -71,6 +73,10 @@ export default {
   },
 
   methods: {
+    handleScroll(evt, el) {
+      console.log('scroll::', evt);
+      return window.scrollY > 100;
+    },
     toggleTheme() {
       let theme = window.document.documentElement.getAttribute("data-theme");
 
