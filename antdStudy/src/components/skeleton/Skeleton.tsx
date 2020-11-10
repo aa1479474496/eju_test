@@ -10,7 +10,8 @@ export interface SkeletonProps {
   loading?: boolean;
   prefixCls?: string;
   className?: string;
-  children?: any;
+  // children?: any;
+  children?: React.ReactNode;
   title?: SkeletonTitleProps | Boolean;
 }
 
@@ -68,7 +69,7 @@ const Skeleton = (props: SkeletonProps) => {
     )
   }
 
-  return children;
+  return <>{children}</>;
 }
 
 export default Skeleton;

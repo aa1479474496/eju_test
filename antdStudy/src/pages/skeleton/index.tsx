@@ -15,13 +15,15 @@ type ContainerProps = ButtonProps & {
 const Container: React.FC<ContainerProps> = ({color,height, width, text}) => {
   return <div style={{backgroundColor: color, height: `${height}px`}}>{text}</div>
 }
+{/* <Container color={'red'} height={200} text={'测试组件'}/> */}
+
 
 export default () => {
   return (
     <>
-      <Skeleton loading={true}>
+      <Skeleton loading={false}>
+        <p>children 测试</p>
       </Skeleton> 
-      <Container color={'red'} height={200} text={'测试组件'}/>
     </>
   )
 }
