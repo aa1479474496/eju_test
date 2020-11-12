@@ -124,7 +124,7 @@ function thousandsFormat(num, precision = 'default') {
     console.log('test:', num, precision, num.toFixed(precision));
   }
   num = (num.toFixed ? num.toFixed(precision) : num) + "";
-  
+
 
 
   if (!num.includes(".")) num += ".";
@@ -170,29 +170,99 @@ console.log('315', thousandsFormat(315));
 // console.log('2.455, 1:::',ToFixed(2.455,1)) //2.34 
 
 
-function ToFixed (num, s) {
+function ToFixed(num, s) {
   var changenum = (parseInt(num * Math.pow(10, s) + 0.5) / Math.pow(10, s)).toString();
   index = changenum.indexOf(".");
   if (index < 0 && s > 0) {
-      changenum = changenum + ".";
-      for (i = 0; i < s; i++) {
-          changenum = changenum + "0";
-      }
+    changenum = changenum + ".";
+    for (i = 0; i < s; i++) {
+      changenum = changenum + "0";
+    }
   } else {
-      index = changenum.length - index;
-      for (i = 0; i < (s - index) + 1; i++) {
-          changenum = changenum + "0";
-      }
+    index = changenum.length - index;
+    for (i = 0; i < (s - index) + 1; i++) {
+      changenum = changenum + "0";
+    }
   }
   return changenum;
-} 
+}
 
-console.log('2.335, 2:::',ToFixed(2.335,2)) //2.34 
-console.log('2.35, 1:::',ToFixed(2.35,1)) //2.4 
-console.log('2.455, 1:::',ToFixed(2.455,1)) //2.5
-console.log('455, 1:::',ToFixed(455,1)) //455.0
-console.log('123.5, 0:::',ToFixed(123.5,0)) //124
-console.log('0.005, 2:::',ToFixed(0.005,2)) //0.01
+console.log('2.335, 2:::', ToFixed(2.335, 2)) //2.34 
+console.log('2.35, 1:::', ToFixed(2.35, 1)) //2.4 
+console.log('2.455, 1:::', ToFixed(2.455, 1)) //2.5
+console.log('455, 1:::', ToFixed(455, 1)) //455.0
+console.log('123.5, 0:::', ToFixed(123.5, 0)) //124
+console.log('0.005, 2:::', ToFixed(0.005, 2)) //0.01
+
+let stats = ['平均面积', '平均租金'];
+// let stats = ['平均面积'];
+let quantile = 0.4;
+let arr = [
+  { 城市: "上海", 平均面积: 80.09, 平均租金: 2807.86 },
+  { 城市: "南京", 平均面积: 76.76, 平均租金: 3618.70 },
+  { 城市: "武汉", 平均面积: -3618.70, 平均租金: -76.76 }
+]
+/**
+ * 
+ * @param {string} rev: 'asc' |  'desc';   升序 | 降序
+ * 
+ */
+function getCenter(arr, quantile, stats, rev = 'asc') {
+  let pointArr = [];
+  stats.forEach(stat => {
+    let _arr = arr.map(item => item[stat]).sort(compare(rev));
+    pointArr.push(parseFloat(getPoint(_arr, quantile).toFixed(3)));
+  });
+
+  function getPoint(list, quantile) {
+    let len = list.length;
+    let Y = (len + 1) * quantile;
+    let N = Math.floor(Y);
+    if (N > len) {
+      return list[len - 1];
+    }
+
+    if (N < 1) {
+      return list[0];
+    }
+    //  N = N > len ? len : N;
+     let nextN = N + 1;
+     return list[N] + (Y - N) * (list[nextN] - list[N]);
+  }
+
+  function compare(rev) {
+    return function(a, b) {
+      let aValue = parseFloat(a);
+      let bValue = parseFloat(b);
+      if (rev == 'asc') {
+        return aValue - bValue;
+      }
+      return bValue - aValue;
+    }
+  }
+
+  return pointArr;
+}
+
+let res = getCenter(arr, quantile, stats);
+console.log('res::', res);
+// console.log('----arr', arr);
+
+
+
+let _arr = [1,2,-3,-10];
+let _res = _arr.sort(function(a, b) {
+  // return a - b;
+  return b - a;
+});
+
+console.log('-----', _res);
+
+
+
+
+
+
 
 
 
