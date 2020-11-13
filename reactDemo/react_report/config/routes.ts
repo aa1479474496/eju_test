@@ -1,3 +1,4 @@
 export default [
-  { path: '/', component: '@/pages/Welcome/index' },
+  { path: '/', component: '@/pages/welcome/index' },
+  { path: '/edit', component: '@/pages/edit/index' },
 ]
