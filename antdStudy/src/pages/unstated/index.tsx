@@ -1,17 +1,16 @@
 import * as React from 'react';
 import CounterDisplay from './components/counterDisplay';
-import Container from '@/store/Counter';
+import ShowCount from './components/ShowCount';
+
+
+import Counter from '@/store/Counter';
 
 export default () => {
   return (
-    <Container.Provider initialState={2}>
+    <Counter.Provider initialState={2}>
       <CounterDisplay />
-
-      <Container.Provider initialState={4}>
-        <div style={{marginTop: '15px', fontSize: '18px'}}>
-          <CounterDisplay />
-        </div>
-      </Container.Provider>
-    </Container.Provider>
+      <div style={{height: '30px'}}></div>
+      <ShowCount />
+    </Counter.Provider>
   )
 }

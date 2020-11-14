@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Button } from 'antd';
-import Container from '@/store/Counter';
+import { Button, Card } from 'antd';
+import Counter from '@/store/Counter';
 
 export default () => {
-  let counter = Container.useContainer();
+  let counter = Counter.useContainer();
   return (
     <div>
       <Button type="primary" onClick={counter.decrement}>Default Button</Button>
