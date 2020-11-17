@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@ant-design/pro-layout": "^5.0.12",
+    "@umijs/plugin-sass": "^1.1.1",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.2.27",
     "lint-staged": "^10.0.7",
@@ -30,5 +31,9 @@
     "react-dom": "^16.12.0",
     "umi": "^3.2.27",
     "yorkie": "^2.0.0"
+  },
+  "devDependencies": {
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.0"
   }
 }
