@@ -6,5 +6,8 @@ export default defineConfig({
   dva: {
     hmr: true,
   },
+  sass: {
+    // implementation: require('node-sass'),
+  },
   routes
 });
