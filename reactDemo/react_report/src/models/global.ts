@@ -9,9 +9,10 @@ export interface GlobalModelType {
   state: GlobalModelState;
   effects: {
     changeTheme: Effect;
+    loadData: Effect;
   };
   reducers: {
-    changeTheme: Reducer<GlobalModelState>
+    changeTheme: Reducer<GlobalModelState>,
   }
 }
 
@@ -29,6 +30,10 @@ const GlobalModel: GlobalModelType = {
         payload
       });
       document.documentElement.setAttribute("data-theme", payload);
+    },
+
+    loadData() {
+      console.log('loadData');
     }
   },
 

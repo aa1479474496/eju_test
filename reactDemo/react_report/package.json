@@ -37,7 +37,8 @@
   },
   "devDependencies": {
     "node-sass": "^5.0.0",
-    "sass-loader": "^10.1.0"
+    "sass-loader": "^10.1.0",
+    "@types/classnames": "^2.2.7"
   },
   "__npminstall_done": false
 }
