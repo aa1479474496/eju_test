@@ -1,6 +1,21 @@
 import {Reducer, Effect } from 'umi';
 
-const GlobalModel = {
+export interface GlobalModelState {
+  theme: string;
+}
+
+export interface GlobalModelType {
+  namespace: 'global';
+  state: GlobalModelState;
+  effects: {
+    changeTheme: Effect;
+  };
+  reducers: {
+    changeTheme: Reducer<GlobalModelState>
+  }
+}
+
+const GlobalModel: GlobalModelType = {
   namespace: 'global',
 
   state: {

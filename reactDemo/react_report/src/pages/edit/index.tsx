@@ -1,11 +1,21 @@
 import React from 'react';
+import { Dispatch } from 'umi';
 import { connect } from 'dva';
 import { Button } from 'antd';
+
+import { GlobalModelState } from '@/models/global';
 
 import styles from './style.scss';
 
 
-const EditPage: React.FC = ({global, dispatch}) => {
+interface EditPageProps {
+  global: GlobalModelState;
+  dispatch: Dispatch;
+}
+
+
+const EditPage: React.FC<EditPageProps> = (props) => {
+  let { global, dispatch } = props;
   let { theme } = global;
   const toggleTheme = () => {
     let _theme = theme == 'light' ? 'dark' : 'light';
@@ -22,6 +32,6 @@ const EditPage: React.FC = ({global, dispatch}) => {
   )
 }
 
-export default connect(({ global }) => ({
+export default connect(({ global }: { global: GlobalModelState }) => ({
   global,
 }))(EditPage);
