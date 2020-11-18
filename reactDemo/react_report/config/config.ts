@@ -7,7 +7,6 @@ export default defineConfig({
     hmr: true,
   },
   sass: {
-    // implementation: require('node-sass'),
   },
   routes
 });

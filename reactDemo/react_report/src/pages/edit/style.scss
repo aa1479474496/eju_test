@@ -1,4 +1,6 @@
+@import '~@/assets/css/handle.scss';
 .editWrapper {
   font-size: 24px;
   color: red;
+  @include bg_color(fill_2);
 }
