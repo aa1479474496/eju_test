@@ -38,7 +38,7 @@ const EditPage: React.FC<EditPageProps> = (props) => {
   return (
     <div className={cls('comContainer', styles.editWrapper)}>
       <DetailHeader info={info}/>
-      <p>edit page {theme}</p>
+      {/* <p>edit page {theme}</p> */}
       {/* <Button type="primary" className="test" onClick={toggleTheme}>test</Button> */}
     </div>
   )

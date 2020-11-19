@@ -1,0 +1,141 @@
+.top_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 64px;
+  @include bg_color(fill_1);
+
+
+  .left,
+  .right {
+    display: flex;
+    align-items: center;
+    height: 64px;
+    font-size: 12px;
+  }
+
+  .left {
+
+    .logo_box {
+      position: relative;
+      width: 64px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .iconlogo-icon {
+        font-size: 28px;
+        // @include text_color(color_4);
+      }
+    }
+
+    .gl_logo {
+      width: 28px;
+      height: 32px;
+      // @include abs_bg('logo.png');
+    }
+
+    .iconfont {
+      font-size: 16px;
+    }
+
+    .fake_input_box {
+      position: relative;
+      min-width: 40px;
+      margin-left: 16px;
+      margin-right: 16px;
+      height: 22px;
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        // @include bg_color(fill_3);
+      }
+
+      &::before {
+        left: -16px;
+      }
+
+      &::after {
+        right: -16px;
+      }
+
+      .edit_name {
+        position: absolute;
+        padding: 0 0 2px;
+
+        left: 0;
+        // right: 0;
+        top: 0;
+        line-height: 22px;
+        z-index: 2;
+
+        box-shadow: none;
+        background: inherit;
+        border: none;
+        border-bottom: 2px solid transparent;
+
+        min-width: 40px;
+        width: 100%;
+        // width: 200px;
+        font-weight: 600;
+        font-size: 16px;
+        // @include one_line_hidden;
+
+        &:focus {
+          // @include border_color(fill_2);
+        }
+
+        &:hover {
+          // @include border_color(fill_2);
+
+        }
+      }
+
+      .fake_input {
+        display: inline-block;
+        height: 100%;
+        opacity: 0;
+        border: 1px solid transparent;
+        font-weight: bold;
+        max-width: 208px;
+        font-size: 16px;
+        // @include one_line_hidden;
+      }
+    }
+
+    .do_tool {
+      padding: 0 16px;
+
+      .do_item {
+        cursor: pointer;
+        font-weight: 600;
+
+        &.not_allowed {
+          // @include text_color(color_2);
+          cursor: not-allowed;
+        }
+
+        &.is_flip {
+          display: inline-block;
+          transform: rotateY(180deg);
+        }
+      }
+    }
+
+    .save-tips {
+      position: relative;
+      display: inline-block;
+      font-size: 12px;
+      box-sizing: border-box;
+      // @include text_color(color_2);
+    }
+  }
+}
