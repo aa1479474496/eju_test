@@ -2,16 +2,16 @@ import {Reducer, Effect } from 'umi';
 import Api from '@/api/common';
 
 export interface DetailDataType {
-  attr?: object;
-  pages?: Array<object>;
+  attr: object;
+  pages: Array<object>;
 }
 export interface GlobalModelState {
-  theme?: string;
-  data?: DetailDataType; // 
-  dbs?: object;
-  info?: object;
-  maps?: Array<object>;
-  tables?: Array<object>;
+  theme: string;
+  data: DetailDataType; // 
+  dbs: object;
+  info: object;
+  maps: Array<object>;
+  tables: Array<object>;
 }
 
 export interface GlobalModelType {
@@ -64,7 +64,7 @@ const GlobalModel: GlobalModelType = {
   reducers: {
     changeTheme(state, { payload }) {
       return {
-        ...state,
+        ...(state as GlobalModelState),
         theme:payload
       }
     }
