@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import cls from 'classnames';
 
 import { Dispatch } from 'umi';
@@ -18,6 +18,7 @@ const EditPage: React.FC<EditPageProps> = (props) => {
   let { theme } = global;
   const toggleTheme = () => {
     let _theme = theme == 'light' ? 'dark' : 'light';
+
     dispatch({
       type: 'global/changeTheme',
       payload: _theme

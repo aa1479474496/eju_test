@@ -1,5 +1,6 @@
 import axios from "axios";
 import Config from "@/server/env";
+import { getQueryString } from "@/utils/utils";
 
 
 let myHttp = axios.create({
@@ -80,10 +81,15 @@ myHttp.interceptors.response.use(
 type BeforeParamsType = {
   customfilter?: any;
   rid?: any;
+  token?: string | number;
 }
 
 export default class MYHTTP {
   static before(url = '', params: BeforeParamsType, config = {}) {
+    if (!params.token) {
+      params.token = getQueryString('token') || localStorage.getItem('token') || '';
+    }
+
     if (url === '/bi/report/query' || url === '/bi/report/mapquery'
         || url === '/bi/report/param' || url === '/bi/report/mapparam'
         && params.customfilter == undefined) {

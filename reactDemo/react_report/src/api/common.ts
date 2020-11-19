@@ -1,8 +1,8 @@
 import MYHTTP from "@/server/request";
 
 export interface LoadReportParamsType {
-  id: number;
-  token: string;
+  id: number | string;
+  token?: string;
 }
 
 export default class Api {

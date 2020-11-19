@@ -1,8 +1,17 @@
 import {Reducer, Effect } from 'umi';
 import Api from '@/api/common';
 
+export interface DetailDataType {
+  attr?: object;
+  pages?: Array<object>;
+}
 export interface GlobalModelState {
-  theme: string;
+  theme?: string;
+  data?: DetailDataType; // 
+  dbs?: object;
+  info?: object;
+  maps?: Array<object>;
+  tables?: Array<object>;
 }
 
 export interface GlobalModelType {
@@ -21,7 +30,15 @@ const GlobalModel: GlobalModelType = {
   namespace: 'global',
 
   state: {
-    theme: 'light'
+    theme: 'light',
+    data: {
+      attr: [],
+      pages: []
+    },
+    dbs: {},
+    info: {},
+    maps: [],
+    tables: []
   },
 
   effects: {
@@ -36,10 +53,11 @@ const GlobalModel: GlobalModelType = {
     *loadData(_, { call ,put }) {
       let payload = {
         id: 131035, 
-        token: '15c2e331a5546cf3bde84e4637c2100b'
       }
       let res = yield call(Api.loadReport, payload);
-      console.log('loadData', res);
+      if (res.status) {
+        console.log('loadData', res);
+      }
     }
   },
 
@@ -47,7 +65,7 @@ const GlobalModel: GlobalModelType = {
     changeTheme(state, { payload }) {
       return {
         ...state,
-        theme: payload
+        theme:payload
       }
     }
   }
