@@ -8,6 +8,8 @@ import { GlobalModelState } from '@/models/global';
 
 import styles from './style.scss';
 
+import DetailHeader from '@/components/DetailHeader';
+
 interface EditPageProps {
   global: GlobalModelState;
   dispatch: Dispatch;
@@ -15,7 +17,7 @@ interface EditPageProps {
 
 const EditPage: React.FC<EditPageProps> = (props) => {
   let { global, dispatch } = props;
-  let { theme } = global;
+  let { theme, info } = global;
   const toggleTheme = () => {
     let _theme = theme == 'light' ? 'dark' : 'light';
 
@@ -35,8 +37,9 @@ const EditPage: React.FC<EditPageProps> = (props) => {
 
   return (
     <div className={cls('comContainer', styles.editWrapper)}>
+      <DetailHeader info={info}/>
       <p>edit page {theme}</p>
-      <Button type="primary" className="test" onClick={toggleTheme}>test</Button>
+      {/* <Button type="primary" className="test" onClick={toggleTheme}>test</Button> */}
     </div>
   )
 }
