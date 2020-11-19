@@ -1,4 +1,5 @@
 import {Reducer, Effect } from 'umi';
+import Api from '@/api/common';
 
 export interface GlobalModelState {
   theme: string;
@@ -32,8 +33,13 @@ const GlobalModel: GlobalModelType = {
       document.documentElement.setAttribute("data-theme", payload);
     },
 
-    loadData() {
-      console.log('loadData');
+    *loadData(_, { call ,put }) {
+      let payload = {
+        id: 131035, 
+        token: '15c2e331a5546cf3bde84e4637c2100b'
+      }
+      let res = yield call(Api.loadReport, payload);
+      console.log('loadData', res);
     }
   },
 

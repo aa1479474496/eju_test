@@ -17,6 +17,7 @@ const CancelToken = axios.CancelToken;
 // 添加请求拦截器
 myHttp.interceptors.request.use(
   function(config) {
+    // debugger
     let data = config.data || {};
     if (data.iExportFlag) {
       // console.log('下载的');
