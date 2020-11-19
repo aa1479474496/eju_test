@@ -23,6 +23,7 @@ export interface GlobalModelType {
   };
   reducers: {
     changeTheme: Reducer<GlobalModelState>,
+    save: Reducer<GlobalModelState>
   }
 }
 
@@ -56,12 +57,24 @@ const GlobalModel: GlobalModelType = {
       }
       let res = yield call(Api.loadReport, payload);
       if (res.status) {
+        let {data, dbs, info, maps, tables} = res.data;
+        yield put({
+          type: 'save',
+          payload: res.data
+        });
         console.log('loadData', res);
       }
     }
   },
 
   reducers: {
+    save(state, { payload }) {
+      return {
+        ...(state as GlobalModelState),
+        ...payload
+      }
+    },
+
     changeTheme(state, { payload }) {
       return {
         ...(state as GlobalModelState),
