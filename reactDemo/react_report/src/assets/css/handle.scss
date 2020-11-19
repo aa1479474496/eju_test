@@ -22,3 +22,10 @@
     background-color: themed($color);
   }
 }
+
+// 文字颜色
+@mixin text_color($color) {
+  @include themeify {
+    color: themed($color);
+  }
+}

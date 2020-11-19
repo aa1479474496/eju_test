@@ -17,16 +17,16 @@ const DetailHeader: React.FC<DetailHeaderProps> = (props) => {
     <div className={styles.top_header}>
       <div className={styles.left}>
         <div className={styles.logo_box}>
-          <i className="iconfont iconlogo-icon"></i>
+          <i className={cls(styles.iconlgoo_icon, 'iconfont iconlogo-icon')}></i>
         </div>
 
         <div className={styles.fake_input_box}>
-          <span className={styles.fake_input}>{info.name }</span>
+          <span className={styles.fake_input}>{info.name}</span>
           <input
             type="text"
             value={info.name}
             maxlength="32"
-            className={cls(styles.edit_name ,'inline_block')}
+            className={cls(styles.edit_name, 'inline_block')}
           />
         </div>
 
