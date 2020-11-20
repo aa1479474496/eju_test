@@ -33,12 +33,13 @@ const DetailHeader: React.FC = () => {
   //报告名修改区域， show页面不可以修改
   const ReportName = useMemo(() => {
     let maxLength = 32;
+    let value = info.name || '';
     return (
       <div className={styles.fake_input_box}>
         <span className={styles.fake_input}>{info.name}</span>
         <input
           type="text"
-          value={info.name}
+          value={value}
           maxLength={maxLength}
           onChange={changeName}
           className={cls(styles.edit_name, 'inline_block')}
