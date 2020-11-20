@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import cls from 'classnames';
 
 import { Tooltip } from 'antd';
@@ -13,12 +13,12 @@ import styles from './index.scss';
 //   }
 // }
 
-const DetailHeader: React.FC= () => {
-  const { info,  changeInfo} = useContext(InfoContext);
+const DetailHeader: React.FC = () => {
+  const { info, changeInfo } = useContext(InfoContext);
 
-  const changeName:React.ReactEventHandler<HTMLInputElement> = (e) => {
+  const changeName: React.ReactEventHandler<HTMLInputElement> = (e) => {
     const target = e.target as HTMLInputElement;
-    changeInfo({name: target.value});
+    changeInfo({ name: target.value });
   }
 
   // logo
@@ -31,7 +31,7 @@ const DetailHeader: React.FC= () => {
   }
 
   //报告名修改区域， show页面不可以修改
-  const ReportName: React.FC = () => {
+  const ReportName = useMemo(() => {
     let maxLength = 32;
     return (
       <div className={styles.fake_input_box}>
@@ -45,7 +45,7 @@ const DetailHeader: React.FC= () => {
         />
       </div>
     )
-  }
+  }, [info.name]);
 
 
   // 撤销， 重做
@@ -68,7 +68,7 @@ const DetailHeader: React.FC= () => {
     <div className={styles.top_header}>
       <div className={styles.left}>
         <Logo />
-        <ReportName />
+        {ReportName}
         <DoTools />
 
         <div className="save-tips">
