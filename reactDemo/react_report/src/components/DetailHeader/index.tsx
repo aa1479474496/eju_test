@@ -1,24 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import cls from 'classnames';
 
 import { Tooltip } from 'antd';
+import { InfoContext, InfoContextType } from '@/pages/edit';
 
 import styles from './index.scss';
 
 
-type DetailHeaderProps = {
-  info: {
-    name?: string;
-  }
-}
+// type DetailHeaderProps = {
+//   info: {
+//     name?: string;
+//   }
+// }
 
-const DetailHeader: React.FC<DetailHeaderProps> = (props) => {
-  console.log('props::', props);
-  let { info } = props;
+const DetailHeader: React.FC= () => {
+  const { info,  changeInfo} = useContext(InfoContext);
 
   const changeName:React.ReactEventHandler<HTMLInputElement> = (e) => {
     const target = e.target as HTMLInputElement;
-    console.log('event', target.value)
+    changeInfo({name: target.value});
   }
 
   // logo
@@ -63,8 +63,6 @@ const DetailHeader: React.FC<DetailHeaderProps> = (props) => {
       </div>
     )
   }
-
-
 
   return (
     <div className={styles.top_header}>

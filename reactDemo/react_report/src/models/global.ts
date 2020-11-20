@@ -20,10 +20,12 @@ export interface GlobalModelType {
   effects: {
     changeTheme: Effect;
     loadData: Effect;
+    changeInfo: Effect;
   };
   reducers: {
     changeTheme: Reducer<GlobalModelState>,
-    save: Reducer<GlobalModelState>
+    save: Reducer<GlobalModelState>,
+    changeInfo: Reducer<GlobalModelState>
   }
 }
 
@@ -64,10 +66,19 @@ const GlobalModel: GlobalModelType = {
         });
         console.log('loadData', res);
       }
+    },
+
+    changeInfo({ payload }, { put, select }) {
+      put({
+        type: 'changeInfo',
+        payload
+      })
     }
   },
 
   reducers: {
+
+
     save(state, { payload }) {
       return {
         ...(state as GlobalModelState),
@@ -79,6 +90,16 @@ const GlobalModel: GlobalModelType = {
       return {
         ...(state as GlobalModelState),
         theme:payload
+      }
+    },
+
+    changeInfo(state, { payload }) {
+      return {
+        ...(state as GlobalModelState),
+        info: {
+          ...state.info,
+          ...payload
+        }
       }
     }
   }

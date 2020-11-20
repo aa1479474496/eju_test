@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, createContext, useContext } from 'react';
 import cls from 'classnames';
 
 import { Dispatch } from 'umi';
@@ -15,9 +15,31 @@ interface EditPageProps {
   dispatch: Dispatch;
 }
 
+export type InfoContextType = {
+  info: {
+    name?: string
+  };
+  changeInfo:(info: {}) => void;
+}
+export const InfoContext = createContext<InfoContextType>({
+  info: {
+    name: ''
+  },
+  changeInfo: () => {}
+});
+
+
 const EditPage: React.FC<EditPageProps> = (props) => {
   let { global, dispatch } = props;
   let { theme, info } = global;
+
+  const changeInfo = (info: {}) => {
+    dispatch({
+      type: 'global/changeInfo',
+      payload: info
+    })
+  }
+
   const toggleTheme = () => {
     let _theme = theme == 'light' ? 'dark' : 'light';
 
@@ -37,7 +59,9 @@ const EditPage: React.FC<EditPageProps> = (props) => {
 
   return (
     <div className={cls('comContainer', styles.editWrapper)}>
-      <DetailHeader info={info}/>
+      <InfoContext.Provider value={{info, changeInfo}}>
+        <DetailHeader />
+      </InfoContext.Provider>
       {/* <p>edit page {theme}</p> */}
       {/* <Button type="primary" className="test" onClick={toggleTheme}>test</Button> */}
     </div>
