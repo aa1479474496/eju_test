@@ -36,3 +36,21 @@
     box-shadow: themed($color);
   }
 }
+
+// 边框颜色
+
+@mixin border_color($color, $border: border) {
+  @include themeify {
+    #{$border}-color: themed($color);
+  }
+}
+
+// 边框， 可单独设置 border-left/border-top， solid/dashed/dotted
+@mixin border($color: color_3, $border: border, $width: 1px, $style: solid) {
+  #{$border}: {
+    width: $width;
+    style: $style;
+  }
+
+  @include border_color($color, $border);
+}

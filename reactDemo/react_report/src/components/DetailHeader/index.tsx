@@ -16,6 +16,38 @@ const DetailHeader: React.FC<DetailHeaderProps> = (props) => {
   console.log('props::', props);
   let { info } = props;
 
+  const changeName:React.ReactEventHandler<HTMLInputElement> = (e) => {
+    const target = e.target as HTMLInputElement;
+    console.log('event', target.value)
+  }
+
+  // logo
+  const Logo: React.FC = () => {
+    return (
+      <div className={styles.logo_box}>
+        <i className={cls(styles.iconlgoo_icon, 'iconfont iconlogo-icon')}></i>
+      </div>
+    )
+  }
+
+  //报告名修改区域， show页面不可以修改
+  const ReportName: React.FC = () => {
+    let maxLength = 32;
+    return (
+      <div className={styles.fake_input_box}>
+        <span className={styles.fake_input}>{info.name}</span>
+        <input
+          type="text"
+          value={info.name}
+          maxLength={maxLength}
+          onChange={changeName}
+          className={cls(styles.edit_name, 'inline_block')}
+        />
+      </div>
+    )
+  }
+
+
   // 撤销， 重做
   const DoTools: React.FC = () => {
     let undoClass = cls("iconfont iconcontrolbackoutfill mr16", styles.do_item);
@@ -37,21 +69,8 @@ const DetailHeader: React.FC<DetailHeaderProps> = (props) => {
   return (
     <div className={styles.top_header}>
       <div className={styles.left}>
-        <div className={styles.logo_box}>
-          <i className={cls(styles.iconlgoo_icon, 'iconfont iconlogo-icon')}></i>
-        </div>
-
-        <div className={styles.fake_input_box}>
-          <span className={styles.fake_input}>{info.name}</span>
-          <input
-            type="text"
-            value={info.name}
-            maxlength="32"
-            className={cls(styles.edit_name, 'inline_block')}
-          />
-        </div>
-
-        {/* 撤销&重做  */}
+        <Logo />
+        <ReportName />
         <DoTools />
 
         <div className="save-tips">
