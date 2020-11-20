@@ -105,7 +105,7 @@
         font-weight: bold;
         max-width: 208px;
         font-size: 16px;
-        // @include one_line_hidden;
+        @include one_line_hidden;
       }
     }
 
@@ -117,7 +117,7 @@
         font-weight: 600;
 
         &.not_allowed {
-          // @include text_color(color_2);
+          @include text_color(olor_5);
           cursor: not-allowed;
         }
 
@@ -128,12 +128,58 @@
       }
     }
 
-    .save-tips {
+    .save_tips {
       position: relative;
       display: inline-block;
       font-size: 12px;
       box-sizing: border-box;
-      // @include text_color(color_2);
+      @include text_color(color_5);
+    }
+  }
+
+  .right {
+    .btn_groups {
+      position: relative;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 40px;
+
+      .btn_role {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+
+        .iconfont {
+          padding: 8px;
+        }
+
+        &:hover {
+          @include text_color(color_2);
+          .iconfont {
+            @include bg_color(fill_4);
+          }
+        }
+
+        &.def_text {
+          margin-right: 32px;
+        }
+
+        &.share_btn {
+          margin-left: 32px;
+          padding: 4px 10px;
+          border-radius: 4px;
+          border-width: 2px;
+          border-style: solid;
+          @include border_color(color_4);
+          @include bg_color(fill_2);
+          @include text_color(color_1);
+          transition: all .3s;
+          &:hover {
+            @include box_shadow(shadow_1);
+          }
+        }
+      }
     }
   }
 }

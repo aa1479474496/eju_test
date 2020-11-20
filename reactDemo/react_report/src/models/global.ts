@@ -78,7 +78,6 @@ const GlobalModel: GlobalModelType = {
 
   reducers: {
 
-
     save(state, { payload }) {
       return {
         ...(state as GlobalModelState),

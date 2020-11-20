@@ -30,6 +30,8 @@ const DetailHeader: React.FC = () => {
     )
   }
 
+  console.log('logo', Logo);
+
   //报告名修改区域， show页面不可以修改
   const ReportName = useMemo(() => {
     let maxLength = 32;
@@ -65,6 +67,45 @@ const DetailHeader: React.FC = () => {
     )
   }
 
+  // 右侧 按钮组 
+
+  const RoleBtns: React.FC = () => {
+    let mode = 'edit';
+    let { iCanExport = 0 } = info;
+    let exportText = iCanExport == 1 ? "导出" : "后台处理中,完成后可导出";
+    let btns = [
+      { icon: "iconinterfacesavefill", text: "保存", type: "icon", role: ["edit"], cls: "mr16" },
+      { icon: "iconinterfacedemofill", text: "预览", type: "icon", role: ["edit"], cls: "mr16" },
+      { icon: "iconinterfaceexportfill", text: exportText, type: "icon", role: ["edit", "show"], cls: "mr16" },
+      { icon: "", text: "分享查看", type: "text", role: ["edit"], cls: "share_btn" },
+    ]
+    let roleBtns = btns.filter(btn => btn.role.includes(mode));
+    let items = roleBtns.map((roleBtn, index) => {
+      
+      let content = (
+        <span>{roleBtn.text}</span>
+      );
+      if (roleBtn.type == 'icon') {
+        content = (
+          <Tooltip placement="bottom" title={roleBtn.text}>
+            <i className={cls('iconfont', roleBtn.icon, styles.iconfont)}></i>
+          </Tooltip>
+        );
+      }
+
+      return (
+        <span key={index} className={cls('cur_pointer btn_role', roleBtn.type == 'icon' ? roleBtn.cls : styles[roleBtn.cls], styles.btn_role)}>
+          {content}
+        </span>
+      )
+    });
+    return (
+      <>
+        {items}
+      </>
+    )
+  }
+
   return (
     <div className={styles.top_header}>
       <div className={styles.left}>
@@ -72,7 +113,7 @@ const DetailHeader: React.FC = () => {
         {ReportName}
         <DoTools />
 
-        <div className="save-tips">
+        <div className={styles.save_tips}>
           <span>正在保存报告</span>
 
           {/* <span>
@@ -81,8 +122,13 @@ const DetailHeader: React.FC = () => {
           </span> */}
           {/* <span v-else>最近保存</span> */}
         </div>
+      </div>
 
 
+      <div className={styles.right}>
+        <div className={styles.btn_groups}>
+          <RoleBtns />
+        </div>
       </div>
     </div>
   )

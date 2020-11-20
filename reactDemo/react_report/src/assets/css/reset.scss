@@ -50,8 +50,10 @@ body {
   text-align: left;
   width: 100%;
   height: 100%;
-  // @include text_color(color_1);
+  @include text_color(color_6);
   overflow: hidden;
+  line-height: 1.15;
+
 
 }
 * {

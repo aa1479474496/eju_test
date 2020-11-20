@@ -54,3 +54,21 @@
 
   @include border_color($color, $border);
 }
+
+
+
+// 定义的公用mixin
+// 单行文本截断
+@mixin one_line_hidden {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 多行文本截断
+@mixin multiple_line_hidden($clamp) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $clamp;
+  overflow: hidden;
+}

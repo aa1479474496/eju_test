@@ -17,13 +17,15 @@ interface EditPageProps {
 
 export type InfoContextType = {
   info: {
-    name?: string
+    name?: string;
+    iCanExport?: number;
   };
   changeInfo:(info: {}) => void;
 }
 export const InfoContext = createContext<InfoContextType>({
   info: {
-    name: ''
+    name: '',
+    iCanExport: 0
   },
   changeInfo: () => {}
 });
