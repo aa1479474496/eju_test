@@ -72,3 +72,15 @@
   -webkit-line-clamp: $clamp;
   overflow: hidden;
 }
+
+
+//关闭x动画
+@mixin closeAnimate {
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+
+  &:hover {
+    transform: rotate(180deg);
+    @include text_color(color_2);
+  }
+}
