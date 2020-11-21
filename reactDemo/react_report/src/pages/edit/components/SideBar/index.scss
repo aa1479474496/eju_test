@@ -1,0 +1,27 @@
+.side_bar {
+  position: absolute;
+  z-index: 99;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 64px;
+  @include text_color(color_6);
+}
+
+.option_group {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  @include bg_color(fill_1);
+  @include box_shadow(shadow_2);
+}
+
+.option {
+  position: relative;
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+  font-size: 24px;
+  outline: none;
+  cursor: pointer;
+}

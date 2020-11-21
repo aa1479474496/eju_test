@@ -9,6 +9,7 @@ import { GlobalModelState } from '@/models/global';
 import styles from './style.scss';
 
 import DetailHeader from '@/components/DetailHeader';
+import SideBar from './components/SideBar';
 
 interface EditPageProps {
   global: GlobalModelState;
@@ -20,14 +21,14 @@ export type InfoContextType = {
     name?: string;
     iCanExport?: number;
   };
-  changeInfo:(info: {}) => void;
+  changeInfo: (info: {}) => void;
 }
 export const InfoContext = createContext<InfoContextType>({
   info: {
     name: '',
     iCanExport: 0
   },
-  changeInfo: () => {}
+  changeInfo: () => { }
 });
 
 
@@ -60,10 +61,14 @@ const EditPage: React.FC<EditPageProps> = (props) => {
   }, []);
 
   return (
-    <div className={cls('comContainer', styles.editWrapper)}>
-      <InfoContext.Provider value={{info, changeInfo}}>
+    <div className={cls('com_container')}>
+      <InfoContext.Provider value={{ info, changeInfo }}>
         <DetailHeader />
       </InfoContext.Provider>
+      <div className={styles.dash_edit_pages}>
+        <SideBar />
+      </div>
+
       {/* <p>edit page {theme}</p> */}
       {/* <Button type="primary" className="test" onClick={toggleTheme}>test</Button> */}
     </div>

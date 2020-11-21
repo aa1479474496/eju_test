@@ -30,8 +30,6 @@ const DetailHeader: React.FC = () => {
     )
   }
 
-  console.log('logo', Logo);
-
   //报告名修改区域， show页面不可以修改
   const ReportName = useMemo(() => {
     let maxLength = 32;
@@ -76,7 +74,7 @@ const DetailHeader: React.FC = () => {
     let btns = [
       { icon: "iconinterfacesavefill", text: "保存", type: "icon", role: ["edit"], cls: "mr16" },
       { icon: "iconinterfacedemofill", text: "预览", type: "icon", role: ["edit"], cls: "mr16" },
-      { icon: "iconinterfaceexportfill", text: exportText, type: "icon", role: ["edit", "show"], cls: "mr16" },
+      { icon: "iconinterfaceexportfill", text: exportText, type: "icon", role: ["edit", "show"], cls: "" },
       { icon: "", text: "分享查看", type: "text", role: ["edit"], cls: "share_btn" },
     ]
     let roleBtns = btns.filter(btn => btn.role.includes(mode));
