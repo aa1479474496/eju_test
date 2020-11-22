@@ -11,6 +11,7 @@ export interface GlobalModelState {
   dbs: object;
   info: object;
   maps: Array<object>;
+  // tables: Array<object>;
   tables: Array<object>;
 }
 

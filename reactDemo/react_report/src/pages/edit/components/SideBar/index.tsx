@@ -2,20 +2,22 @@ import React, { useState } from 'react';
 import cls from 'classnames';
 
 import { Tooltip } from 'antd';
+import PageSource from './PageSource';
 
 import styles from './index.scss';
 
 import components, { ComponentName } from '@/config/components';
 
 const SideBar: React.FC = () => {
-  const [visible, setVisible] = useState(false);
   const [type, setType] = useState('chart');
-  const showDrawer = () => {
-    setVisible(true);
-  }
-  const onClose = () => {
-    setVisible(false);
-  }
+  // console.log('tables111::', tables);
+  // const [visible, setVisible] = useState(false);
+  // const showDrawer = () => {
+  //   setVisible(true);
+  // }
+  // const onClose = () => {
+  //   setVisible(false);
+  // }
 
   // 生成侧边按钮栏
   const Options: React.FC = () => {
@@ -23,7 +25,7 @@ const SideBar: React.FC = () => {
     let _options = keys.map((key: string) => {
       let current = components[key as ComponentName];
       return (
-        <Tooltip placement="right" title={current.iconText}>
+        <Tooltip key={key} placement="right" title={current.iconText}>
           <div className={styles.option}>
             <i className={cls("iconfont", current.icon)}></i>
           </div>
@@ -74,6 +76,7 @@ const SideBar: React.FC = () => {
       {/* 组件弹出层 */}
       <div className={styles.side_drawer}>
         <DrawHeader />
+        <PageSource />
       </div>
 
 
