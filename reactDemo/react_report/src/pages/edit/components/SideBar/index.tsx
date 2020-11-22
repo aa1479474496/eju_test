@@ -18,13 +18,6 @@ import components, { ComponentName } from '@/config/components';
 const SideBar = ({tables}: {tables: SourceDatasType[]}) => {
   const [type, setType] = useState('chart');
   console.log('sidebar', tables);
-  // const [visible, setVisible] = useState(false);
-  // const showDrawer = () => {
-  //   setVisible(true);
-  // }
-  // const onClose = () => {
-  //   setVisible(false);
-  // }
 
   // 生成侧边按钮栏
   const Options: React.FC = () => {
@@ -83,7 +76,7 @@ const SideBar = ({tables}: {tables: SourceDatasType[]}) => {
       {/* 组件弹出层 */}
       <div className={styles.side_drawer}>
         <DrawHeader />
-        <PageSource />
+        <PageSource datas={tables}/>
       </div>
 
 

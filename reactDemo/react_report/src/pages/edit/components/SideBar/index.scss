@@ -88,3 +88,37 @@
     }
   }
 }
+
+.source_list {
+  position: absolute;
+  z-index: 2;
+  left: 16px;
+  right: 16px;
+  top: 48px;
+  bottom: 16px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  .item {
+    margin-top: 8px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 36px;
+    border-radius: 2px;
+    cursor: pointer;
+    @include bg_color(fill_1);
+    font-size: 14px;
+
+    &:hover {
+      .left {
+        @include text_color(color_2);
+      }
+    }
+
+    .left {
+      font-weight: bold;
+      @include one_line_hidden;
+    }
+  }
+}
