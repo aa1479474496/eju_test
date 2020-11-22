@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import cls from 'classnames';
 
+import { SourceDatasType } from '@/models/connect';
+
 import { Tooltip } from 'antd';
 import PageSource from './PageSource';
 
@@ -8,9 +10,14 @@ import styles from './index.scss';
 
 import components, { ComponentName } from '@/config/components';
 
-const SideBar: React.FC = () => {
+
+// type SideBarProps = {
+//   tables: SourceDatasType
+// }
+
+const SideBar = ({tables}: {tables: SourceDatasType[]}) => {
   const [type, setType] = useState('chart');
-  // console.log('tables111::', tables);
+  console.log('sidebar', tables);
   // const [visible, setVisible] = useState(false);
   // const showDrawer = () => {
   //   setVisible(true);

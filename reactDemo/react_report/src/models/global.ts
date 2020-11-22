@@ -1,18 +1,18 @@
 import {Reducer, Effect } from 'umi';
 import Api from '@/api/common';
+import { DetailDataType, SourceDatasType} from './connect';
 
-export interface DetailDataType {
-  attr: object;
-  pages: Array<object>;
-}
+// export interface DetailDataType {
+//   attr: object;
+//   pages: Array<object>;
+// }
 export interface GlobalModelState {
   theme: string;
   data: DetailDataType; // 
   dbs: object;
   info: object;
-  maps: Array<object>;
-  // tables: Array<object>;
-  tables: Array<object>;
+  maps: SourceDatasType[];
+  tables: SourceDatasType[];
 }
 
 export interface GlobalModelType {
