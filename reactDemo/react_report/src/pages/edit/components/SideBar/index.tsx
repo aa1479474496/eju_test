@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import cls from 'classnames';
 
 import { SourceDatasType } from '@/models/connect';
+import { useOnClickOutSide } from '@/hooks/index';
 
 import { Tooltip } from 'antd';
 import PageSource from './PageSource';
@@ -20,6 +21,10 @@ import components, { ComponentName } from '@/config/components';
 const SideBar = ({tables, maps}: {tables: SourceDatasType[], maps: SourceDatasType[]}) => {
   const [type, setType] = useState<string>('');
   console.log('sidebar', tables);
+  const ref = useRef(null);
+  useOnClickOutSide(ref, () => {
+    setType('');
+  });
 
   const setDrawerType = (componentType:string) => {
     let _type = type == componentType ? '' : componentType;
@@ -93,7 +98,7 @@ const SideBar = ({tables, maps}: {tables: SourceDatasType[], maps: SourceDatasTy
 
 
   return (
-    <div className={styles.side_bar}>
+    <div className={styles.side_bar} ref={ref}>
 
       {/* 组件显示的icon */}
       <div className={styles.option_group}>
