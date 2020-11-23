@@ -34,7 +34,7 @@ export const InfoContext = createContext<InfoContextType>({
 
 const EditPage: React.FC<EditPageProps> = (props) => {
   let { global, dispatch } = props;
-  let { theme, info, tables } = global;
+  let { theme, info, tables, maps } = global;
   console.log('tables::', tables);
 
   const changeInfo = (info: {}) => {
@@ -67,7 +67,7 @@ const EditPage: React.FC<EditPageProps> = (props) => {
         <DetailHeader />
       </InfoContext.Provider>
       <div className={styles.dash_edit_pages}>
-        <SideBar tables={tables}/>
+        <SideBar tables={tables} maps={maps}/>
       </div>
 
       {/* <p>edit page {theme}</p> */}

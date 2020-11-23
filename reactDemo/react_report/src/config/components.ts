@@ -10,6 +10,28 @@ export default {
       whLock: false,
     }
   },
+  text: {
+    icon: 'iconredactredacttextfill',
+    iconText: '插入文本',
+    config: {
+      w: 200,
+      h: 38,
+      x: 100,
+      y: 100,
+      whLock: false,
+    }
+  },
+  map: {
+    icon: 'iconredactredactcircumfill',
+    iconText: '插入地图',
+    config: {
+      w: 400,
+      h: 400,
+      x: 160,
+      y: 100,
+      whLock: false,
+    }
+  },
   image: {
     icon: 'iconredactimage',
     iconText: '插入图片',
@@ -21,19 +43,9 @@ export default {
       whLock: true,
     }
   },
-  text: {
-    icon: 'iconredactredacttextfill',
-    iconText: '插入文本',
-    config: {
-      w: 200,
-      h: 38,
-      x: 100,
-      y: 100,
-      whLock: false,
-    }
-  }
+ 
 }
 
-type ComponentName = 'chart' | 'image' |'text';
+type ComponentName = 'chart' | 'image' | 'text' | 'map';
 
 export { ComponentName };

@@ -17,8 +17,8 @@ import components, { ComponentName } from '@/config/components';
 //   tables: SourceDatasType
 // }
 
-const SideBar = ({tables}: {tables: SourceDatasType[]}) => {
-  const [type, setType] = useState<string>('chart');
+const SideBar = ({tables, maps}: {tables: SourceDatasType[], maps: SourceDatasType[]}) => {
+  const [type, setType] = useState<string>('');
   console.log('sidebar', tables);
 
   // 生成侧边按钮栏
@@ -28,8 +28,8 @@ const SideBar = ({tables}: {tables: SourceDatasType[]}) => {
       let current = components[key as ComponentName];
       return (
         <Tooltip key={key} placement="right" title={current.iconText}>
-          <div className={styles.option}>
-            <i className={cls("iconfont", current.icon)}></i>
+          <div className={cls(styles.option, type == key ? styles.is_active : '')} onClick={() => setType(key)}>
+            <i className={cls("iconfont", current.icon, styles.iconfont)}></i>
           </div>
         </Tooltip>
       )
@@ -44,19 +44,14 @@ const SideBar = ({tables}: {tables: SourceDatasType[]}) => {
 
   // 生成弹出层 header
   const DrawHeader: React.FC = () => {
-    let name = '';
-    if (type == 'chart') {
-      name = '数据源';
+    let nameMap = {
+      chart: '数据源',
+      map: '地图数据源',
+      pic: '图形',
+      image: '图片',
+      text: '文本',
     }
-    else if (type == 'map') {
-      name = '地图数据源';
-    }
-    else if (type == 'pic') {
-      name = '图形';
-    }
-    else if (type == 'image') {
-      name = '图片';
-    }
+    let name = nameMap[type as ComponentName] || '';
 
     return (
       <div className={styles.drawer_header}>
@@ -78,7 +73,13 @@ const SideBar = ({tables}: {tables: SourceDatasType[]}) => {
     ),
     text: (
       <PageText />
-    )
+    ),
+    map: (
+      <PageSource 
+        datas={maps}
+      />
+    ),
+
   }
 
 
@@ -91,14 +92,10 @@ const SideBar = ({tables}: {tables: SourceDatasType[]}) => {
       </div>
 
       {/* 组件弹出层 */}
-      <div className={styles.side_drawer}>
+      <div className={cls(styles.side_drawer, type ? styles.is_open : '')}>
         <DrawHeader />
         {DrawerContent[type as ComponentName]}
-        {/* <PageSource datas={tables}/> */}
       </div>
-
-
-
     </div>
   )
 }

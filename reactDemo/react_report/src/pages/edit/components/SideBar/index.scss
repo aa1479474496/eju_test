@@ -21,9 +21,17 @@
   height: 64px;
   line-height: 64px;
   text-align: center;
-  font-size: 24px;
   outline: none;
   cursor: pointer;
+
+  &.is_active {
+    @include bg_color(fill_2);
+    @include text_color(color_1);
+  }
+
+  .iconfont {
+    font-size: 24px;
+  }
 }
 
 .side_drawer {
@@ -33,10 +41,14 @@
   top: 0;
   bottom: 0;
   width: 320px;
-  // transform: translateX(-100%);
+  transform: translateX(-100%);
   transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
   @include bg_color(fill_5);
   @include box_shadow(shadow_2);
+
+  &.is_open {
+    transform: translateX(0);
+  }
 }
 
 .drawer_header {
