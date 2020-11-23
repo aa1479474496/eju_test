@@ -5,6 +5,8 @@ import { SourceDatasType } from '@/models/connect';
 
 import { Tooltip } from 'antd';
 import PageSource from './PageSource';
+import PageImg from './PageImg';
+import PageText from './PageText';
 
 import styles from './index.scss';
 
@@ -16,7 +18,7 @@ import components, { ComponentName } from '@/config/components';
 // }
 
 const SideBar = ({tables}: {tables: SourceDatasType[]}) => {
-  const [type, setType] = useState('chart');
+  const [type, setType] = useState<string>('chart');
   console.log('sidebar', tables);
 
   // 生成侧边按钮栏
@@ -52,7 +54,7 @@ const SideBar = ({tables}: {tables: SourceDatasType[]}) => {
     else if (type == 'pic') {
       name = '图形';
     }
-    else if (type == 'img') {
+    else if (type == 'image') {
       name = '图片';
     }
 
@@ -61,6 +63,21 @@ const SideBar = ({tables}: {tables: SourceDatasType[]}) => {
         <span>{name}</span>
         <i className={cls('iconfont iconguanbi', styles.iconguanbi)}></i>
       </div>
+    )
+  }
+
+  // 二级弹出层组件
+  const DrawerContent = {
+    chart: (
+      <PageSource 
+        datas={tables}
+      />
+    ),
+    image: (
+      <PageImg />
+    ),
+    text: (
+      <PageText />
     )
   }
 
@@ -76,7 +93,8 @@ const SideBar = ({tables}: {tables: SourceDatasType[]}) => {
       {/* 组件弹出层 */}
       <div className={styles.side_drawer}>
         <DrawHeader />
-        <PageSource datas={tables}/>
+        {DrawerContent[type as ComponentName]}
+        {/* <PageSource datas={tables}/> */}
       </div>
 
 
