@@ -6,7 +6,7 @@ import { SearchOutlined } from '@ant-design/icons';
 
 import { SourceDatasType } from '@/models/connect';
 
-import styles from './index.scss';
+import styles from './pageSource.scss';
 
 const PageSource = ({ datas }: { datas: SourceDatasType[] }) => {
   // console.log('----', props);

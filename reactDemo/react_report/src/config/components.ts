@@ -10,6 +10,17 @@ export default {
       whLock: false,
     }
   },
+  image: {
+    icon: 'iconredactimage',
+    iconText: '插入图片',
+    config: {
+      w: 400,
+      h: 160,
+      x: 20,
+      y: 20,
+      whLock: true,
+    }
+  },
   text: {
     icon: 'iconredactredacttextfill',
     iconText: '插入文本',
@@ -23,6 +34,6 @@ export default {
   }
 }
 
-type ComponentName = 'chart' | 'text';
+type ComponentName = 'chart' | 'image' |'text';
 
 export { ComponentName };
