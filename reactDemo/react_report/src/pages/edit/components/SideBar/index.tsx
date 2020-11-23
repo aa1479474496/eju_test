@@ -21,6 +21,11 @@ const SideBar = ({tables, maps}: {tables: SourceDatasType[], maps: SourceDatasTy
   const [type, setType] = useState<string>('');
   console.log('sidebar', tables);
 
+  const setDrawerType = (componentType:string) => {
+    let _type = type == componentType ? '' : componentType;
+    setType(_type);
+  }
+
   // 生成侧边按钮栏
   const Options: React.FC = () => {
     let keys: string[] = Object.keys(components);
@@ -28,7 +33,7 @@ const SideBar = ({tables, maps}: {tables: SourceDatasType[], maps: SourceDatasTy
       let current = components[key as ComponentName];
       return (
         <Tooltip key={key} placement="right" title={current.iconText}>
-          <div className={cls(styles.option, type == key ? styles.is_active : '')} onClick={() => setType(key)}>
+          <div className={cls(styles.option, type == key ? styles.is_active : '')} onClick={() => setDrawerType(key)}>
             <i className={cls("iconfont", current.icon, styles.iconfont)}></i>
           </div>
         </Tooltip>
@@ -56,7 +61,11 @@ const SideBar = ({tables, maps}: {tables: SourceDatasType[], maps: SourceDatasTy
     return (
       <div className={styles.drawer_header}>
         <span>{name}</span>
-        <i className={cls('iconfont iconguanbi', styles.iconguanbi)}></i>
+        <i 
+          className={cls('iconfont iconguanbi', styles.iconguanbi)}
+          onClick={() => setType('')}
+        >
+        </i>
       </div>
     )
   }

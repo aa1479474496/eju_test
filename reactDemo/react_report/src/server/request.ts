@@ -1,6 +1,7 @@
 import axios from "axios";
 import Config from "@/server/env";
 import { getQueryString } from "@/utils/utils";
+import { message } from 'antd';
 
 
 let myHttp = axios.create({
@@ -47,6 +48,7 @@ myHttp.interceptors.response.use(
         //   tipText,
         //   type:'error'
         // });
+        message.error(tipText);
         return {status:false}
       }
       if (typeof response.data.iError != "undefined" && response.data.iError !== 0){
@@ -55,6 +57,8 @@ myHttp.interceptors.response.use(
         //   tipText,
         //   type:'error'
         // });
+        message.error(tipText);
+
         return {status:false}
       }
     }
@@ -68,6 +72,8 @@ myHttp.interceptors.response.use(
         //   tipText: '用户登录信息已过期,请重新登录',
         //   type: 'error'
         // });
+        message.error('用户登录信息已过期,请重新登录');
+
         return {status:false}
     }
     return response.data;
