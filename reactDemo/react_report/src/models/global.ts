@@ -93,11 +93,11 @@ const GlobalModel: GlobalModelType = {
       }
     },
 
-    changeInfo(state, { payload }) {
+    changeInfo(state, { payload }) {            
       return {
         ...(state as GlobalModelState),
         info: {
-          ...state.info,
+          ...state?.info,
           ...payload
         }
       }
