@@ -11,6 +11,7 @@ import styles from './style.scss';
 import DetailHeader from '@/components/DetailHeader';
 import SideBar from './components/SideBar';
 import MainLayout from './components/MainLayout';
+import DashAttr from '@/components/DashAttr';
 
 interface EditPageProps {
   global: GlobalModelState;
@@ -70,6 +71,7 @@ const EditPage: React.FC<EditPageProps> = (props) => {
       <div className={styles.dash_edit_pages}>
         <SideBar tables={tables} maps={maps}/>
         <MainLayout />
+        <DashAttr />
       </div>
 
       {/* <p>edit page {theme}</p> */}
