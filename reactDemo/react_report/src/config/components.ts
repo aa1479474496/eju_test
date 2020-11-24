@@ -47,5 +47,4 @@ export default {
 }
 
 type ComponentName = 'chart' | 'image' | 'text' | 'map';
-
 export { ComponentName };

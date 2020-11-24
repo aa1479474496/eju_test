@@ -61,7 +61,9 @@ const SideBar = ({tables, maps}: {tables: SourceDatasType[], maps: SourceDatasTy
       image: '图片',
       text: '文本',
     }
-    let name = nameMap[type as ComponentName] || '';
+    // type Names = keyof typeof nameMap;
+    // let name = nameMap[type as Names];
+    let name = nameMap[type as ComponentName];
 
     return (
       <div className={styles.drawer_header}>
