@@ -1,0 +1,21 @@
+.edit_main_layout {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+
+  .middle_content {
+    height: 100%;
+    overflow: auto;
+    position: relative;
+    padding-top: 16px;
+    padding-left: 36px;
+  }
+}
+
+.dash_main {
+  width: 960px;
+  height: 540px;
+  background: #fff;
+}

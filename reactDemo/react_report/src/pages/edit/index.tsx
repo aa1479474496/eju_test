@@ -10,6 +10,7 @@ import styles from './style.scss';
 
 import DetailHeader from '@/components/DetailHeader';
 import SideBar from './components/SideBar';
+import MainLayout from './components/MainLayout';
 
 interface EditPageProps {
   global: GlobalModelState;
@@ -68,6 +69,7 @@ const EditPage: React.FC<EditPageProps> = (props) => {
       </InfoContext.Provider>
       <div className={styles.dash_edit_pages}>
         <SideBar tables={tables} maps={maps}/>
+        <MainLayout />
       </div>
 
       {/* <p>edit page {theme}</p> */}

@@ -89,14 +89,14 @@ body {
 }
 ::-webkit-scrollbar-thumb {
   //滚动条的设置
-  // @include bg_color(fill_13);
+  @include bg_color(fill_2);
 
   background-clip: padding-box;
   min-height: 64px;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  // @include bg_color(fill_13);
+  @include bg_color(fill_2);
 
 }
 
