@@ -36,8 +36,11 @@ export const InfoContext = createContext<InfoContextType>({
 
 const EditPage: React.FC<EditPageProps> = (props) => {
   let { global, dispatch } = props;
-  let { theme, info, tables, maps } = global;
+  let { theme, info, tables, maps, activeKey, data } = global;
   console.log('tables::', tables);
+
+  let curPage = data.pages[activeKey] || {}; // ppt当前页
+  console.log('-----', curPage);
 
   const changeInfo = (info: {}) => {
     dispatch({
@@ -70,7 +73,7 @@ const EditPage: React.FC<EditPageProps> = (props) => {
       </InfoContext.Provider>
       <div className={styles.dash_edit_pages}>
         <SideBar tables={tables} maps={maps}/>
-        <MainLayout />
+        <MainLayout curPage={curPage}/>
         <DashAttr />
       </div>
 

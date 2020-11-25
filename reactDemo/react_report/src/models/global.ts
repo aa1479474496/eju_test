@@ -15,6 +15,7 @@ export interface GlobalModelState {
   info: object;
   maps: SourceDatasType[];
   tables: SourceDatasType[];
+  activeKey: number;
 }
 
 export interface GlobalModelType {
@@ -44,7 +45,8 @@ const GlobalModel: GlobalModelType = {
     dbs: {},
     info: {},
     maps: [],
-    tables: []
+    tables: [],
+    activeKey: 0
   },
 
   effects: {

@@ -50,7 +50,7 @@ const DetailHeader: React.FC = () => {
 
 
   // 撤销， 重做
-  const DoTools: React.FC = () => {
+  const DoTools = () => {
     let undoClass = cls("iconfont iconcontrolbackoutfill mr16", styles.do_item);
     let redoClass = cls("iconfont iconcontrolbackoutfill", styles.do_item, styles.is_flip);
     return (
