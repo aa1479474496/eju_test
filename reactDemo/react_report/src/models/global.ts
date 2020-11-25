@@ -1,5 +1,7 @@
 import {Reducer, Effect } from 'umi';
 import Api from '@/api/common';
+import { getQueryString } from "@/utils/utils";
+
 import { DetailDataType, SourceDatasType} from './connect';
 
 // export interface DetailDataType {
@@ -55,9 +57,11 @@ const GlobalModel: GlobalModelType = {
     },
 
     *loadData(_, { call ,put }) {
+      let id =  getQueryString('id') || 0;
       let payload = {
-        id: 131035, 
+        id
       }
+
       let res = yield call(Api.loadReport, payload);
       if (res.status) {
         let {data, dbs, info, maps, tables} = res.data;
