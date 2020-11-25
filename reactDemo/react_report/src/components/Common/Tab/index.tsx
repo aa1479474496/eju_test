@@ -12,10 +12,11 @@ type TabPropsType = {
   list: Partial<ItemPropsType>[];
   cur: Partial<ItemPropsType>;
   changeTab?:(item: Partial<ItemPropsType>) => void;
+  className?: string;
 }
 
 const Tab = (props: TabPropsType) => {
-  const { list, cur, changeTab } = props;
+  const { list, cur, changeTab, className = '' } = props;
   const handleClick = (item: Partial<ItemPropsType>) => {
     if (changeTab) {
       if (item.value == cur.value) {
@@ -24,8 +25,10 @@ const Tab = (props: TabPropsType) => {
       changeTab(item);
     }
   }
+
+  console.log('------', className);
   return (
-  <div className={styles.tab_box}>
+  <div className={cls(styles.tab_box, className)}>
     {
       list.map(item => {
         return (

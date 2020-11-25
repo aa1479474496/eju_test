@@ -10,4 +10,27 @@
   user-select: none;
   @include bg_color(fill_1);
   @include box_shadow(shadow_3);
+
+
+}
+
+// :global {
+//   .customTab {
+//     font-size: 30px;
+
+//     .item {
+//       font-size: 36px;
+//     }
+//   }
+// }
+
+// :gloabl(.customTab) {
+//   font-size: 30px;
+//   .item {
+//     font-size: 36px;
+//   }
+// }
+
+.customTab {
+      font-size: 36px;
 }

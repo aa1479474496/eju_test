@@ -16,7 +16,8 @@ const DashAttr = () => {
   }
   return (
     <div className={styles.dash_attr}>
-      <Tab 
+      <Tab
+        className={styles.customTab} 
         list={tablist} 
         cur={curtab}
         changeTab={changeTab}

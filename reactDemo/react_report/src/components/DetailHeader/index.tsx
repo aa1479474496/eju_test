@@ -79,7 +79,7 @@ const DetailHeader: React.FC = () => {
     ]
     let roleBtns = btns.filter(btn => btn.role.includes(mode));
     let items = roleBtns.map((roleBtn, index) => {
-      
+
       let content = (
         <span>{roleBtn.text}</span>
       );
