@@ -2,7 +2,7 @@ import React from 'react';
 import cls from 'classnames';
 import styles from './index.scss';
 
-type ItemPropsType = {
+export interface ItemPropsType {
   name: string;
   value: string | number;
   
@@ -17,8 +17,10 @@ type TabPropsType = {
 const Tab = (props: TabPropsType) => {
   const { list, cur, changeTab } = props;
   const handleClick = (item: Partial<ItemPropsType>) => {
-    console.log('1111111', item);
     if (changeTab) {
+      if (item.value == cur.value) {
+        return;
+      }
       changeTab(item);
     }
   }
