@@ -8,12 +8,12 @@ const List = () => {
   let detail = Detail.useContainer();
   let { list, addList, delList } = detail;
   useEffect(() => {
-    addList();
+    // addList();
 
     // setInitialState({ 
     //   list: [{ id: '测试' }] 
     // });
-    console.log('effect');
+    // console.log('effect');
     // setTimeout(() => {
     // }, 1000);
   }, []);

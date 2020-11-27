@@ -1,38 +1,38 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { createContainer } from "unstated-next";
 
-type InitialStateProps = {
-  list?: any[];
-  notices?: any[];
+let init = {
+  name: [{ id: '测试12' }]
 }
-let id = 1;
 
-function useDetail(initialState:InitialStateProps) {
-  // let {list = [], notices = []} = initialState;
-  const [initState, setInitState] = useState(initialState);
-  const [list = [], setList] = useState(initState.list);
-  const listRef = useRef(list);
-  listRef.current = list;
+let init2 = {
+  name: [{ id: 'init2' }]
+}
 
-  // let setState = (state:InitialStateProps) => {
-  //   setInitState(state);
-  // }
+export type NameType = {
+  id: string | number;
+}
 
-  let addList = () => {
-    let _list = [...list].concat({id: id++});
-    setList(_list);
-  }
+export type UserType = {
+  name:NameType[]
+}
 
-  let delList = (id:string | number) => {
-    let _list = list.filter(item =>(item.id != id));
-    setList(_list);
-  }
 
-  useEffect(() =>{
-    // setInterval(() =>{console.log('lllll', listRef);}, 3000);
-  }, [])
+function useDetail() {
+ const [user, setUser] = useState<UserType>(init);
 
-  return {list, setList, addList, delList}
+ useEffect(() =>{
+  setTimeout(() => {
+    console.log('time out');
+    let _user = {
+      ...user,
+      ...init2
+    }
+    setUser(_user);
+  }, 2000);
+}, []);
+
+return { user };
 }
 
 let Detail = createContainer(useDetail);
