@@ -5,6 +5,8 @@ const routes = [
   { path: '/counter', component: '@/pages/studyDemo/counter' },
   { path: '/skeleton', component: '@/pages/skeleton/index' },
   { path: '/unstated', component: '@/pages/unstated/index' },
+  { path: '/unstatedDemo', component: '@/pages/unstatedDemo/index' },
+  { path: '/userAuth', component: '@/pages/userAuth/index' },
 ]
 
 export default routes;
