@@ -7,6 +7,7 @@ const routes = [
   { path: '/unstated', component: '@/pages/unstated/index' },
   { path: '/unstatedDemo', component: '@/pages/unstatedDemo/index' },
   { path: '/userAuth', component: '@/pages/userAuth/index' },
+  { path: '/todo', component: '@/pages/todo/index' },
 ]
 
 export default routes;
