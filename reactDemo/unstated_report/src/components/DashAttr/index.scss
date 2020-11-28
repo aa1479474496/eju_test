@@ -1,0 +1,36 @@
+.dash_attr {
+  position: absolute;
+  z-index: 2;
+  width: 320px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  user-select: none;
+  @include bg_color(fill_1);
+  @include box_shadow(shadow_3);
+
+
+}
+
+// :global {
+//   .customTab {
+//     font-size: 30px;
+
+//     .item {
+//       font-size: 36px;
+//     }
+//   }
+// }
+
+// :gloabl(.customTab) {
+//   font-size: 30px;
+//   .item {
+//     font-size: 36px;
+//   }
+// }
+
+.customTab {
+      font-size: 36px;
+}

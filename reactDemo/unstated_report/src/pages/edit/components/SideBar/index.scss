@@ -1,0 +1,71 @@
+.side_bar {
+  position: absolute;
+  z-index: 99;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 64px;
+  @include text_color(color_6);
+}
+
+.option_group {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  @include bg_color(fill_1);
+  @include box_shadow(shadow_2);
+}
+
+.option {
+  position: relative;
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+  outline: none;
+  cursor: pointer;
+
+  &.is_active {
+    @include bg_color(fill_2);
+    @include text_color(color_1);
+  }
+
+  .iconfont {
+    font-size: 24px;
+  }
+}
+
+.side_drawer {
+  position: absolute;
+  z-index: 2;
+  left: 64px;
+  top: 0;
+  bottom: 0;
+  width: 320px;
+  transform: translateX(-100%);
+  transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
+  @include bg_color(fill_5);
+  @include box_shadow(shadow_2);
+
+  &.is_open {
+    transform: translateX(0);
+  }
+}
+
+.drawer_header {
+  position: relative;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  height: 64px;
+  line-height: 64px;
+  @include bg_color(fill_1);
+
+  .iconguanbi {
+    position: absolute;
+    right: 16px;
+    top: 24px;
+    line-height: 1;
+    @include closeAnimate;
+  }
+}
+

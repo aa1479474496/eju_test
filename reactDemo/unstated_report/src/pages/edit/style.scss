@@ -1,0 +1,18 @@
+// .editWrapper {
+
+//   font-size: 34px;
+//   @include bg_color(fill_1);
+// }
+
+.dash_edit_pages {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-top: 0;
+  padding-left: 64px;
+  padding-right: 320px;
+  @include bg_color(fill_16);
+  @include border(fill_3, border-top);
+}
