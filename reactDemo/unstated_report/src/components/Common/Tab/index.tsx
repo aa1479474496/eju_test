@@ -26,7 +26,7 @@ const Tab = (props: TabPropsType) => {
     }
   }
 
-  console.log('------', className);
+  // console.log('------', className);
   return (
   <div className={cls(styles.tab_box, className)}>
     {

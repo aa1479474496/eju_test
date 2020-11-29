@@ -20,7 +20,7 @@ import components, { ComponentName } from '@/config/components';
 
 const SideBar = ({tables, maps}: {tables: SourceDatasType[], maps: SourceDatasType[]}) => {
   const [type, setType] = useState<string>('');
-  console.log('sidebar', tables);
+  // console.log('sidebar', tables);
   const ref = useRef(null);
   useOnClickOutSide(ref, () => {
     setType('');

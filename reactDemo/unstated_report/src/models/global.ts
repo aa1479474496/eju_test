@@ -71,7 +71,7 @@ const GlobalModel: GlobalModelType = {
           type: 'save',
           payload: res.data
         });
-        console.log('loadData', res);
+        // console.log('loadData', res);
       }
     },
 
