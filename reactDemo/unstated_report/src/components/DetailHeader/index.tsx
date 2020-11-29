@@ -2,21 +2,28 @@ import React, { useMemo } from 'react';
 import cls from 'classnames';
 
 import { Tooltip } from 'antd';
+import { Select } from 'antd';
 import Details from '@/models/details';
 
 import styles from './index.scss';
 
-
+const { Option } = Select;
 const DetailHeader: React.FC = () => {
   let detailsContainer = Details.useContainer();
-  let { info, setInfo } = detailsContainer;
+  let { theme, changeTheme, info, setInfo } = detailsContainer;
 
   const changeName: React.ReactEventHandler<HTMLInputElement> = (e) => {
     const target = e.target as HTMLInputElement;
-    setInfo({ 
+    setInfo({
       ...info,
       name: target.value
-     });
+    });
+  }
+
+  const handleChange = (value:string) => {
+    console.log('value2', value);
+    changeTheme(value);
+   
   }
 
   // logo
@@ -64,7 +71,6 @@ const DetailHeader: React.FC = () => {
   }
 
   // 右侧 按钮组 
-
   const RoleBtns: React.FC = () => {
     let mode = 'edit';
     let { iCanExport = 0 } = info;
@@ -102,6 +108,28 @@ const DetailHeader: React.FC = () => {
     )
   }
 
+  // 右侧 切换主题
+  const Theme = () => {
+    const themes = [
+      { type: 'light', aliasName: '明亮白' },
+      { type: 'red', aliasName: '赤炼红' }
+    ]
+    return (
+      <Select 
+        defaultValue={theme} 
+        style={{ width: 90 }} 
+        bordered={false}
+        onChange={handleChange}
+      >
+        {
+          themes.map(item => (
+          <Option key={item.type} value={item.type}>{item.aliasName}</Option>
+          ))
+        }
+      </Select>
+    )
+  }
+
   return (
     <div className={styles.top_header}>
       <div className={styles.left}>
@@ -124,6 +152,7 @@ const DetailHeader: React.FC = () => {
       <div className={styles.right}>
         <div className={styles.btn_groups}>
           <RoleBtns />
+          <Theme />
         </div>
       </div>
     </div>

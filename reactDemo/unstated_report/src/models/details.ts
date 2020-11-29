@@ -56,6 +56,11 @@ function useDetails() {
   let [ maps, setMaps] = useState<SourceDatasType[]>([]);
   let [ tables, setTables] = useState<SourceDatasType[]>([]);
 
+  const changeTheme = (value: string) => {
+    setTheme(value);
+    document.documentElement.setAttribute("data-theme", value);
+  }
+
 
   useEffect(() => {
     let id =  getQueryString('id') || 0;
@@ -76,7 +81,7 @@ function useDetails() {
     activeIndex, 
     setActiveIndex,
     theme,
-    setTheme,
+    changeTheme,
     attr, 
     setAttr ,
     pages, 
