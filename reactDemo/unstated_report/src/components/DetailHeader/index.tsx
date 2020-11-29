@@ -1,24 +1,22 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import cls from 'classnames';
 
 import { Tooltip } from 'antd';
-import { InfoContext, InfoContextType } from '@/pages/edit';
+import Details from '@/models/details';
 
 import styles from './index.scss';
 
 
-// type DetailHeaderProps = {
-//   info: {
-//     name?: string;
-//   }
-// }
-
 const DetailHeader: React.FC = () => {
-  const { info, changeInfo } = useContext(InfoContext);
+  let detailsContainer = Details.useContainer();
+  let { info, setInfo } = detailsContainer;
 
   const changeName: React.ReactEventHandler<HTMLInputElement> = (e) => {
     const target = e.target as HTMLInputElement;
-    changeInfo({ name: target.value });
+    setInfo({ 
+      ...info,
+      name: target.value
+     });
   }
 
   // logo

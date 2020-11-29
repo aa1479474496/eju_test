@@ -23,10 +23,18 @@ export interface GlobalModelState {
   theme: string;
   data: DetailDataType; // 
   dbs: object;
-  info: object;
+  info: {
+    name?: string;
+    iCanExport?: number;
+  };
   maps: SourceDatasType[];
   tables: SourceDatasType[];
   activeKey: number;
+}
+
+export type InfoType = {
+  name?: string;
+  iCanExport?: number;
 }
 
 
@@ -34,7 +42,7 @@ function useDetails() {
   let [ theme, setTheme ] = useState<string>('light');
   let [ attr, setAttr ] = useState<object>({});
   let [ pages, setPages] = useState<object[]>([]);
-  let [ info, setInfo ] = useState<object>({});
+  let [ info, setInfo ] = useState<InfoType>({});
   let [ maps, setMaps] = useState<object[]>([]);
   let [ tables, setTables] = useState<object[]>([]);
 
