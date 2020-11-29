@@ -10,6 +10,7 @@ export interface DetailDataType {
 }
 
 export interface SourceDatasType {
+  // 数据源类型
   groupfiled?: number;
   groupname?: string;
   id: number;
@@ -19,29 +20,38 @@ export interface SourceDatasType {
   uptime: number;
 }
 
-export interface GlobalModelState {
-  theme: string;
-  data: DetailDataType; // 
-  dbs: object;
-  info: {
-    name?: string;
-    iCanExport?: number;
-  };
-  maps: SourceDatasType[];
-  tables: SourceDatasType[];
-  activeKey: number;
+export type ItemDataType = {
+  x: string | number;
+  y: string | number;
+  w: string | number;
+  h: string | number;
+  i: string | number;
+  css?: any;
+  innercss?: any;
+  whLock: boolean;
+  type: string;
+}
+
+export type PagesType = {
+  // 每一页ppt属性
+  attr?: string;
+  chartSource?: object;
+  data: ItemDataType[];
+  image: string;
 }
 
 export type InfoType = {
+  // 报告属性
   name?: string;
   iCanExport?: number;
 }
 
 
 function useDetails() {
+  let [ activeIndex, setActiveIndex] = useState<number>(0);
   let [ theme, setTheme ] = useState<string>('light');
   let [ attr, setAttr ] = useState<object>({});
-  let [ pages, setPages] = useState<object[]>([]);
+  let [ pages, setPages] = useState<PagesType[]>([]);
   let [ info, setInfo ] = useState<InfoType>({});
   let [ maps, setMaps] = useState<SourceDatasType[]>([]);
   let [ tables, setTables] = useState<SourceDatasType[]>([]);
@@ -63,18 +73,20 @@ function useDetails() {
     })
   }, []);
   return {
+    activeIndex, 
+    setActiveIndex,
     theme,
     setTheme,
-     attr, 
-     setAttr ,
-     pages, 
-     setPages,
-     info, 
-     setInfo,
-     maps, 
-     setMaps,
-     tables, 
-     setTables
+    attr, 
+    setAttr ,
+    pages, 
+    setPages,
+    info, 
+    setInfo,
+    maps, 
+    setMaps,
+    tables, 
+    setTables
   }
 }
 

@@ -1,20 +1,19 @@
 import React from 'react';
 import cls from 'classnames';
 
+import Details from '@/models/details';
+
 import styles from './index.scss';
-type MainLayoutProps = {
-  curPage: {
-    data?: any[];
-  }
-}
 
-const MainLayout = (props: MainLayoutProps) => {
-  let { curPage = {} } = props;
-  let { data = [] } = curPage;
+const MainLayout = () => {
 
+  let detailsContainer = Details.useContainer();
+  let { pages, activeIndex } = detailsContainer;
+  let curPage = pages[activeIndex] || {};
+  let pageDatas = curPage.data || [];
 
   const RenderGrid = () => {
-    let grids = data.map((item, index) => (
+    let grids = pageDatas.map((item, index) => (
     <p key={item.type + index}>{item.type}-{index}</p>
     ));
     
