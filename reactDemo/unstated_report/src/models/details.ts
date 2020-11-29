@@ -43,12 +43,11 @@ function useDetails() {
   let [ attr, setAttr ] = useState<object>({});
   let [ pages, setPages] = useState<object[]>([]);
   let [ info, setInfo ] = useState<InfoType>({});
-  let [ maps, setMaps] = useState<object[]>([]);
-  let [ tables, setTables] = useState<object[]>([]);
+  let [ maps, setMaps] = useState<SourceDatasType[]>([]);
+  let [ tables, setTables] = useState<SourceDatasType[]>([]);
 
 
   useEffect(() => {
-    console.log('effffffect');
     let id =  getQueryString('id') || 0;
     Api.loadReport({id}).then(res => {
       if (res.status) {

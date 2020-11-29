@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react';
 import cls from 'classnames';
 
-import { SourceDatasType } from '@/models/connect';
+import Details from '@/models/details';
 import { useOnClickOutSide } from '@/hooks/index';
+import components, { ComponentName } from '@/config/components';
 
 import { Tooltip } from 'antd';
 import PageSource from './PageSource';
@@ -11,16 +12,13 @@ import PageText from './PageText';
 
 import styles from './index.scss';
 
-import components, { ComponentName } from '@/config/components';
 
+const SideBar = () => {
 
-// type SideBarProps = {
-//   tables: SourceDatasType
-// }
+  let detailsContainer = Details.useContainer();
+  let { tables, maps } = detailsContainer;
 
-const SideBar = ({tables, maps}: {tables: SourceDatasType[], maps: SourceDatasType[]}) => {
   const [type, setType] = useState<string>('');
-  // console.log('sidebar', tables);
   const ref = useRef(null);
   useOnClickOutSide(ref, () => {
     setType('');

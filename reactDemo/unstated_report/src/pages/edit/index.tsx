@@ -20,34 +20,11 @@ interface EditPageProps {
   dispatch: Dispatch;
 }
 
-export type InfoContextType = {
-  info: {
-    name?: string;
-    iCanExport?: number;
-  };
-  changeInfo: (info: {}) => void;
-}
-export const InfoContext = createContext<InfoContextType>({
-  info: {
-    name: '',
-    iCanExport: 0
-  },
-  changeInfo: () => { }
-});
-
-
 const EditPage: React.FC<EditPageProps> = (props) => {
   let { global, dispatch } = props;
   let { theme, info, tables, maps, activeKey, data } = global;
 
   let curPage = data.pages[activeKey] || {}; // ppt当前页
-
-  const changeInfo = (info: {}) => {
-    dispatch({
-      type: 'global/changeInfo',
-      payload: info
-    })
-  }
 
   const toggleTheme = () => {
     let _theme = theme == 'light' ? 'dark' : 'light';
@@ -69,11 +46,9 @@ const EditPage: React.FC<EditPageProps> = (props) => {
   return (
     <div className={cls('com_container')}>
       <Details.Provider>
-        <InfoContext.Provider value={{ info, changeInfo }}>
-          <DetailHeader />
-        </InfoContext.Provider>
+        <DetailHeader />
         <div className={styles.dash_edit_pages}>
-          <SideBar tables={tables} maps={maps} />
+          <SideBar/>
           <MainLayout curPage={curPage} />
           <DashAttr />
         </div>
