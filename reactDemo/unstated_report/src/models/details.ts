@@ -49,13 +49,13 @@ export type InfoType = {
 
 
 function useDetails() {
-  let [ activeIndex, setActiveIndex] = useState<number>(0);
-  let [ theme, setTheme ] = useState<string>('light');
-  let [ attr, setAttr ] = useState<object>({});
-  let [ pages, setPages] = useState<PagesType[]>([]);
-  let [ info, setInfo ] = useState<InfoType>({});
-  let [ maps, setMaps] = useState<SourceDatasType[]>([]);
-  let [ tables, setTables] = useState<SourceDatasType[]>([]);
+  let [activeIndex, setActiveIndex] = useState<number>(0);
+  let [theme, setTheme] = useState<string>('light');
+  let [attr, setAttr] = useState<object>({});
+  let [pages, setPages] = useState<PagesType[]>([]);
+  let [info, setInfo] = useState<InfoType>({});
+  let [maps, setMaps] = useState<SourceDatasType[]>([]);
+  let [tables, setTables] = useState<SourceDatasType[]>([]);
 
   const changeTheme = (value: string) => {
     setTheme(value);
