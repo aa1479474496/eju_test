@@ -21,6 +21,7 @@ export interface SourceDatasType {
 }
 
 export type ItemDataType = {
+  // 每个元素属性
   x: string | number;
   y: string | number;
   w: string | number;
@@ -63,10 +64,11 @@ function useDetails() {
 
 
   useEffect(() => {
-    let id =  getQueryString('id') || 0;
-    Api.loadReport({id}).then(res => {
+
+    (async function loadData() {
+      let id =  getQueryString('id') || 0;
+      let res = await Api.loadReport({id});
       if (res.status) {
-        console.log('ressss', res);
         let { data, info, maps, tables } = res.data;
         let { attr, pages } = data;
         setAttr(attr);
@@ -75,7 +77,8 @@ function useDetails() {
         setMaps(maps);
         setTables(tables);
       }
-    })
+    })();
+
   }, []);
   return {
     activeIndex, 
