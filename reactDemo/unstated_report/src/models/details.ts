@@ -1,6 +1,8 @@
 import React , { useState, useEffect } from 'react';
 import { createContainer } from 'unstated-next';
 
+import { useUser } from './user';
+
 import Api from '@/api/common';
 import { getQueryString } from "@/utils/utils";
 
@@ -49,6 +51,7 @@ export type InfoType = {
 
 
 function useDetails() {
+  const { user, setUser } = useUser();
   let [activeIndex, setActiveIndex] = useState<number>(0);
   let [theme, setTheme] = useState<string>('light');
   let [attr, setAttr] = useState<object>({});
@@ -64,7 +67,6 @@ function useDetails() {
 
 
   useEffect(() => {
-
     (async function loadData() {
       let id =  getQueryString('id') || 0;
       let res = await Api.loadReport({id});
@@ -80,7 +82,12 @@ function useDetails() {
     })();
 
   }, []);
+
+  useEffect(() => {
+    console.log('user', user);
+  }, [user])
   return {
+    user,
     activeIndex, 
     setActiveIndex,
     theme,

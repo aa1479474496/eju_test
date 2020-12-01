@@ -10,7 +10,7 @@ import styles from './index.scss';
 const { Option } = Select;
 const DetailHeader: React.FC = () => {
   let detailsContainer = Details.useContainer();
-  let { theme, changeTheme, info, setInfo } = detailsContainer;
+  let { theme, changeTheme, info, setInfo, user } = detailsContainer;
 
   const changeName: React.ReactEventHandler<HTMLInputElement> = (e) => {
     const target = e.target as HTMLInputElement;
@@ -103,6 +103,7 @@ const DetailHeader: React.FC = () => {
     });
     return (
       <>
+      {/* <span>{user.name}</span> */}
         {items}
       </>
     )
