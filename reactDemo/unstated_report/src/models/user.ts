@@ -6,7 +6,7 @@ function useUser() {
 
   useEffect(() => {
     setTimeout(() => {
-      console.log('user timeout');
+      // console.log('user timeout');
       setUser({name: 'user name'});
     }, 2000);
   }, [])

@@ -5,7 +5,6 @@ import styles from './index.scss';
 export interface ItemPropsType {
   name: string;
   value: string | number;
-  
 }
 
 type TabPropsType = {

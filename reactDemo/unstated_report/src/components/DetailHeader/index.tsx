@@ -21,7 +21,6 @@ const DetailHeader: React.FC = () => {
   }
 
   const handleChange = (value:string) => {
-    console.log('value2', value);
     changeTheme(value);
    
   }
