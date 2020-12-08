@@ -1,39 +1,86 @@
-.tab_box {
-  display: flex;
-  align-items: center;
-  height: 64px;
-  @include bg_color(fill_5);
-  .item {
-    flex: 1;
-    text-align: center;
-    line-height: 24px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+// .tab_box {
+//   display: flex;
+//   align-items: center;
+//   height: 64px;
+//   @include bg_color(fill_5);
+//   .item {
+//     flex: 1;
+//     text-align: center;
+//     line-height: 24px;
+//     font-size: 16px;
+//     font-weight: bold;
+//     cursor: pointer;
 
-    &.is_active {
-      @include text_color(color_2);
+//     &.is_active {
+//       @include text_color(color_2);
+//       .text {
+//         &::after {
+//           transform: scaleX(1);
+//         }
+//       }
+//     }
+
+//     .text {
+//       display: inline-block;
+//       position: relative;
+//       &::after {
+//         content: "";
+//         position: absolute;
+//         left: 0;
+//         right: 0;
+//         bottom: -6px;
+//         height: 2px;
+//         @include bg_color(fill_2);
+//         transform: scaleX(0);
+//         transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
+//       }
+//     }
+//   }
+// }
+
+:global {
+  .gl_tab_box {
+    display: flex;
+    align-items: center;
+    height: 64px;
+    @include bg_color(fill_5);
+    .item {
+      flex: 1;
+      text-align: center;
+      line-height: 24px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+  
+      &.is_active {
+        @include text_color(color_2);
+        .text {
+          &::after {
+            transform: scaleX(1);
+          }
+        }
+      }
+  
       .text {
+        display: inline-block;
+        position: relative;
         &::after {
-          transform: scaleX(1);
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -6px;
+          height: 2px;
+          @include bg_color(fill_2);
+          transform: scaleX(0);
+          transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
         }
       }
     }
-
-    .text {
-      display: inline-block;
-      position: relative;
-      &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: -6px;
-        height: 2px;
-        @include bg_color(fill_2);
-        transform: scaleX(0);
-        transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
-      }
-    }
   }
+ 
+}
+.gl_test {
+  color: red;
+  font-size: 0;
 }

@@ -27,20 +27,22 @@ const Tab = (props: TabPropsType) => {
 
   // console.log('------', className);
   return (
-  <div className={cls(styles.tab_box, className)}>
+  <div className={cls('gl_tab_box', className)}>
     {
       list.map(item => {
         return (
           <div 
-            className={cls(styles.item, item.value == cur.value ? styles.is_active : '')} 
+            className={cls('item', item.value == cur.value ? 'is_active' : '')} 
             key={item.value}
             onClick={() => handleClick(item)}
           >
-            <span className={styles.text}>{item.name}</span>
+            <div className='text'>{item.name}</div>
+            {/* <span className={cls('text')}>{item.name}</span> */}
           </div>
         )
       })
     }
+    <span className={styles.gl_test}>test</span>
     </div>
   )
 }
