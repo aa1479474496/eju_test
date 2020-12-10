@@ -16,7 +16,7 @@ const MainLayout = () => {
 
   const RenderGrid = () => {
     console.log('pageDatas', pageDatas);
-    const getStyle = (item:ItemDataType) => {
+    const getStyle = (item:ItemDataType):React.CSSProperties => {
       let { x, y, w ,h } = item;
       return {
         position: 'absolute',
