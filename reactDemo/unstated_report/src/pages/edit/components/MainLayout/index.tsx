@@ -31,7 +31,7 @@ const MainLayout = () => {
       <div style={getStyle(item)} key={item.type + index}>
       {/* <div style={{'border': '1px solid #2f54eb'}} key={item.type + index}> */}
 
-        <GridItem type={item.type}  />
+        <GridItem type={item.type}  item={item}/>
       </div>
       // <p key={item.type + index}>{item.type}-{index}</p>
     ));

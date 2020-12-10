@@ -33,6 +33,7 @@ export type ItemDataType = {
   innercss?: any;
   whLock: boolean;
   type: string;
+  data?: any;
 }
 
 export type PagesType = {

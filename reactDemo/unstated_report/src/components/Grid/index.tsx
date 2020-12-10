@@ -1,8 +1,9 @@
 import React from 'react';
 import { dynamic } from 'umi';
+import { ItemDataType } from '@/models/details';
 
 
-const DynamicFunc = (type: string) => {
+const DynamicFunc = (type: string, itemData: ItemDataType) => {
   return dynamic({
     loader: async function () {
       // let Component;
@@ -12,7 +13,7 @@ const DynamicFunc = (type: string) => {
       );
       // return Graph;
       return () => {
-        return <Graph />;
+        return <Graph itemData={itemData}/>;
       }
     },
     loading: () => (
@@ -26,14 +27,15 @@ const DynamicFunc = (type: string) => {
 
 type ItemType = {
   type: string;
+  item: ItemDataType
 };
 
 const GridItem = (props: ItemType) => {
   // return <DynamicFunc {...props} />;
-  let Item = DynamicFunc(props.type);
+  let Item = DynamicFunc(props.type, props.item);
   // console.log('-------',Item);
   return (
-    <Item />
+    <Item {...props}/>
   )
 
 }
