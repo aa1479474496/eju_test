@@ -3,7 +3,7 @@ import React from 'react';
 
 const MapGrid = () => {
   return (
-    <p>text-grid</p>
+    <p>map-grid</p>
   )
 }
 

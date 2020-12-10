@@ -1,7 +1,9 @@
 import React from 'react';
 import cls from 'classnames';
 
-import Details from '@/models/details';
+import Details, { ItemDataType } from '@/models/details';
+
+import GridItem from '@/components/Grid/index.tsx';
 
 import styles from './index.scss';
 
@@ -13,10 +15,27 @@ const MainLayout = () => {
   let pageDatas = curPage.data || [];
 
   const RenderGrid = () => {
+    console.log('pageDatas', pageDatas);
+    const getStyle = (item:ItemDataType) => {
+      let { x, y, w ,h } = item;
+      return {
+        position: 'absolute',
+        width: `${w}px`,
+        height: `${h}px`,
+        left: `${x}px`,
+        top: `${y}px`,
+        border: '1px solid #2f54eb'
+      }
+    }
     let grids = pageDatas.map((item, index) => (
-    <p key={item.type + index}>{item.type}-{index}</p>
+      <div style={getStyle(item)} key={item.type + index}>
+      {/* <div style={{'border': '1px solid #2f54eb'}} key={item.type + index}> */}
+
+        <GridItem type={item.type}  />
+      </div>
+      // <p key={item.type + index}>{item.type}-{index}</p>
     ));
-    
+
     return (
       <>
         {grids}

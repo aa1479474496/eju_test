@@ -10,7 +10,7 @@ export interface ItemPropsType {
 type TabPropsType = {
   list: Partial<ItemPropsType>[];
   cur: Partial<ItemPropsType>;
-  changeTab?:(item: Partial<ItemPropsType>) => void;
+  changeTab?: (item: Partial<ItemPropsType>) => void;
   className?: string;
 }
 
@@ -25,24 +25,23 @@ const Tab = (props: TabPropsType) => {
     }
   }
 
-  // console.log('------', className);
   return (
-  <div className={cls('gl_tab_box', className)}>
-    {
-      list.map(item => {
-        return (
-          <div 
-            className={cls('item', item.value == cur.value ? 'is_active' : '')} 
-            key={item.value}
-            onClick={() => handleClick(item)}
-          >
-            <div className='text'>{item.name}</div>
-            {/* <span className={cls('text')}>{item.name}</span> */}
-          </div>
-        )
-      })
-    }
-    <span className={styles.gl_test}>test</span>
+    <div className={cls('gl_tab_box', className)}>
+      {
+        list.map(item => {
+          return (
+            <div
+              className={cls('item', item.value == cur.value ? 'is_active' : '')}
+              key={item.value}
+              onClick={() => handleClick(item)}
+            >
+              <div className='text'>{item.name}</div>
+              {/* <span className={cls('text')}>{item.name}</span> */}
+            </div>
+          )
+        })
+      }
+      <span className={styles.gl_test}>test</span>
     </div>
   )
 }

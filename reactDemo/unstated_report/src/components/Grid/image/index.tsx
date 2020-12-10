@@ -3,7 +3,7 @@ import React from 'react';
 
 const ImageGrid = () => {
   return (
-    <p>text-grid</p>
+    <p>image-grid</p>
   )
 }
 

@@ -3,7 +3,7 @@ import React from 'react';
 
 const ChartGrid = () => {
   return (
-    <p>text-grid</p>
+    <p>chart-grid</p>
   )
 }
 
