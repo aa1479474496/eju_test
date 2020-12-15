@@ -1,5 +1,7 @@
 import React from 'react';
 import cls from 'classnames';
+import { Rnd } from "react-rnd";
+
 
 import Details, { ItemDataType } from '@/models/details';
 
@@ -12,29 +14,31 @@ const MainLayout = () => {
   let detailsContainer = Details.useContainer();
   let { pages, activeIndex } = detailsContainer;
   let curPage = pages[activeIndex] || {};
-  let pageDatas = curPage.data || [];
+  let pageDatas: ItemDataType[] = curPage.data || [];
 
   const RenderGrid = () => {
     console.log('pageDatas', pageDatas);
-    const getStyle = (item:ItemDataType):React.CSSProperties => {
-      let { x, y, w ,h } = item;
+    const getStyle = (item: ItemDataType): React.CSSProperties => {
       return {
         position: 'absolute',
-        width: `${w}px`,
-        height: `${h}px`,
-        left: `${x}px`,
-        top: `${y}px`,
         border: '1px solid #2f54eb'
       }
     }
-    let grids = pageDatas.map((item, index) => (
-      <div style={getStyle(item)} key={item.type + index}>
-      {/* <div style={{'border': '1px solid #2f54eb'}} key={item.type + index}> */}
-
-        <GridItem type={item.type}  item={item}/>
-      </div>
-      // <p key={item.type + index}>{item.type}-{index}</p>
-    ));
+    let grids = pageDatas.map((item, index) =>
+      (
+        <Rnd
+          style={getStyle(item)}
+          key={item.type + index}
+          default={{
+            x: Number(item.x),
+            y: Number(item.y),
+            width: item.w,
+            height: item.h
+          }}
+        >
+          <GridItem type={item.type} item={item} />
+        </Rnd>
+      ));
 
     return (
       <>
