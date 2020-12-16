@@ -7,7 +7,7 @@ const ImageGrid = ({itemData}:{itemData: ItemDataType}) => {
   let { data }= itemData;
   let src = data?.src || '';
   return (
-    <img className="com_img" src={src} alt=""/>
+      <img className="com_img" src={src} alt="" draggable="false"/>
   )
 }
 

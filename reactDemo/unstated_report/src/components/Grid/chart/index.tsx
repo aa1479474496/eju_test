@@ -3,7 +3,7 @@ import React from 'react';
 
 const ChartGrid = () => {
   return (
-    <p>chart-grid</p>
+    <div className="com_container">chart-grid</div>
   )
 }
 
