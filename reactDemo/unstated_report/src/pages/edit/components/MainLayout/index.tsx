@@ -29,6 +29,7 @@ const MainLayout = () => {
         <Rnd
           style={getStyle(item)}
           key={item.type + index}
+          bounds="parent"
           default={{
             x: Number(item.x),
             y: Number(item.y),
