@@ -9,12 +9,38 @@ import GridItem from '@/components/Grid/index.tsx';
 
 import styles from './index.scss';
 
+
 const MainLayout = () => {
 
   let detailsContainer = Details.useContainer();
   let { pages, activeIndex } = detailsContainer;
   let curPage = pages[activeIndex] || {};
   let pageDatas: ItemDataType[] = curPage.data || [];
+
+  const onDragStart = (itemData: ItemDataType) => {
+    //TODO 设置点击的元件为current
+    // console.log('ddddd', itemData);
+  }
+
+  const onDragStop = (e: any, data: any) => {
+    // TODO 得到返回的新的x,y 更新pageDatas
+    // console.log('eeeee', e);
+    // console.log('data', data);
+  }
+
+  const onResizeStop = (e, dir, refToElement, delta, position) => {
+    // TODO 改变元件宽高， 更新pageDatas
+    // e, dir, refToElement, delta, position
+    // width: refToElement.style.width,
+      // height: refToElement.style.height,
+        console.log('eeeeeee', e);
+    console.log('dir', dir);
+    console.log('refToElement', refToElement);
+    console.log('delta', delta);
+    console.log('position', position);
+  }
+
+
 
   const RenderGrid = () => {
     console.log('pageDatas', pageDatas);
@@ -36,6 +62,9 @@ const MainLayout = () => {
             width: item.w,
             height: item.h
           }}
+          onDragStart={() => onDragStart(item)}
+          onDragStop={onDragStop}
+          onResizeStop={onResizeStop}
         >
           <GridItem type={item.type} item={item} />
         </Rnd>
