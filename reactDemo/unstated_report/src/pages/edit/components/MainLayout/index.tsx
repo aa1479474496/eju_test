@@ -9,6 +9,15 @@ import GridItem from '@/components/Grid/index.tsx';
 
 import styles from './index.scss';
 
+// 拖拽组件定义的ts类型
+type DraggableData = {
+  node: HTMLElement,
+  x: number,
+  y: number,
+  deltaX: number, deltaY: number,
+  lastX: number, lastY: number
+};
+
 
 const MainLayout = () => {
 
@@ -22,28 +31,30 @@ const MainLayout = () => {
     // console.log('ddddd', itemData);
   }
 
-  const onDragStop = (e: any, data: any) => {
+  const onDragStop = (e: any, data: DraggableData) => {
     // TODO 得到返回的新的x,y 更新pageDatas
     // console.log('eeeee', e);
     // console.log('data', data);
   }
 
-  const onResizeStop = (e, dir, refToElement, delta, position) => {
+  const onResizeStop = (e: MouseEvent | TouchEvent, dir: string, refToElement:HTMLElement, delta: { width: number, height: number }, position: { x: number, y: number }) => {
     // TODO 改变元件宽高， 更新pageDatas
     // e, dir, refToElement, delta, position
     // width: refToElement.style.width,
-      // height: refToElement.style.height,
-        console.log('eeeeeee', e);
-    console.log('dir', dir);
-    console.log('refToElement', refToElement);
-    console.log('delta', delta);
-    console.log('position', position);
+    // height: refToElement.style.height,
+    // console.log('eeeeeee', e);
+    // console.log('dir', dir);
+    // console.log('refToElement', refToElement);
+    // console.log('delta', delta);
+    // console.log('position', position);
+    console.log('width', refToElement.style.width);
+    console.log('height', refToElement.style.height);
   }
 
 
 
   const RenderGrid = () => {
-    console.log('pageDatas', pageDatas);
+    // console.log('pageDatas', pageDatas);
     const getStyle = (item: ItemDataType): React.CSSProperties => {
       return {
         position: 'absolute',
