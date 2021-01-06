@@ -1,6 +1,7 @@
 <template>
   <div>
-    <slotTest>
+    <h3>测试sync{{count}}</h3>
+    <slotTest :count.sync="count">
       <p>default</p>
       <p slot="testname">testname</p>
       <p slot="icon">111</p>
@@ -34,6 +35,7 @@ export default {
   },
   data() {
     return {
+      count: 1,
       tableData: [
         {
           date: "2016-05-03",
