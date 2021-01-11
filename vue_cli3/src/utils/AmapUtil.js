@@ -1,13 +1,13 @@
 import Tools from "@/utils/tools.js";
 const KEY = "ea0f1aa1d5ac2376b33df517a344d3cd";
 
-const AMapUtil = function(Amap = window.Amap) {
+const AMapUtil = function (Amap = window.Amap) {
   this._overlays = []; //地图覆盖物集合
   this._map = null; //地图对象
   this.currentOverlay = null; //当前对象
   this.defaultRichTemps = []; //默认的模板集合,占位，
   (this.dragMarkList = []), //可拖拽mark对象集合
-    (this.panelSize = { width: 100, height: 100 }); //拖拽框尺寸
+    (this.panelSize = { width: 60, height: 18 }); //拖拽框尺寸
 };
 
 AMapUtil.prototype = {
@@ -77,6 +77,12 @@ AMapUtil.prototype = {
     this._map = new AMap.Map(el, cfg);
   },
 
+  // 销毁地图
+  destroyMap() {
+    this._map && this._map.destroy();
+    console.log('地图已销毁');
+  },
+
   //清除覆盖物
   removeOverlay(overlay) {
     this._overlays.forEach((_overlay, index) => {
@@ -108,13 +114,13 @@ AMapUtil.prototype = {
   },
 
   //绘制热力图
-  drawHeatmap(config) {
+  async drawHeatmap(config) {
     var heatmap;
     let defaultConfig = {
       type: "heatmap",
       data: [],
       radius: 25, //给定半径
-      opacity: [0, 1],
+      // opacity: [0, 1],
       gradient: {
         0.25: "rgb(0,255,162)",
         0.55: "rgb(0,255,0)",
@@ -129,9 +135,13 @@ AMapUtil.prototype = {
       ...defaultConfig,
       ...config
     };
-    this._map.plugin(["AMap.Heatmap"], () => {
-      heatmap = new AMap.Heatmap(this._map, {
-        ...cfg
+
+    await new Promise((resolve) => {
+      this._map.plugin(["AMap.Heatmap"], () => {
+        heatmap = new AMap.Heatmap(this._map, {
+          ...cfg
+        });
+        resolve()
       });
     });
 
@@ -309,7 +319,12 @@ AMapUtil.prototype = {
       let aryP = [];
 
       points.forEach((item, index) => {
-        let point = new AMap.LngLat(item.split(",")[0], item.split(",")[1]);
+        let arr = item.split(',');
+        if (!Number(arr[0]) && !Number(arr[1])) {
+          return;
+        }
+
+        let point = new AMap.LngLat(arr[0], arr[1]);
         aryP.push(point);
       });
       return aryP;
@@ -318,9 +333,8 @@ AMapUtil.prototype = {
 
   // 经纬度坐标转成容器像素坐标
   lnglat2container(position) {
-    // console.log(position)
     let lnglat = this.makeAMapPoint(position);
-    let pixel = this._map.lnglatTocontainer(lnglat);
+    let pixel = this._map.lngLatToContainer(lnglat);
     return pixel.round();
   },
   // 容器像素坐标转成经纬度坐标
@@ -377,7 +391,7 @@ AMapUtil.prototype = {
   drawPointHtml({ config = {} }) {
     let { iconStyle = {}, txtStyle = {} } = config;
     let defaultStyle = {
-      iconType: "iconinterfaceremind",
+      iconType: "",
       txt: "",
       showTxt: true,
       showIcon: true,
@@ -388,7 +402,9 @@ AMapUtil.prototype = {
       txtStyle: {
         "font-size": "14px",
         color: "#0071E7"
-      }
+      },
+      iconClass: '',
+      txtClass: ''
     };
 
     let _style = {
@@ -412,14 +428,15 @@ AMapUtil.prototype = {
     let iconHtml = "";
     if (_style.showIcon && _style.iconType) {
       iconHtml = `
-          <i class="${_style.iconType} iconfont mr4 point_icon" style="${_iconStyle}"></i>
+          <i class="${_style.iconType} iconfont point_icon ${_style.iconClass}" style="${_iconStyle}"></i>
           `;
     }
 
     let txtHtml = "";
     if (_style.showTxt && _style.txt) {
+      let ml = (_style.showIcon && _style.iconType) ? 'ml4' : ''
       txtHtml = `
-        <span class="txt" style="${_txtStyle}">${_style.txt}</span>
+        <span class="txt ${ml} ${_style.txtClass}" style="${_txtStyle}">${_style.txt}</span>
         `;
     }
 
@@ -497,6 +514,104 @@ AMapUtil.prototype = {
     }
     return offset;
   },
+  //修改生成坐标start 
+  newDrawDragMark(content, center, item, panelId, cb) {
+    // 原始中心点的像素位置
+    let originCenter = this.lnglat2container(item.position);
+    
+    let marker = this.drawMark({
+      position: center,
+      content,
+      zIndex: 101,
+      offset: new AMap.Pixel(0, 0),
+      draggable: true,
+      type: 'panel'
+    }).item;
+
+    // marker 对象挂到item下面
+    item.marker = marker;
+    let markerPx= {
+      x: originCenter.x,
+      y: originCenter.y
+    };
+    marker.on("mousedown", e => {
+      if (typeof cb == 'function') {
+        cb();
+      }
+    });
+
+    marker.on("dragging", e => {
+      let newCenter = this.lnglat2container(item.position);
+       let markerLocation = [
+        e.target.getPosition().lng,
+        e.target.getPosition().lat
+      ];
+      markerPx = this.lnglat2container(markerLocation);
+      item.marker.markerPx = markerPx;
+      this.newDrawLine(newCenter, markerPx, panelId);
+    });
+  },
+
+  newDrawLine(originCenter, markerPx, panelId) {
+    let panelHtml = document.getElementById(panelId);
+    if (!panelHtml) {
+      return false;
+    }
+    let el = $("#" + panelId);
+    let panelineDom = el.find(".u_paneline");
+    let domHeight = el.width();
+    let domWidth = el.height();
+    // 更新dom的宽高
+    if (domHeight) {
+      this.panelSize.height = domHeight;
+    }
+    if (domWidth) {
+      this.panelSize.width = domWidth;
+    }
+
+    let _angle = Tools.getAngle(originCenter, markerPx);
+    let _distance = Tools.getDistance(originCenter, markerPx);
+
+    let _orgX = originCenter.x;
+    let _orgY = originCenter.y;
+
+    let _markX = markerPx.x;
+    let _markY = markerPx.y;
+
+    if (_markX >= _orgX && _markY <= _orgY) {
+      // console.log('右上角');
+    }
+    else if (_markX >= _orgX && _markY > _orgY) {
+      // console.log('右下角');
+    }
+    else if (_markX < _orgX && _markY > _orgY) {
+      // console.log('左下角');
+      _angle = (parseFloat(_angle) + 180).toFixed(2);
+    }
+    else if (_markX < _orgX && _markY <= _orgY) {
+      // console.log('左上');
+      _angle = (parseFloat(_angle) - 180).toFixed(2);
+    }
+    let transform = `rotate(${_angle}deg)`;
+    let width = `${_distance}px`;
+    let left = `-${_distance}px`;
+
+    let lineStyle = {
+      transform,
+      width,
+      left
+    }
+    let _setStyle = panelineDom.attr('data-style');
+    if (_setStyle) {
+      // 设置的样式存放在 data-style
+      _setStyle = JSON.parse(_setStyle);
+      Object.assign(lineStyle, _setStyle);
+    }
+    let _lineStyle = Tools.formatStyle(lineStyle);
+    panelineDom.attr("style", _lineStyle);
+  },
+
+  // 修改生成坐标end 
 
   /**
    * 画可拖拽信息框
@@ -524,8 +639,9 @@ AMapUtil.prototype = {
     let marker = this.drawMark({
       position: _infoCenter,
       content,
-      zIndex: 999,
-      draggable: true
+      zIndex: 101,
+      draggable: true,
+      type: 'panel'
     }).item;
 
     // 首次画线
@@ -545,7 +661,7 @@ AMapUtil.prototype = {
         cb();
       }
     });
-    
+
     // 添加拖拽事件和地图缩放事件，用于画连接线
     marker.on("dragging", e => {
       markerLocation = this.lnglat2container([
@@ -594,6 +710,10 @@ AMapUtil.prototype = {
     }
     let xData = markerCenter.x - center.x - 10;
     let yData = markerCenter.y - center.y - 30;
+
+    // console.log('markerCenter', markerCenter.x, center.x );
+
+    // console.log('xxxxx', xData, yData);
     let lineaHeight = Math.abs(yData) - panelSize.height / 2 + "px";
     let linebWidth = Math.abs(xData) - panelSize.width / 2 + "px";
     let baseDatax = xData + panelSize.width / 2;
@@ -606,7 +726,7 @@ AMapUtil.prototype = {
 
     if (baseDatax > 0 && yData < 0) {
       //右上
-      console.log("右上");
+      // console.log("右上");
       Object.assign(lineaStyle, {
         top: "50%"
       });
@@ -620,7 +740,7 @@ AMapUtil.prototype = {
       });
     } else if (baseDatax > 0 && yData > 0) {
       //右下
-      console.log("右下");
+      // console.log("右下");
 
       let lineaTop = -Math.abs(yData) + "px";
       let lineaHeight = panelSize.height / 2 + Math.abs(yData) + "px";
@@ -640,7 +760,7 @@ AMapUtil.prototype = {
       });
     } else if (baseDatax < 0 && yData > 0) {
       //左下
-      console.log("左下");
+      // console.log("左下");
       let lineaTop = -Math.abs(yData) + "px";
       let lineaHeight = panelSize.height / 2 + Math.abs(yData) + "px";
       let linebLeft = 0;
@@ -657,7 +777,7 @@ AMapUtil.prototype = {
       });
     } else if (baseDatax < 0 && yData < 0) {
       //左上
-      console.log("左上");
+      // console.log("左上");
       let lineaTop = "50%";
       let linebLeft = 0;
       let linebTop = Math.abs(yData) - panelSize.height / 2 + "px";

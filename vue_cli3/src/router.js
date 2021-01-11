@@ -169,12 +169,20 @@ export default new Router({
       ]
     },
 
-    // {
-    //   path: "/map",
-    //   name: "map",
-    //   component: () =>
-    //     import(/* webpackChunkName: "about" */ "./views/Map.vue")
-    // },
+    {
+      path: "/map",
+      name: "map",
+      component: () =>
+        import(/* webpackChunkName: "map" */ "./views/map/index.vue"),
+      children: [
+        {
+          path: "/map/basic",
+          name: 'map_basic',
+          component: () =>
+            import(/* webpackChunkName: "map" */ "./views/map/basic/index.vue"),
+        }
+      ]
+    },
 
     {
       path: "/ckeditor",
@@ -187,7 +195,7 @@ export default new Router({
       path: '/drag',
       name: 'drag',
       component: () =>
-        import(/* webpackChunkName: "about" */ "./views/Drag/index.vue")
+        import(/* webpackChunkName: "drag" */ "./views/Drag/index.vue")
     },
 
     {
