@@ -58,25 +58,35 @@
             height: 40px;
             line-height: 40px;
         }
+
+        .ball {
+          position: absolute;
+          left: 100px;
+          top: 100px;
+          width: 100px;
+          height: 100px;
+          border-radius: 20px;
+          background: #000;
+
+box-shadow: 0px 2px 10px 0px rgba(0, 123, 255, 0.48);
+        }
     </style>
 </head>
 
 <body>
-    <!-- <iframe
-      class="iframe"
-      src="http://dztzjc.cric.com/"
-      frameborder="0"
-    ></iframe> -->
-    <div id="app">
+
+  <div class="ball"></div>
+
+    <!-- <div id="app">
         <div @touchStart="test" class="btn" style="position: absolute">message</div>
-        <!-- <button @touchStart="test" class="btn">message</button> -->
+       
         <div style="height: 1500px;border: 1px solid red;"></div>
         <div :class="['mobile_show_toolbar', show ? 'is_show' : '']"></div>
 
-        <!-- <div :class='dddd'></div> -->
+    
 
         <button @click="toReport">去测试页面</button>
-    </div>
+    </div> -->
 </body>
 
 <script src="./lib//vue-2.6.10.js"></script>

@@ -22,7 +22,8 @@
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vuedraggable": "^2.24.0",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",

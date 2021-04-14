@@ -1,12 +1,13 @@
 <template>
   <div>
     <p>map</p>
-    <router-link to="/map/basic">map_basic</router-link>
+    <router-link to="/map/basic" style="margin-left: 20px"
+      >map_basic</router-link
+    >
     <router-link to="/account" style="margin-left:20px">account</router-link>
 
-
     <div class="map_view">
-        <customMap></customMap>
+      <customMap></customMap>
     </div>
     <router-view></router-view>
   </div>
@@ -26,14 +27,13 @@ export default {
     }),
   },
   destroyed() {
-    console.log('desssss');
     this.AMapUtil && this.AMapUtil.destroyMap && this.AMapUtil.destroyMap();
   },
 };
 </script>
 
 <style lang="scss" scoped>
-  .map_view {
-    height: 500px;
-  }
+.map_view {
+  height: 500px;
+}
 </style>

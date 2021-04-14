@@ -172,6 +172,7 @@ export default new Router({
     {
       path: "/map",
       name: "map",
+      redirect: '/map/basic',
       component: () =>
         import(/* webpackChunkName: "map" */ "./views/map/index.vue"),
       children: [

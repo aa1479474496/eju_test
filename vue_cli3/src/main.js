@@ -6,6 +6,7 @@ import ElementUI from 'element-ui';
 import 'jquery';
 import 'jquery.nicescroll';
 import 'element-ui/lib/theme-chalk/index.css';
+import _ from "lodash";
 
 Vue.use(ElementUI);
 import '@/assets/css/style.scss';
@@ -17,8 +18,9 @@ import Scrollbar from '@/components/scrollbar';
 Vue.component("Scrollbar", Scrollbar);
 Vue.component("Simple", Simple);
 
+Vue.prototype._ = _;
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
   router,
