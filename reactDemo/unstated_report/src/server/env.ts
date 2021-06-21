@@ -1,5 +1,5 @@
 
-let apiPath = "http://admindms.cwb.dev.cricwifi.com"; //数据API
+let apiPath = "http://admindms.test.dev.cricwifi.com"; //数据API
 let fileUrl = "http://dfs.cricbigdata.com/view"; //图片查看
 let uploadUrl = "http://dfs.cricbigdata.com/file/upload"; //上传图片
 let exportUrl = "http://ioppt.cricbigdata.com/index/genPPTX"; //导出pptx

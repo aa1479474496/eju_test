@@ -5,7 +5,7 @@ import { Rnd } from "react-rnd";
 
 import Details, { ItemDataType } from '@/models/details';
 
-import GridItem from '@/components/Grid/index.tsx';
+import GridItem from '@/components/Grid/index';
 
 import styles from './index.scss';
 
