@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import cls from 'classnames';
 import { Rnd } from "react-rnd";
 
@@ -53,8 +53,8 @@ const MainLayout = () => {
 
 
 
-  const RenderGrid = () => {
-    // console.log('pageDatas', pageDatas);
+  const RenderGrid = useMemo(() => {
+    console.log('pageDatas', pageDatas);
     const getStyle = (item: ItemDataType): React.CSSProperties => {
       return {
         position: 'absolute',
@@ -86,13 +86,16 @@ const MainLayout = () => {
         {grids}
       </>
     )
-  }
+  },[pageDatas]);
+
+
   return (
     <div className={styles.edit_main_layout}>
       <div className={styles.middle_content}>
         <div className={styles.dash_main}>
-          <p>middle_content</p>
-          <RenderGrid />
+          {/* <p>middle_content</p> */}
+          {RenderGrid}
+          {/* <RenderGrid /> */}
         </div>
       </div>
     </div>

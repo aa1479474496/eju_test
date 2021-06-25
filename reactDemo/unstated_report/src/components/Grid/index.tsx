@@ -33,7 +33,7 @@ type ItemType = {
 const GridItem = (props: ItemType) => {
   // return <DynamicFunc {...props} />;
   let Item = DynamicFunc(props.type, props.item);
-  // console.log('-------',Item);
+  // console.log('1111',Item);
   return (
     <Item {...props}/>
   )

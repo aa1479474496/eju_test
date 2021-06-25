@@ -3,7 +3,7 @@ import { ItemDataType } from '@/models/details';
 
 const ImageGrid = ({itemData}:{itemData: ItemDataType}) => {
   // let {  }
-  console.log('------', itemData);
+  console.log('------ img', itemData);
   let { data }= itemData;
   let src = data?.src || '';
   return (
