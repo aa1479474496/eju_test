@@ -4,7 +4,7 @@ import cls from 'classnames';
 import { Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 
-import { SourceDatasType } from '@/models/connect';
+import { SourceDatasType } from '@/models/details';
 
 import styles from './pageSource.scss';
 
