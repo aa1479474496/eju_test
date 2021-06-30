@@ -3,7 +3,7 @@ import { createContainer } from 'unstated-next';
 
 import DeatailsContainer from './details';
 
-export function useEditPages() {
+export function useEditPoint() {
   let { tables, maps } = DeatailsContainer.useContainer();
   return {
     tables,

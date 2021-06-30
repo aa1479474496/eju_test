@@ -5,7 +5,7 @@ import { Tooltip } from 'antd';
 import { Select } from 'antd';
 import Details from '@/models/details';
 
-import { useEditPages } from '@/models/editPages';
+import { useEditPoint } from '@/models/editPoint';
 
 
 import styles from './index.scss';
@@ -13,7 +13,7 @@ import styles from './index.scss';
 const { Option } = Select;
 const DetailHeader: React.FC = () => {
   let detailsContainer = Details.useContainer();
-  let { tables, maps } = useEditPages();
+  let { tables, maps } = useEditPoint();
   console.log('tables::', tables);
 
   let { theme, changeTheme, info, setInfo, user } = detailsContainer;
