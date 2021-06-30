@@ -11,26 +11,15 @@
   @include bg_color(fill_1);
   @include box_shadow(shadow_3);
 
-
+  // :global {
+  //   .gl_tab_box {
+  //     .item {
+  //       font-size: 26px;
+  //     }
+  //   }
+  // }
 }
 
-// :global {
-//   .customTab {
-//     font-size: 30px;
-
-//     .item {
-//       font-size: 36px;
-//     }
-//   }
-// }
-
-// :gloabl(.customTab) {
-//   font-size: 30px;
-//   .item {
-//     font-size: 36px;
-//   }
-// }
-
 .customTab {
-      font-size: 36px;
+  font-size: 36px;
 }
