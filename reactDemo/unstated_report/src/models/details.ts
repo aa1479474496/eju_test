@@ -2,6 +2,7 @@ import React , { useState, useEffect } from 'react';
 import { createContainer } from 'unstated-next';
 
 import { useUser } from './user';
+import useEditPages from './editPages';
 
 import Api from '@/api/common';
 import { getQueryString } from "@/utils/utils";
@@ -64,6 +65,9 @@ function useDetails() {
     setTheme(value);
     document.documentElement.setAttribute("data-theme", value);
   }
+
+  // let [count, setCount] = useEditPages.useContainer();
+
 
 
   useEffect(() => {

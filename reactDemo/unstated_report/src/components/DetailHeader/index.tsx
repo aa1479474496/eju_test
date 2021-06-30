@@ -5,11 +5,17 @@ import { Tooltip } from 'antd';
 import { Select } from 'antd';
 import Details from '@/models/details';
 
+import { useEditPages } from '@/models/editPages';
+
+
 import styles from './index.scss';
 
 const { Option } = Select;
 const DetailHeader: React.FC = () => {
   let detailsContainer = Details.useContainer();
+  let { tables, maps } = useEditPages();
+  console.log('tables::', tables);
+
   let { theme, changeTheme, info, setInfo, user } = detailsContainer;
 
   const changeName: React.ReactEventHandler<HTMLInputElement> = (e) => {
@@ -20,9 +26,9 @@ const DetailHeader: React.FC = () => {
     });
   }
 
-  const handleChange = (value:string) => {
+  const handleChange = (value: string) => {
     changeTheme(value);
-   
+
   }
 
   // logo
@@ -102,7 +108,7 @@ const DetailHeader: React.FC = () => {
     });
     return (
       <>
-      {/* <span>{user.name}</span> */}
+        {/* <span>{user.name}</span> */}
         {items}
       </>
     )
@@ -115,15 +121,15 @@ const DetailHeader: React.FC = () => {
       { type: 'red', aliasName: '赤炼红' }
     ]
     return (
-      <Select 
-        defaultValue={theme} 
-        style={{ width: 90 }} 
+      <Select
+        defaultValue={theme}
+        style={{ width: 90 }}
         bordered={false}
         onChange={handleChange}
       >
         {
           themes.map(item => (
-          <Option key={item.type} value={item.type}>{item.aliasName}</Option>
+            <Option key={item.type} value={item.type}>{item.aliasName}</Option>
           ))
         }
       </Select>
