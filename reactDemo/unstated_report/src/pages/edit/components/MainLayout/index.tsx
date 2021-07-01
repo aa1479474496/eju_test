@@ -54,7 +54,7 @@ const MainLayout = () => {
 
 
   const RenderGrid = useMemo(() => {
-    console.log('pageDatas', pageDatas);
+    // console.log('pageDatas', pageDatas);
     const getStyle = (item: ItemDataType): React.CSSProperties => {
       return {
         position: 'absolute',

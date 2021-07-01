@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import cls from 'classnames';
 
 import Details from '@/models/details';
@@ -19,10 +19,15 @@ const SideBar = () => {
   let { tables, maps } = detailsContainer;
 
   const [type, setType] = useState<string>('');
+  const closeDrawer = useCallback(() => {
+    setType('');
+  }, []);
   const ref = useRef(null);
   useOnClickOutSide(ref, () => {
-    setType('');
+    closeDrawer();
   });
+
+  
 
   const setDrawerType = (componentType:string) => {
     let _type = type == componentType ? '' : componentType;
@@ -80,6 +85,8 @@ const SideBar = () => {
     chart: (
       <PageSource 
         datas={tables}
+        closeDrawer={closeDrawer}
+
       />
     ),
     image: (

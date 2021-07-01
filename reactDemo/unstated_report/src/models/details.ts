@@ -28,10 +28,10 @@ export type ItemDataType = {
   y: string | number;
   w: string | number;
   h: string | number;
-  i: string | number;
+  i?: string | number;
   css?: any;
   innercss?: any;
-  whLock: boolean;
+  whLock?: boolean;
   type: string;
   data?: any;
 }
