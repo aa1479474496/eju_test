@@ -13,11 +13,12 @@ import { useEditItem } from '@/models/editItem';
 import styles from './pageSource.scss';
 interface PageSourceProps {
   datas: SourceDatasType[];
+  itemType: 'chart' | 'map';
   closeDrawer?: () => void;
 }
 
 const PageSource = (props: PageSourceProps) => {
-  const { datas, closeDrawer } = props;
+  const { datas, closeDrawer, itemType = 'chart' } = props;
   const [inputValue, setInputValue] = useState<string>('');
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -25,8 +26,8 @@ const PageSource = (props: PageSourceProps) => {
 
   const { addItem } = useEditItem();
 
-  const localAddItem = (type: ComponentName, id?: number) => {
-    addItem(type, id);
+  const localAddItem = (id?: number) => {
+    addItem(itemType, id);
     if (closeDrawer) {
       closeDrawer();
     }
@@ -53,7 +54,7 @@ const PageSource = (props: PageSourceProps) => {
               <div
                 className={styles.item}
                 key={item.name}
-                onClick={() => localAddItem('chart', item.id)}
+                onClick={() => localAddItem(item.id)}
               >
                 <span className={styles.left} title={item.name}>{item.name}</span>
               </div>

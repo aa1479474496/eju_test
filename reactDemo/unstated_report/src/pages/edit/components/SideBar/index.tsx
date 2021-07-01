@@ -86,6 +86,7 @@ const SideBar = () => {
       <PageSource 
         datas={tables}
         closeDrawer={closeDrawer}
+        itemType="chart"
 
       />
     ),
@@ -98,6 +99,8 @@ const SideBar = () => {
     map: (
       <PageSource 
         datas={maps}
+        closeDrawer={closeDrawer}
+        itemType="map"
       />
     ),
 
