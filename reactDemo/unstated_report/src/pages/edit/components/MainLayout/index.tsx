@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { memo, useMemo } from 'react';
 import cls from 'classnames';
 import { Rnd } from "react-rnd";
 
@@ -17,11 +17,13 @@ type DraggableData = {
   node: HTMLElement,
   x: number,
   y: number,
-  deltaX: number, deltaY: number,
-  lastX: number, lastY: number
+  deltaX: number, 
+  deltaY: number,
+  lastX: number, 
+  lastY: number
 };
 
-const MainLayout = () => {
+const _MainLayout = () => {
   let detailsContainer = Details.useContainer();
   const { modItem } = useEditItem();
 
@@ -29,39 +31,44 @@ const MainLayout = () => {
   let curPage = pages[activeIndex] || {};
   let pageDatas: ItemDataType[] = curPage.data || [];
 
+
+  console.log('curPage', curPage);
+
   const onDragStart = (itemData: ItemDataType) => {
     //TODO 设置点击的元件为current
     // console.log('ddddd', itemData);
   }
 
-  const onDragStop = (e: any, data: DraggableData) => {
+  const onDragStop = (e: any, data: DraggableData, itemData: ItemDataType) => {
     // TODO 得到返回的新的x,y 更新pageDatas
     // console.log('eeeee', e);
     // console.log('data', data);
+    // console.log('pages', pages);
+
+    let { x, y } = data;
+    let newItem = {
+      ...itemData,
+      x,
+      y
+    }
+    modItem(newItem);
   }
 
-  const onResizeStop = (e: MouseEvent | TouchEvent, dir: string, refToElement:HTMLElement, delta: { width: number, height: number }, position: { x: number, y: number }, itemData: ItemDataType) => {
-    // TODO 改变元件宽高， 更新pageDatas
-    // e, dir, refToElement, delta, position
-    // width: refToElement.style.width,
-    // height: refToElement.style.height,
-    // console.log('eeeeeee', e);
-    // console.log('dir', dir);
-    // console.log('refToElement', refToElement);
-    // console.log('delta', delta);
-    // console.log('position', position);
-    // console.log('width', refToElement.style.width);
-    // console.log('height', refToElement.style.height);
-    // console.log('itemData', itemData)
-    // let { width, height } = refToElement.style;
+  let _onResizeStop = (e: MouseEvent | TouchEvent, dir: string, refToElement:HTMLElement, delta: { width: number, height: number }, position: { x: number, y: number }, itemData: ItemDataType) => {
+    let { width, height } = refToElement.style;
     let newItem = {
       ...itemData,
       w: parseFloat(width),
       h: parseFloat(height)
     }
     modItem(newItem);
-
   }
+
+  let onResizeStop = useMemo(() => _onResizeStop, [pageDatas]);
+
+  // const onResizeStop = useMemo(() => {
+
+  // }, [pageDatas])
 
 
 
@@ -77,7 +84,7 @@ const MainLayout = () => {
       (
         <Rnd
           style={getStyle(item)}
-          key={item.type + index}
+          key={item.i}
           bounds="parent"
           default={{
             x: Number(item.x),
@@ -86,8 +93,8 @@ const MainLayout = () => {
             height: item.h
           }}
           onDragStart={() => onDragStart(item)}
-          onDragStop={onDragStop}
-          onResizeStop={(e,dir,refToElement,data,position) =>onResizeStop(e,dir,refToElement,data,position,item)}
+          onDragStop={(e,data) => onDragStop(e,data,item)}
+          onResizeStop={(e,dir,refToElement,data,position) => onResizeStop(e,dir,refToElement,data,position,item)}
         >
           <GridItem type={item.type} item={item} />
         </Rnd>
@@ -105,7 +112,6 @@ const MainLayout = () => {
     <div className={styles.edit_main_layout}>
       <div className={styles.middle_content}>
         <div className={styles.dash_main}>
-          {/* <p>middle_content</p> */}
           {RenderGrid}
           {/* <RenderGrid /> */}
         </div>
@@ -113,7 +119,7 @@ const MainLayout = () => {
     </div>
   )
 }
-
+const MainLayout = memo(_MainLayout);
 export default MainLayout;
 
 // const renderGrid = data.map((item, index) => (

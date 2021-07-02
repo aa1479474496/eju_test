@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 import { dynamic } from 'umi';
 import { ItemDataType } from '@/models/details';
 
@@ -13,7 +13,7 @@ const DynamicFunc = (type: string, itemData: ItemDataType) => {
       );
       // return Graph;
       return () => {
-        return <Graph itemData={itemData}/>;
+        return <Graph itemData={itemData} />;
       }
     },
     loading: () => (
@@ -23,21 +23,24 @@ const DynamicFunc = (type: string, itemData: ItemDataType) => {
     ),
   });
 
-} 
+}
 
 type ItemType = {
   type: string;
   item: ItemDataType
 };
 
-const GridItem = (props: ItemType) => {
+const GridItem = memo((props: ItemType) => {
   // return <DynamicFunc {...props} />;
-  let Item = DynamicFunc(props.type, props.item);
-  // console.log('1111',Item);
+
+  console.log('+++++++++', props.item);
+  let Item = useMemo(() => {
+    return DynamicFunc(props.type, props.item);
+  }, [props.item]);
   return (
-    <Item {...props}/>
+    <Item {...props} />
   )
 
-}
+});
 
 export default GridItem;
