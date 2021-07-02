@@ -25,7 +25,6 @@ const PageSource = (props: PageSourceProps) => {
   }
 
   const { addItem } = useEditItem();
-
   const localAddItem = (id?: number) => {
     addItem(itemType, id);
     if (closeDrawer) {

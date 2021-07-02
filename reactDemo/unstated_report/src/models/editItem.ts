@@ -4,15 +4,10 @@ import components, { ComponentName } from '@/config/components';
 
 import DeatailsContainer, { ItemDataType, SourceDatasType } from './details';
 
-
-
-
-
-
 export function useEditItem() {
   let { activeIndex, pages, setPages } = DeatailsContainer.useContainer();
 
-  let layout = pages[activeIndex];
+  let layout = pages[activeIndex] || {};
   let { data = [] } = layout;
 
   const addItem = (type:ComponentName, id?: number) => {
@@ -44,8 +39,32 @@ export function useEditItem() {
   }
 
 
+  const modItem = (newItem: ItemDataType) => {
+    let _data = data.map(item => {
+      if (item.i === newItem.i) {
+        return newItem;
+      }
+      return { ...item };
+    });
+
+    let _layout = {
+      ...layout,
+        data: _data
+    }
+
+    let _pages = pages.map((page, index) => {
+      if (index === activeIndex) {
+        return _layout
+      }
+      return { ...page }
+    });
+    setPages(_pages);
+  }
+
+
   return {
-    addItem
+    addItem,
+    modItem
   }
 }
 

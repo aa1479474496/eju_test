@@ -2,11 +2,14 @@ import React, { useMemo } from 'react';
 import cls from 'classnames';
 import { Rnd } from "react-rnd";
 
-
+// models
 import Details, { ItemDataType } from '@/models/details';
+import { useEditItem } from '@/models/editItem';
 
+// component
 import GridItem from '@/components/Grid/index';
 
+// style
 import styles from './index.scss';
 
 // 拖拽组件定义的ts类型
@@ -18,10 +21,10 @@ type DraggableData = {
   lastX: number, lastY: number
 };
 
-
 const MainLayout = () => {
-
   let detailsContainer = Details.useContainer();
+  const { modItem } = useEditItem();
+
   let { pages, activeIndex } = detailsContainer;
   let curPage = pages[activeIndex] || {};
   let pageDatas: ItemDataType[] = curPage.data || [];
@@ -37,7 +40,7 @@ const MainLayout = () => {
     // console.log('data', data);
   }
 
-  const onResizeStop = (e: MouseEvent | TouchEvent, dir: string, refToElement:HTMLElement, delta: { width: number, height: number }, position: { x: number, y: number }) => {
+  const onResizeStop = (e: MouseEvent | TouchEvent, dir: string, refToElement:HTMLElement, delta: { width: number, height: number }, position: { x: number, y: number }, itemData: ItemDataType) => {
     // TODO 改变元件宽高， 更新pageDatas
     // e, dir, refToElement, delta, position
     // width: refToElement.style.width,
@@ -47,8 +50,17 @@ const MainLayout = () => {
     // console.log('refToElement', refToElement);
     // console.log('delta', delta);
     // console.log('position', position);
-    console.log('width', refToElement.style.width);
-    console.log('height', refToElement.style.height);
+    // console.log('width', refToElement.style.width);
+    // console.log('height', refToElement.style.height);
+    // console.log('itemData', itemData)
+    // let { width, height } = refToElement.style;
+    let newItem = {
+      ...itemData,
+      w: parseFloat(width),
+      h: parseFloat(height)
+    }
+    modItem(newItem);
+
   }
 
 
@@ -75,7 +87,7 @@ const MainLayout = () => {
           }}
           onDragStart={() => onDragStart(item)}
           onDragStop={onDragStop}
-          onResizeStop={onResizeStop}
+          onResizeStop={(e,dir,refToElement,data,position) =>onResizeStop(e,dir,refToElement,data,position,item)}
         >
           <GridItem type={item.type} item={item} />
         </Rnd>
