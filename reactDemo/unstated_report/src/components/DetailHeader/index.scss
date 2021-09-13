@@ -35,7 +35,7 @@
     .gl_logo {
       width: 28px;
       height: 32px;
-      // @include abs_bg('logo.png');
+      @include abs_bg('logo.png');
     }
 
     .iconfont {
