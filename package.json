@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "antd": "^4.1.4",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "vue-router": "^4.0.12"
   },
   "devDependencies": {
     "@types/node": "^12.6.8",
