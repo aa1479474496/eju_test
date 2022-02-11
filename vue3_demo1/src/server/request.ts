@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
-import Config, { MOCKAPIURL } from "@/server/env.js";
+import Config, { MOCKAPIURL } from "@/server/env";
 // import store from '@/store/index.js';
 import router from '@/routes/index';
 import qs from 'qs'
