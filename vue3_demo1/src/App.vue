@@ -1,5 +1,4 @@
 <template>
-  <HelloWorld msg="Hello Vue 3 " />
   <router-view></router-view>
 </template>
 

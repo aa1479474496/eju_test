@@ -10,7 +10,8 @@
 export const MOCKAPIURL:string =
     'http://api.cricwifi.com/server/index.php?g=Web&c=Mock&o=simple&projectID=117&uri='
 /** 测试 api  */
-export const TESTAPIURL:string = 'http://finance.dgtest.cricwifi.com/core-app'
+// export const TESTAPIURL:string = 'http://finance.dgtest.cricwifi.com/core-app'
+export const TESTAPIURL:string = 'http://yuntudc.renttest.dev.cricwifi.com/api'
 /** 线上 api  */
 export const PROAPIURL:string = 'http://www.cricfinance.com/core-app'
 
@@ -23,7 +24,6 @@ let fileUrl:string = "http://dfs.cricbigdata.com/view"; //文件系统
 
 
 if (process.env.NODE_ENV == 'development') {
-    apiPath = MOCKAPIURL
     apiPath = TESTAPIURL
 }
 else if (process.env.NODE_ENV == "production") {
