@@ -1,4 +1,4 @@
-import MYHTTP from "@/server/request";
+import MYHTTP from "/@/server/request";
 
 export default class Api {
     // 房企股市

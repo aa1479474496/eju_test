@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
-import Config, { MOCKAPIURL } from "@/server/env";
+import Config, { MOCKAPIURL } from "/@/server/env";
 // import store from '@/store/index.js';
-import router from '@/routes/index';
+import router from '/@/routes/index';
 import qs from 'qs'
 
 let myHttp:AxiosInstance = axios.create({

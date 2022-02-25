@@ -7,8 +7,8 @@
 
 <script lang="ts" setup>
 import { onMounted } from "vue";
-import Api from "@/api/home";
-import companyGroup from "@/components/companyGroup/index.vue"
+import Api from "/@/api/home";
+import companyGroup from "/@/components/companyGroup/index.vue"
 
 onMounted(async () => {
   await getList();
