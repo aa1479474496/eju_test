@@ -7,7 +7,7 @@
     content="this is content, this is content, this is content"
   >
     <template #reference>
-      <el-button>Hover to activate</el-button>
+      <el-button @click="updateUserName">Hover to activate{{userName}}</el-button>
     </template>
   </el-popover>
 </template>
@@ -15,7 +15,8 @@
 <script lang="ts">
 import Api from "/@/api/home";
 
-import { defineComponent, onMounted } from "vue";
+import { defineComponent, computed, onMounted } from "vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "companyGroup",
@@ -27,14 +28,28 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
+    const store = useStore();
+    const userName = computed(() => store.state.home.userName);
+    const updateUserName = function () {
+        console.log('1233');
+        store.dispatch('home/updateUserName')
+    }
+
     onMounted(async () => {
-        getGroupList(); 
+      getGroupList();
     });
 
     async function getGroupList() {
       //获取所有的企业分组
       let res = await Api.getGroupList();
       console.log("getGroupList:", res);
+    };
+
+
+
+    return {
+        userName,
+        updateUserName
     }
   },
 });

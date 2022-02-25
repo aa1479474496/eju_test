@@ -12,10 +12,12 @@
     "element-plus": "^2.0.2",
     "qs": "^6.10.1",
     "vue": "^3.2.25",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@types/node": "^17.0.17",
+    "@types/webpack-env": "^1.16.3",
     "@vitejs/plugin-vue": "^2.2.0",
     "node-sass": "^7.0.1",
     "sass": "^1.49.7",
