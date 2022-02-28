@@ -20,13 +20,17 @@ import { createStore } from 'vuex'
 
 // https://vitejs.dev/guide/features.html#glob-import
 const modulesFiles = import.meta.globEager('./modules/*.ts')
+export interface Modules {
+    [key: string]: any;
+}
 
-let modules = {}
+
+let modules: Modules = {}
 for (const path in modulesFiles) {
     console.log('path', path);
-  const moduleName:string = path.replace(/(.*\/)*([^.]+).*/gi, '$2')
-//   modules = { ...modules, ...modulesFiles[path] }
-console.log('moduleName:', moduleName);
+    const moduleName: string = path.replace(/(.*\/)*([^.]+).*/gi, '$2')
+    //   modules = { ...modules, ...modulesFiles[path] }
+    console.log('moduleName:', moduleName);
 
     const value = modulesFiles[path]
     modules[moduleName] = value.default
@@ -35,8 +39,8 @@ console.log('moduleName:', moduleName);
 
 console.log('modules::', modules);
 
-const store =  createStore({
-  modules
+const store = createStore({
+    modules
 })
 
 export default store

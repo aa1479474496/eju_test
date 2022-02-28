@@ -13,7 +13,9 @@
 </template>
 
 <script lang="ts">
-import { AData } from "./data";
+// import { AData } from "./data";
+import { ADataItem } from '/@/api/model/homeModel';
+
 import Api from "/@/api/home";
 
 import { defineComponent, reactive, ref, computed, onMounted } from "vue";
@@ -59,7 +61,7 @@ export default defineComponent({
       console.log("getGroupList:", res);
     }
 
-    function formatDataToHah(aData: AData) {}
+    function formatDataToHah(aData: ADataItem[]) {}
 
     return {
       userName,

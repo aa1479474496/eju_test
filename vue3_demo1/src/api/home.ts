@@ -1,4 +1,5 @@
 import MYHTTP from "/@/server/request";
+import { GetGroupListModel } from './model/homeModel';
 
 export default class Api {
     // 房企股市
@@ -11,11 +12,10 @@ export default class Api {
 
     // ---------- dc测试接口 -----------
 
-    static getGroupList(params?:any):any {
+    static getGroupList() {
         // 获取所有的企业分组
-        return MYHTTP.get({
+        return MYHTTP.get<GetGroupListModel>({
             url: '/fangqigroup/enterprise',
-            params
         })
     }
 

@@ -1,11 +1,12 @@
 /* eslint-disable no-undef */
-import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
+import axios from "axios";
+import type { AxiosRequestConfig, AxiosInstance, AxiosResponse, AxiosError } from 'axios';
 import Config, { MOCKAPIURL } from "/@/server/env";
 // import store from '@/store/index.js';
 import router from '/@/routes/index';
 import qs from 'qs'
 
-let myHttp:AxiosInstance = axios.create({
+let myHttp = axios.create({
     baseURL: Config.apiPath,
     timeout: 60000,
     headers: {
@@ -81,7 +82,7 @@ myHttp.interceptors.request.use(
 
 // 添加响应拦截器
 myHttp.interceptors.response.use(
-    function (response: AxiosResponse) {
+    function (response:AxiosResponse<any>) {
         handleResponse({ config: response.config });
 
         if (response.config.responseType !== "blob") {
@@ -137,7 +138,7 @@ export default class MYHTTP {
         return cancelToken;
     }
 
-    static get({ url = "", params = {}, config = {} }) {
+    static get<T = any>({ url = "", params = {}, config = {} }): Promise<T> {
         let cancelToken = MYHTTP.cancelToken();
 
         Object.assign(config, { cancelToken });
