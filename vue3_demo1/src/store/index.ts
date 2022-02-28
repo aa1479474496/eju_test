@@ -24,7 +24,7 @@ const modulesFiles = import.meta.globEager('./modules/*.ts')
 let modules = {}
 for (const path in modulesFiles) {
     console.log('path', path);
-  const moduleName = path.replace(/(.*\/)*([^.]+).*/gi, '$2')
+  const moduleName:string = path.replace(/(.*\/)*([^.]+).*/gi, '$2')
 //   modules = { ...modules, ...modulesFiles[path] }
 console.log('moduleName:', moduleName);
 

@@ -1,5 +1,22 @@
 let count = 1;
-const state = {
+export interface AItem {
+    iAutoID: number;
+    iSort: number;
+    sName: string;
+}
+interface HomeState {
+    userName: string;
+    group: {
+        aData: AItem[];
+        hashWithId: any;
+        hashWithLetter: any;
+        allSnames: string;
+    }
+}
+
+
+
+const state:HomeState = {
     userName: 'xxx',
     group: {
         aData: [], // 企业分组
@@ -11,10 +28,10 @@ const state = {
 }
 
 const mutations = {
-    setGroup(state, group) {
+    setGroup(state:HomeState, group:typeof state.group) {
         state.group = group
     },
-    updateUserName(state, group) {
+    updateUserName(state:HomeState, group:typeof state.group) {
         state.userName = state.userName + ++count
         console.log('3');
 

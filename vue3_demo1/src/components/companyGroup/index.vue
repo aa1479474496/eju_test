@@ -7,15 +7,16 @@
     content="this is content, this is content, this is content"
   >
     <template #reference>
-      <el-button @click="updateUserName">Hover to activate{{userName}}</el-button>
+      <el-button @click="updateUserName">Hover to activate{{ userName }}</el-button>
     </template>
   </el-popover>
 </template>
 
 <script lang="ts">
+import { AData } from "./data";
 import Api from "/@/api/home";
 
-import { defineComponent, computed, onMounted } from "vue";
+import { defineComponent, reactive, ref, computed, onMounted } from "vue";
 import { useStore } from "vuex";
 
 export default defineComponent({
@@ -28,12 +29,15 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
+    const joinWord = ref("囖");
+    const groupList = reactive([]);
+
     const store = useStore();
+    const group: typeof store.state.home.group = computed(() => store.state.home.group);
     const userName = computed(() => store.state.home.userName);
     const updateUserName = function () {
-        console.log('1233');
-        store.dispatch('home/updateUserName')
-    }
+      store.dispatch("home/updateUserName");
+    };
 
     onMounted(async () => {
       getGroupList();
@@ -41,16 +45,26 @@ export default defineComponent({
 
     async function getGroupList() {
       //获取所有的企业分组
+      //获取所有的企业分组
+      let { aData = [] } = group;
+      console.log("aData", aData);
+      if (aData.length) {
+        return;
+      }
       let res = await Api.getGroupList();
+      if (res.ErrorCode === 200) {
+        let { aData = [] } = res.Data;
+        formatDataToHah(aData);
+      }
       console.log("getGroupList:", res);
-    };
+    }
 
-
+    function formatDataToHah(aData: AData) {}
 
     return {
-        userName,
-        updateUserName
-    }
+      userName,
+      updateUserName,
+    };
   },
 });
 </script>

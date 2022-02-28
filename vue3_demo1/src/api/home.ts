@@ -11,7 +11,7 @@ export default class Api {
 
     // ---------- dc测试接口 -----------
 
-    static getGroupList(params?:any) {
+    static getGroupList(params?:any):any {
         // 获取所有的企业分组
         return MYHTTP.get({
             url: '/fangqigroup/enterprise',
