@@ -1,9 +1,6 @@
 let count = 1;
-export interface AItem {
-    iAutoID: number;
-    iSort: number;
-    sName: string;
-}
+
+import { AItem } from '/@/api/model/homeModel'
 interface HomeState {
     userName: string;
     group: {
@@ -13,6 +10,7 @@ interface HomeState {
         allSnames: string;
     }
 }
+
 
 
 
@@ -27,18 +25,21 @@ const state:HomeState = {
 
 }
 
+export type GroupType = typeof state.group
+
+
 const mutations = {
-    setGroup(state:HomeState, group:typeof state.group) {
+    setGroup(state:HomeState, group:GroupType) {
         state.group = group
     },
-    updateUserName(state:HomeState, group:typeof state.group) {
+    updateUserName(state:HomeState, group:GroupType) {
         state.userName = state.userName + ++count
 
     }
 }
 
 const actions = {
-    setGroup({ commit }, group) {
+    setGroup({ commit }, group: GroupType) {
         commit('setGroup', group)
     },
     updateUserName({ commit }) {

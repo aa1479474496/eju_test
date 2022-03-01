@@ -7,15 +7,17 @@
     content="this is content, this is content, this is content"
   >
     <template #reference>
-      <el-button @click="updateUserName">Hover to activate{{ userName }}</el-button>
+      <el-button @click="updateUserName"
+        >Hover to activate{{ userName }}</el-button
+      >
     </template>
   </el-popover>
 </template>
 
 <script lang="ts">
-import { ADataItem } from '/@/api/model/homeModel';
+import { ADataItem } from "/@/api/model/homeModel";
 import Api from "/@/api/home";
-import  { useGroup } from './useGroup';
+import { useGroupList } from "./useGroupList";
 
 import { defineComponent, reactive, ref, computed, onMounted } from "vue";
 import { useStore } from "vuex";
@@ -30,46 +32,34 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    
-    const joinWord = ref("囖");
-    const groupList = reactive([]);
-
-    const { count } = useGroup()
-
-  
-
+    const userGroupList = ref([]);
     const store = useStore();
-    const group: typeof store.state.home.group = computed(() => store.state.home.group);
     const userName = computed(() => store.state.home.userName);
     const updateUserName = function () {
       store.dispatch("home/updateUserName");
     };
 
-    onMounted(async () => {
-        console.log('onMounted2');
+    //获取所有的企业分组, 并整理数据存储到vuex中
+    useGroupList();
 
-    //   getGroupList();
-    });
 
-    async function getGroupList() {
-      //获取所有的企业分组
-      let { aData = [] } = group;
-      console.log("aData", aData);
-      if (aData.length) {
-        return;
-      }
-      let res = await Api.getGroupList();
+
+    async function getUserGroupList() {
+      //获取用户保存的分组
+      let res = await Api.getUserGroupList();
       if (res.ErrorCode === 200) {
-        let { aData = [] } = res.Data;
-        formatDataToHah(aData);
+        let { Data = [] } = res;
+        userGroupList.value = Data;
       }
-      console.log("getGroupList:", res);
     }
 
-    function formatDataToHah(aData: ADataItem[]) {}
+    onMounted(() => {
+      getUserGroupList();
+    });
 
     return {
       userName,
+      userGroupList,
       updateUserName,
     };
   },

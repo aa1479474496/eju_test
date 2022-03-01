@@ -1,4 +1,4 @@
-import { defineComponent, reactive, ref, computed, onMounted } from "vue";
+import { computed, onMounted } from "vue";
 import { useStore } from "vuex";
 
 import Api from "/@/api/home";
@@ -8,8 +8,7 @@ type HashType = {
     [key: string | number] : string | {};
 }
 
-export function useGroup(joinWord = '囖') {
-    const count = ref(0);
+export function useGroupList(joinWord = '囖') {
     const store = useStore();
     const group: typeof store.state.home.group = computed(() => store.state.home.group);
     onMounted(async () => {
@@ -19,7 +18,6 @@ export function useGroup(joinWord = '囖') {
     async function getGroupList() {
         //获取所有的企业分组
         let { aData = [] } = group;
-        console.log("aData", aData);
         if (aData.length) {
             return;
         }
@@ -31,7 +29,6 @@ export function useGroup(joinWord = '囖') {
                 aData,
                 ...hashState
             })
-            console.log('hashState::', hashState);
 
         }
     }
@@ -63,10 +60,5 @@ export function useGroup(joinWord = '囖') {
         hashWithId
       }
      }
-
-    return {
-        count
-    }
-
 
 }
