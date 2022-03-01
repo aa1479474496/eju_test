@@ -1,23 +1,25 @@
 <template>
   <el-popover placement="top-start" title="Title" :width="230" trigger="hover">
-    <div>
-     <i class="el-icon-lx-redpacket_fill" style="font-size: 30px;color: #ff5900"></i>
-    </div>
+    <div>xxx</div>
     <template #reference>
-      <el-button @click="updateUserName"
-        >Hover to activate{{ userName }}</el-button
+      <el-button @click="updateUserName">
+        <el-icon>
+          <ArrowDown></ArrowDown>
+        </el-icon>
+        Hover to activate{{ userName }}</el-button
       >
     </template>
   </el-popover>
 </template>
 
 <script lang="ts">
-import { ADataItem } from "/@/api/model/homeModel";
-import Api from "/@/api/home";
-import { useGroupList } from "./useGroupList";
-
 import { defineComponent, reactive, ref, computed, onMounted } from "vue";
 import { useStore } from "vuex";
+
+import { ArrowDown } from "@element-plus/icons-vue";
+
+import Api from "/@/api/home";
+import { useGroupList } from "./useGroupList";
 
 export default defineComponent({
   name: "companyGroup",
@@ -27,6 +29,9 @@ export default defineComponent({
       default: 0, // 如果为-1 没有选中的情况 展示自定义企业组的样式
       // default: -1, // 如果为-1 没有选中的情况 展示自定义企业组的样式
     },
+  },
+  components: {
+    ArrowDown,
   },
   setup(props, { emit }) {
     const userGroupList = ref([]);
