@@ -1,11 +1,8 @@
 <template>
-  <el-popover
-    placement="top-start"
-    title="Title"
-    :width="200"
-    trigger="hover"
-    content="this is content, this is content, this is content"
-  >
+  <el-popover placement="top-start" title="Title" :width="230" trigger="hover">
+    <div>
+     <i class="el-icon-lx-redpacket_fill" style="font-size: 30px;color: #ff5900"></i>
+    </div>
     <template #reference>
       <el-button @click="updateUserName"
         >Hover to activate{{ userName }}</el-button
@@ -41,8 +38,6 @@ export default defineComponent({
 
     //获取所有的企业分组, 并整理数据存储到vuex中
     useGroupList();
-
-
 
     async function getUserGroupList() {
       //获取用户保存的分组
