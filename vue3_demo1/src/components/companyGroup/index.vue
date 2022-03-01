@@ -13,10 +13,9 @@
 </template>
 
 <script lang="ts">
-// import { AData } from "./data";
 import { ADataItem } from '/@/api/model/homeModel';
-
 import Api from "/@/api/home";
+import  { useGroup } from './useGroup';
 
 import { defineComponent, reactive, ref, computed, onMounted } from "vue";
 import { useStore } from "vuex";
@@ -31,8 +30,13 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
+    
     const joinWord = ref("囖");
     const groupList = reactive([]);
+
+    const { count } = useGroup()
+
+  
 
     const store = useStore();
     const group: typeof store.state.home.group = computed(() => store.state.home.group);
@@ -42,11 +46,12 @@ export default defineComponent({
     };
 
     onMounted(async () => {
-      getGroupList();
+        console.log('onMounted2');
+
+    //   getGroupList();
     });
 
     async function getGroupList() {
-      //获取所有的企业分组
       //获取所有的企业分组
       let { aData = [] } = group;
       console.log("aData", aData);

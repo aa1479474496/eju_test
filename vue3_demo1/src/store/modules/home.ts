@@ -33,7 +33,6 @@ const mutations = {
     },
     updateUserName(state:HomeState, group:typeof state.group) {
         state.userName = state.userName + ++count
-        console.log('3');
 
     }
 }
