@@ -20,14 +20,16 @@ import { createStore } from 'vuex'
 
 // https://vitejs.dev/guide/features.html#glob-import
 const modulesFiles = import.meta.globEager('./modules/*.ts')
-export interface Modules {
+// export interface Modules {
+//     [key: string]: any;
+// }
+export type Modules = {
     [key: string]: any;
 }
 
 
 let modules: Modules = {}
 for (const path in modulesFiles) {
-    console.log('path', path);
     const moduleName: string = path.replace(/(.*\/)*([^.]+).*/gi, '$2')
     //   modules = { ...modules, ...modulesFiles[path] }
     console.log('moduleName:', moduleName);
