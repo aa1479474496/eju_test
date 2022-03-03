@@ -1,6 +1,6 @@
 <template>
   <router-view></router-view>
-  HelloWorld
+  
 </template>
 
 <script setup lang="ts">

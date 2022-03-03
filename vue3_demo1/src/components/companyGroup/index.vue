@@ -1,13 +1,40 @@
 <template>
-  <el-popover placement="top-start" title="Title" :width="230" trigger="hover">
-    <div>xxx</div>
+  <el-popover
+    popper-class="local_group_popper"
+    placement="bottom-start"
+    :width="230"
+    trigger="click"
+  >
+    <div class="local_group_container">
+      <div class="local_group_item is_header">
+        <span>新增企业组</span>
+      </div>
+
+      <div class="group_scroll">
+        <div
+          class="local_group_item"
+          v-for="item in userGroupList"
+          :key="item.iGroupID"
+        >
+          <span class="left">{{ item.sName }}（{{ item.iNum }}）</span>
+          <template v-if="item.iGroupID > 0">
+            <el-icon>
+              <EditPen></EditPen>
+            </el-icon>
+            <el-icon>
+              <Delete></Delete>
+            </el-icon>
+          </template>
+        </div>
+      </div>
+    </div>
     <template #reference>
-      <el-button @click="updateUserName">
+      <span>
+        <span>{{ renderText }}</span>
         <el-icon>
           <ArrowDown></ArrowDown>
         </el-icon>
-        Hover to activate{{ userName }}</el-button
-      >
+      </span>
     </template>
   </el-popover>
 </template>
@@ -16,7 +43,9 @@
 import { defineComponent, reactive, ref, computed, onMounted } from "vue";
 import { useStore } from "vuex";
 
-import { ArrowDown } from "@element-plus/icons-vue";
+import { UserGroupItem } from "./typing";
+
+import { ArrowDown, EditPen, Delete } from "@element-plus/icons-vue";
 
 import Api from "/@/api/home";
 import { useGroupList } from "./useGroupList";
@@ -32,9 +61,11 @@ export default defineComponent({
   },
   components: {
     ArrowDown,
+    EditPen,
+    Delete,
   },
   setup(props, { emit }) {
-    const userGroupList = ref([]);
+    const userGroupList = ref<UserGroupItem[]>([]);
     const store = useStore();
     const userName = computed(() => store.state.home.userName);
     const updateUserName = function () {
@@ -43,6 +74,21 @@ export default defineComponent({
 
     //获取所有的企业分组, 并整理数据存储到vuex中
     useGroupList();
+
+    const renderText = computed(() => {
+      if (props.iGroupID < 0 || !userGroupList.value.length) {
+        return "";
+      }
+      let current = userGroupList.value.find(
+        (item: UserGroupItem) => item.iGroupID === props.iGroupID
+      );
+      if (current) {
+        let { sName = "", iNum = "" } = current;
+        return `${sName}(${iNum})`;
+      } else {
+        return "";
+      }
+    });
 
     async function getUserGroupList() {
       //获取用户保存的分组
@@ -61,7 +107,78 @@ export default defineComponent({
       userName,
       userGroupList,
       updateUserName,
+      renderText,
     };
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.local_group_container {
+  color: #2c82fa;
+
+  .iconfont {
+    font-size: 14px;
+  }
+
+  .group_scroll {
+    max-height: 160px;
+    overflow-y: auto;
+  }
+
+  .local_group_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 38px;
+    padding: 0 10px 0 20px;
+    color: #272f4c;
+    cursor: pointer;
+
+    &:hover {
+      background: #f3f8ff;
+      color: #2c82fa;
+      .el-icon {
+        opacity: 1;
+      }
+    }
+
+    &.is_header {
+      justify-content: flex-start;
+      cursor: pointer;
+      color: #2c82fa;
+    }
+    .el-icon {
+      opacity: 0;
+      margin-left: 12px;
+      transition: all cubic-bezier(0.175, 0.885, 1.275) 0.3s;
+    }
+    .left {
+      flex: 1;
+    }
+  }
+}
+.local_reference {
+  font-size: 13px;
+  line-height: 26px;
+  color: #2c82fa;
+
+  ::v-deep .el-icon-arrow-down {
+    transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
+    &.is_show {
+      transform: rotate(-180deg);
+    }
+  }
+}
+</style>
+
+<style lang="scss">
+.el-popover {
+  &.local_group_popper {
+    padding: 5px 0;
+
+    min-width: 230px;
+    width: auto !important;
+  }
+}
+</style>
