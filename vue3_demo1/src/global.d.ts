@@ -1,2 +1,2 @@
 declare module "element-plus";
-// declare module "axios";
+declare module 'click-outside-vue3';

@@ -1,43 +1,45 @@
 <template>
-  <el-popover
-    v-model:visible="visible"
-    popper-class="local_group_popper"
-    placement="bottom-start"
-    :width="230"
-    trigger="click"
-  >
-    <div class="local_group_container">
-      <div class="local_group_item is_header">
-        <span>新增企业组</span>
-      </div>
+  <div v-click-outside="onClickOutside">
+    <el-popover
+      v-model:visible="visible"
+      popper-class="local_group_popper"
+      placement="bottom-start"
+      :width="230"
+      trigger="click"
+    >
+      <div class="local_group_container">
+        <div class="local_group_item is_header">
+          <span>新增企业组</span>
+        </div>
 
-      <div class="group_scroll">
-        <div
-          class="local_group_item"
-          v-for="item in userGroupList"
-          :key="item.iGroupID"
-        >
-          <span class="left">{{ item.sName }}（{{ item.iNum }}）</span>
-          <template v-if="item.iGroupID > 0">
-            <el-icon>
-              <EditPen></EditPen>
-            </el-icon>
-            <el-icon>
-              <Delete></Delete>
-            </el-icon>
-          </template>
+        <div class="group_scroll">
+          <div
+            class="local_group_item"
+            v-for="item in userGroupList"
+            :key="item.iGroupID"
+          >
+            <span class="left">{{ item.sName }}（{{ item.iNum }}）</span>
+            <template v-if="item.iGroupID > 0">
+              <el-icon>
+                <EditPen></EditPen>
+              </el-icon>
+              <el-icon>
+                <Delete></Delete>
+              </el-icon>
+            </template>
+          </div>
         </div>
       </div>
-    </div>
-    <template #reference>
-      <span class="local_reference" @click="toggleVisible">
-        {{ renderText }}
-        <el-icon :class="arrowClass">
-          <ArrowDown></ArrowDown>
-        </el-icon>
-      </span>
-    </template>
-  </el-popover>
+      <template #reference>
+        <span class="local_reference" @click="toggleVisible">
+          {{ renderText }}
+          <el-icon :class="arrowClass">
+            <ArrowDown></ArrowDown>
+          </el-icon>
+        </span>
+      </template>
+    </el-popover>
+  </div>
 </template>
 
 <script lang="ts">
@@ -65,7 +67,7 @@ export default defineComponent({
     EditPen,
     Delete,
   },
-//    directives: { ClickOutside },
+  //    directives: { ClickOutside },
   setup(props, { emit }) {
     const userGroupList = ref<UserGroupItem[]>([]);
     const arrowClass = ref<string>("");
@@ -99,13 +101,17 @@ export default defineComponent({
     }
 
     function toggleVisible() {
-        let _val = visible.value;
-        visible.value = _val ? false : true;
-        arrowClass.value = _val ? '' : 'is_show'
+      let _val = visible.value;
+      visible.value = _val ? false : true;
+      arrowClass.value = _val ? "" : "is_show";
     }
 
     function handleClose() {
-        visible.value = false;
+      visible.value = false;
+    }
+
+    function onClickOutside() {
+      console.log("click out side");
     }
 
     async function getUserGroupList() {
@@ -130,7 +136,8 @@ export default defineComponent({
       setArrowClass,
       visible,
       toggleVisible,
-      handleClose
+      handleClose,
+      onClickOutside,
     };
   },
 });
