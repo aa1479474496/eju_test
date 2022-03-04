@@ -1,5 +1,6 @@
 <template>
   <el-popover
+    v-model:visible="visible"
     popper-class="local_group_popper"
     placement="bottom-start"
     :width="230"
@@ -29,9 +30,9 @@
       </div>
     </div>
     <template #reference>
-      <span>
-        <span>{{ renderText }}</span>
-        <el-icon>
+      <span class="local_reference" @click="toggleVisible">
+        {{ renderText }}
+        <el-icon :class="arrowClass">
           <ArrowDown></ArrowDown>
         </el-icon>
       </span>
@@ -43,9 +44,9 @@
 import { defineComponent, reactive, ref, computed, onMounted } from "vue";
 import { useStore } from "vuex";
 
-import { UserGroupItem } from "./typing";
-
+// import { ClickOutside } from '@element-plus/directives'
 import { ArrowDown, EditPen, Delete } from "@element-plus/icons-vue";
+import { UserGroupItem } from "./typing";
 
 import Api from "/@/api/home";
 import { useGroupList } from "./useGroupList";
@@ -64,8 +65,11 @@ export default defineComponent({
     EditPen,
     Delete,
   },
+//    directives: { ClickOutside },
   setup(props, { emit }) {
     const userGroupList = ref<UserGroupItem[]>([]);
+    const arrowClass = ref<string>("");
+    const visible = ref<boolean>(false);
     const store = useStore();
     const userName = computed(() => store.state.home.userName);
     const updateUserName = function () {
@@ -90,6 +94,20 @@ export default defineComponent({
       }
     });
 
+    function setArrowClass(val: string) {
+      arrowClass.value = val;
+    }
+
+    function toggleVisible() {
+        let _val = visible.value;
+        visible.value = _val ? false : true;
+        arrowClass.value = _val ? '' : 'is_show'
+    }
+
+    function handleClose() {
+        visible.value = false;
+    }
+
     async function getUserGroupList() {
       //获取用户保存的分组
       let res = await Api.getUserGroupList();
@@ -105,9 +123,14 @@ export default defineComponent({
 
     return {
       userName,
+      arrowClass,
       userGroupList,
       updateUserName,
       renderText,
+      setArrowClass,
+      visible,
+      toggleVisible,
+      handleClose
     };
   },
 });
@@ -159,11 +182,15 @@ export default defineComponent({
   }
 }
 .local_reference {
+  display: inline-flex;
+  align-items: center;
   font-size: 13px;
   line-height: 26px;
   color: #2c82fa;
+  cursor: pointer;
 
-  ::v-deep .el-icon-arrow-down {
+  :deep(.el-icon) {
+    margin-left: 4px;
     transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
     &.is_show {
       transform: rotate(-180deg);
