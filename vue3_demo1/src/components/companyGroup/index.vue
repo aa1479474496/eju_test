@@ -1,5 +1,5 @@
 <template>
-  <div v-click-outside="onClickOutside">
+  <div>
     <el-popover
       v-model:visible="visible"
       popper-class="local_group_popper"
@@ -7,7 +7,7 @@
       :width="230"
       trigger="click"
     >
-      <div class="local_group_container">
+      <div class="local_group_container" v-click-outside="vcoConfig">
         <div class="local_group_item is_header">
           <span>新增企业组</span>
         </div>
@@ -46,7 +46,6 @@
 import { defineComponent, reactive, ref, computed, onMounted } from "vue";
 import { useStore } from "vuex";
 
-// import { ClickOutside } from '@element-plus/directives'
 import { ArrowDown, EditPen, Delete } from "@element-plus/icons-vue";
 import { UserGroupItem } from "./typing";
 
@@ -72,6 +71,10 @@ export default defineComponent({
     const userGroupList = ref<UserGroupItem[]>([]);
     const arrowClass = ref<string>("");
     const visible = ref<boolean>(false);
+    const vcoConfig = reactive<any>({
+      handler: onClickOutside,
+      middleware: middleware,
+    });
     const store = useStore();
     const userName = computed(() => store.state.home.userName);
     const updateUserName = function () {
@@ -96,10 +99,6 @@ export default defineComponent({
       }
     });
 
-    function setArrowClass(val: string) {
-      arrowClass.value = val;
-    }
-
     function toggleVisible() {
       let _val = visible.value;
       visible.value = _val ? false : true;
@@ -108,10 +107,28 @@ export default defineComponent({
 
     function handleClose() {
       visible.value = false;
+      arrowClass.value = "";
     }
 
     function onClickOutside() {
-      console.log("click out side");
+      if (visible.value) {
+        handleClose();
+      }
+    }
+
+    function middleware(event: any) {
+      let { path = [] } = event;
+      for (let i = 0; i < path.length; i++) {
+        let { className = "" } = path[i];
+        if (
+          className &&
+          typeof className === "string" &&
+          className.includes("local_reference")
+        ) {
+          return false;
+        }
+      }
+      return true;
     }
 
     async function getUserGroupList() {
@@ -133,11 +150,11 @@ export default defineComponent({
       userGroupList,
       updateUserName,
       renderText,
-      setArrowClass,
       visible,
       toggleVisible,
       handleClose,
       onClickOutside,
+      vcoConfig,
     };
   },
 });

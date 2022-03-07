@@ -31,15 +31,9 @@ export type Modules = {
 let modules: Modules = {}
 for (const path in modulesFiles) {
     const moduleName: string = path.replace(/(.*\/)*([^.]+).*/gi, '$2')
-    //   modules = { ...modules, ...modulesFiles[path] }
-    console.log('moduleName:', moduleName);
-
     const value = modulesFiles[path]
     modules[moduleName] = value.default
-
 }
-
-console.log('modules::', modules);
 
 const store = createStore({
     modules
