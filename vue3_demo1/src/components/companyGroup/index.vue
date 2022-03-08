@@ -1,45 +1,44 @@
 <template>
-  <div>
-    <el-popover
-      v-model:visible="visible"
-      popper-class="local_group_popper"
-      placement="bottom-start"
-      :width="230"
-      trigger="click"
-    >
-      <div class="local_group_container" v-click-outside="vcoConfig">
-        <div class="local_group_item is_header">
-          <span>新增企业组</span>
-        </div>
+  <el-popover
+    v-model:visible="visible"
+    popper-class="local_group_popper"
+    placement="bottom-start"
+    :width="230"
+    trigger="click"
+  >
+    <div class="local_group_container" v-click-outside="vcoConfig">
+      <div class="local_group_item is_header">
+        <span>新增企业组</span>
+      </div>
 
-        <div class="group_scroll">
-          <div
-            class="local_group_item"
-            v-for="item in userGroupList"
-            :key="item.iGroupID"
-          >
-            <span class="left">{{ item.sName }}（{{ item.iNum }}）</span>
-            <template v-if="item.iGroupID > 0">
-              <el-icon>
-                <EditPen></EditPen>
-              </el-icon>
-              <el-icon>
-                <Delete></Delete>
-              </el-icon>
-            </template>
-          </div>
+      <div class="group_scroll">
+        <div
+          class="local_group_item"
+          v-for="item in userGroupList"
+          :key="item.iGroupID"
+          @click="changeGroup(item)"
+        >
+          <span class="left">{{ item.sName }}（{{ item.iNum }}）</span>
+          <template v-if="item.iGroupID > 0">
+            <el-icon>
+              <EditPen></EditPen>
+            </el-icon>
+            <el-icon>
+              <Delete></Delete>
+            </el-icon>
+          </template>
         </div>
       </div>
-      <template #reference>
-        <span class="local_reference" @click="toggleVisible">
-          {{ renderText }}
-          <el-icon :class="arrowClass">
-            <ArrowDown></ArrowDown>
-          </el-icon>
-        </span>
-      </template>
-    </el-popover>
-  </div>
+    </div>
+    <template #reference>
+      <span class="local_reference" @click="toggleVisible">
+        {{ renderText }}
+        <el-icon :class="arrowClass">
+          <ArrowDown></ArrowDown>
+        </el-icon>
+      </span>
+    </template>
+  </el-popover>
 </template>
 
 <script lang="ts">
@@ -106,6 +105,7 @@ export default defineComponent({
     }
 
     function handleClose() {
+      // close popover
       visible.value = false;
       arrowClass.value = "";
     }
@@ -116,7 +116,17 @@ export default defineComponent({
       }
     }
 
+    function changeGroup(item: UserGroupItem) {
+      //切换分组
+      let { iGroupID } = item;
+      if (iGroupID !== props.iGroupID) {
+        emit("setGroupId", iGroupID);
+      }
+      handleClose();
+    }
+
     function middleware(event: any) {
+      //   console.log("event", event);s
       let { path = [] } = event;
       for (let i = 0; i < path.length; i++) {
         let { className = "" } = path[i];
@@ -155,6 +165,7 @@ export default defineComponent({
       handleClose,
       onClickOutside,
       vcoConfig,
+      changeGroup,
     };
   },
 });
