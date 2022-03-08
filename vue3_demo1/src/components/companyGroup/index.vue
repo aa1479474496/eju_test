@@ -20,7 +20,7 @@
         >
           <span class="left">{{ item.sName }}（{{ item.iNum }}）</span>
           <template v-if="item.iGroupID > 0">
-            <el-icon>
+            <el-icon @click.stop="edit(item)">
               <EditPen></EditPen>
             </el-icon>
             <el-icon>
@@ -55,7 +55,7 @@ import {
 import { useStore } from "vuex";
 
 import { ArrowDown, EditPen, Delete } from "@element-plus/icons-vue";
-import { UserGroupItem } from "./typing";
+import { UserGroupItem, Row } from "./typing";
 
 import Api from "/@/api/home";
 import { useGroupList } from "./useGroupList";
@@ -85,6 +85,10 @@ export default defineComponent({
     const arrowClass = ref<string>("");
     const visible = ref<boolean>(false);
     const modalVisible = ref<boolean>(false);
+    const row = reactive<Row>({
+      iGroupID: 0,
+      sGroupName: "",
+    });
     const vcoConfig = reactive<any>({
       handler: onClickOutside,
       middleware: middleware,
@@ -141,6 +145,20 @@ export default defineComponent({
 
     function add() {
       console.log("add");
+      Object.assign(row, {
+        iGroupID: 0,
+        sGroupName: "",
+      });
+      setModalStatus();
+    }
+
+    function edit(current: UserGroupItem) {
+      console.log("edit");
+      let { iGroupID, sName } = current;
+      Object.assign(row, {
+        iGroupID,
+        sGroupName: sName,
+      });
       setModalStatus();
     }
 
@@ -182,9 +200,13 @@ export default defineComponent({
       getUserGroupList();
     });
 
-    provide("companyGroup", reactive({
-      renderText,
-    }));
+    provide(
+      "companyGroup",
+      reactive({
+        row,
+        setModalStatus,
+      })
+    );
 
     return {
       userName,
@@ -201,6 +223,8 @@ export default defineComponent({
       changeGroup,
       setModalStatus,
       add,
+      edit,
+      row,
     };
   },
 });

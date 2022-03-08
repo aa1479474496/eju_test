@@ -3,3 +3,7 @@ export interface UserGroupItem {
     iNum: number;
     sName: string;
 }
+export interface Row {
+    iGroupID: number;
+    sGroupName: string;
+}
