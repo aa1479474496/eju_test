@@ -7,7 +7,7 @@
     trigger="click"
   >
     <div class="local_group_container" v-click-outside="vcoConfig">
-      <div class="local_group_item is_header">
+      <div class="local_group_item is_header" @click.stop="add">
         <span>新增企业组</span>
       </div>
 
@@ -39,10 +39,19 @@
       </span>
     </template>
   </el-popover>
+
+  <companyGroupModal v-if="modalVisible"></companyGroupModal>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, computed, onMounted } from "vue";
+import {
+  defineComponent,
+  provide,
+  reactive,
+  ref,
+  computed,
+  onMounted,
+} from "vue";
 import { useStore } from "vuex";
 
 import { ArrowDown, EditPen, Delete } from "@element-plus/icons-vue";
@@ -50,6 +59,8 @@ import { UserGroupItem } from "./typing";
 
 import Api from "/@/api/home";
 import { useGroupList } from "./useGroupList";
+
+import companyGroupModal from "./companyGroupModal.vue";
 
 export default defineComponent({
   name: "companyGroup",
@@ -64,12 +75,16 @@ export default defineComponent({
     ArrowDown,
     EditPen,
     Delete,
+    companyGroupModal,
   },
+  emits: ["setGroupId"],
+
   //    directives: { ClickOutside },
   setup(props, { emit }) {
     const userGroupList = ref<UserGroupItem[]>([]);
     const arrowClass = ref<string>("");
     const visible = ref<boolean>(false);
+    const modalVisible = ref<boolean>(false);
     const vcoConfig = reactive<any>({
       handler: onClickOutside,
       middleware: middleware,
@@ -116,6 +131,19 @@ export default defineComponent({
       }
     }
 
+    function setModalStatus(val: boolean = true) {
+      // 新增/编辑 需要打开弹窗
+      modalVisible.value = val;
+      if (val) {
+        handleClose();
+      }
+    }
+
+    function add() {
+      console.log("add");
+      setModalStatus();
+    }
+
     function changeGroup(item: UserGroupItem) {
       //切换分组
       let { iGroupID } = item;
@@ -154,6 +182,10 @@ export default defineComponent({
       getUserGroupList();
     });
 
+    provide("companyGroup", reactive({
+      renderText,
+    }));
+
     return {
       userName,
       arrowClass,
@@ -161,11 +193,14 @@ export default defineComponent({
       updateUserName,
       renderText,
       visible,
+      modalVisible,
       toggleVisible,
       handleClose,
       onClickOutside,
       vcoConfig,
       changeGroup,
+      setModalStatus,
+      add,
     };
   },
 });
