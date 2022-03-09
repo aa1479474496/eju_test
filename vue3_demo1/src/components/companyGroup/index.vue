@@ -95,6 +95,7 @@ export default defineComponent({
     });
     const store = useStore();
     const userName = computed(() => store.state.home.userName);
+    console.log('userNameuserNameuserName', userName.value);
     const updateUserName = function () {
       store.dispatch("home/updateUserName");
     };

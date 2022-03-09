@@ -17,6 +17,7 @@ import companyGroup from "/@/components/companyGroup/index.vue"
 const iGroupID = ref<number>(0);
 
 function toTop(event:Event) {
+    // event: MouseEvent
     // console.log('top', event.height);
 }
 

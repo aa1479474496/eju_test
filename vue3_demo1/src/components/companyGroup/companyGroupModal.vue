@@ -12,11 +12,84 @@
         <el-input
           class="name_input"
           maxlength="10"
-           v-model="groupPro.row.sGroupName"
+          v-model="groupPro.row.sGroupName"
           placeholder="请输入企业组名称，最多10个字"
           clearable
           size="small"
         ></el-input>
+
+        <div class="modal_content">
+          <div class="left">
+            <el-input
+              class="search_input"
+              placeholder="请输入企业名称快捷搜索"
+              v-model="keyword"
+              clearable
+            >
+              <!-- <i slot="prefix" class="iconfont iconsearch"></i> -->
+            </el-input>
+            <div
+              class="screen_box local_beauty_checkbox"
+              v-if="group.aData.length"
+            >
+              <el-checkbox
+                v-if="group.allSnames && group.allSnames.includes(keyword)"
+                :disabled="keyword ? true : false"
+                style="margin-bottom: 4px"
+                :indeterminate="false"
+                @change="checkAll"
+                :value="
+                  checked.length &&
+                  checked.length == Object.keys(group.hashWithId).length
+                "
+                >全选</el-checkbox
+              >
+
+              <div v-for="item in group.aData" :key="item.sGroup">
+                <p
+                  class="group_num"
+                  v-if="
+                    group.hashWithLetter[item.sGroup] &&
+                    group.hashWithLetter[item.sGroup].includes(keyword)
+                  "
+                >
+                  {{ item.sGroup }}
+                </p>
+                <!-- <div>
+                  <el-checkbox
+                    v-if="!keyword"
+                    class="sname_checkbox"
+                    :indeterminate="false"
+                    :value="isGroupCheckAll(item.aList)"
+                    @change="(val) => handleGroupCheckAll(val, item.aList)"
+                    >全选</el-checkbox
+                  >
+                  <el-checkbox
+                    class="sname_checkbox"
+                    :class="
+                      aItem.sName.indexOf(keyword) != -1 ? '' : 'is_hidden'
+                    "
+                    v-for="aItem in item.aList"
+                    :label="aItem.sName"
+                    :key="aItem.iAutoID"
+                    :title="aItem.sName"
+                    :value="checked.includes(aItem.iAutoID)"
+                    @change="(value) => handleChange(value, aItem)"
+                    >{{ aItem.sName }}</el-checkbox
+                  >
+                </div> -->
+              </div>
+
+              <!-- <EmptyBox
+                size="small"
+                style="width: 95%"
+                :height="80"
+                text="暂无匹配企业"
+                v-if="group.allSnames && !group.allSnames.includes(keyword)"
+              ></EmptyBox> -->
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -43,9 +116,38 @@ export default defineComponent({
 
   setup(props, { emit }) {
     const groupPro: any = inject("companyGroup");
+    const store = useStore();
+    const group: typeof store.state.home.group = computed(
+      () => store.state.home.group
+    );
+    const keyword = ref<string>("");
+    const checked = ref<number[]>([]);
+    console.log("55555", group.value);
+
+    function checkAll(val: boolean) {
+      console.log("vvvvvvv", val);
+      let _checked = [];
+      if (val) {
+        for (let k in group.value.hashWithId) {
+          let item = group.value.hashWithId[k];
+          _checked.push(item.iAutoID);
+        }
+      }
+      checked.value = _checked;
+
+      console.log("2222222", _checked);
+    }
+
+    function isGroupCheckAll() {
+        
+    }
 
     return {
       groupPro,
+      group,
+      keyword,
+      checked,
+      checkAll,
     };
   },
 });
