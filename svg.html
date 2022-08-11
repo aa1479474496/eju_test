@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> -->
+    <meta name="viewport" content="width=device-375, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>test</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .circular path {
+            fill: none;
+        }
+
+        .circular svg {
+            display: block;
+            overflow: visible;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div style="margin: 30px 0 50px 120px">
+        <svg width="100" height="100">
+            <!-- <path id="xxx" stroke="deepskyblue" fill="none" d="M0 50a50 50 0 1 0 100 0a50 50 0 1 0 -100 0z" /> -->
+            <path id="xxx" stroke="deepskyblue" fill="none" d="M0 50a50 50 0 1 0 100 0a50 50 0 1 0 -100 1z" />
+
+            <text>
+                <textPath href="#xxx">测试文字</textPath>
+            </text>
+        </svg>
+    </div>
+
+
+
+
+    <div style="margin-left: 120px">
+        <svg viewBox="0 0 300 150" height="150">
+            <path id="zxxCircle" stroke="deepskyblue" fill="none" d="M90 75a60 60 0 1 0 120 0a60 60 0 1 0 -120 0z"/>
+            <text>
+              <textPath href="#zxxCircle">测试文字</textPath>
+            </text>
+          </svg>
+
+    </div>
+
+    <div class="circular" style="width: 100px;height: 100px;border: 1px solid red; font-size: 14px;margin: 30px auto">
+        <svg viewBox="0 0 100 100">
+            <path d="M 0,50 a 50,50 0 1,1 0,1 z" fill="none" id="circle" />
+            <text>
+                <textPath xlink:href="#circle">
+                    中文也可以的
+                </textPath>
+            </text>
+        </svg>
+
+
+    </div>
+
+
+</body>
+
+
+
+
+</html>
